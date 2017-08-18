@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: schedule-api-lambda
+service: protrack-lambda
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -22,7 +22,7 @@ provider:
   runtime: nodejs6.10
   region: ${file(./env.json):AWS_REGION}
   stackTags:
-    service: schedule-api-lambda
+    service: protrack-lambda
   stage: ${opt:stage, self:custom.defaultStage}
   environment:
     ES_ENDPOINT: ${file(./env.json):ES_ENDPOINT}
@@ -158,22 +158,6 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
-
-resources:
-  Resources:
-    ESDomain:
-      Type: AWS::Elasticsearch::Domain
-      Properties:
-        DomainName: schedule-api-${opt:stage, self:custom.defaultStage}
-        ElasticsearchVersion: "5.3"
-        ElasticsearchClusterConfig:
-          InstanceType: t2.small.elasticsearch
-          InstanceCount: 1
-        EBSOptions:
-          EBSEnabled: true
-          VolumeType: standard
-          VolumeSize: 10
-
 plugins:
   - serverless-webpack
 

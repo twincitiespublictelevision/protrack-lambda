@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "schedule-api-lambda",
+  "name": "protrack-lambda",
   "version": "0.0.1",
   "description": "Serverless API on top on ProTrack XML export",
   "scripts": {
