@@ -1,0 +1,101 @@
+{
+  "mappings": {
+    "airing": {
+      "properties": {
+        "copper": {
+          "type": "keyword"
+        },
+        "explain": {
+          "type": "date",
+          "format": "strict_date_hour_minute_second"
+        },
+        "truck": {
+          "type": "integer"
+        },
+        "neat": {
+          "properties": {
+            "unite": {
+              "properties": {
+                "branch": {
+                  "type": "integer"
+                }
+              }
+            },
+            "educated": {
+              "properties": {
+                "tenuous": {
+                  "type": "integer"
+                },
+                "decisive": {
+                  "type": "keyword"
+                },
+                "notice": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "plant": {
+              "type": "text"
+            },
+            "impulse": {
+              "type": "integer"
+            },
+            "question": {
+              "type": "text"
+            },
+            "inexpensive": {
+              "type": "text"
+            },
+            "jump": {
+              "type": "text"
+            },
+            "sink": {
+              "type": "boolean"
+            },
+            "knowing": {
+              "type": "keyword"
+            },
+            "concern": {
+              "type": "boolean"
+            },
+            "crown": {
+              "type": "keyword"
+            },
+            "crook": {
+              "type": "date",
+              "format": "strict_date"
+            },
+            "kneel": {
+              "type": "nested"
+            }
+          }
+        },
+        "accidental": {
+          "properties": {
+            "rice": {
+              "type": "integer"
+            },
+            "smile": {
+              "type": "keyword"
+            },
+            "flat": {
+              "type": "text"
+            },
+            "learned": {
+              "type": "text"
+            },
+            "sleepy": {
+              "type": "text"
+            },
+            "massive": {
+              "type": "keyword"
+            },
+            "kneel": {
+              "type": "nested"
+            }
+          }
+        }
+      }
+    }
+  }
+}

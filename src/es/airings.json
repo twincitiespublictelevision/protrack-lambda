@@ -1,0 +1,101 @@
+{
+  "mappings": {
+    "airing": {
+      "properties": {
+        "channel": {
+          "type": "keyword"
+        },
+        "date": {
+          "type": "date",
+          "format": "epoch_second"
+        },
+        "duration": {
+          "type": "integer"
+        },
+        "episode": {
+          "properties": {
+            "program": {
+              "properties": {
+                "id": {
+                  "type": "integer"
+                }
+              }
+            },
+            "version": {
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "rating": {
+                  "type": "keyword"
+                },
+                "caption": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "title": {
+              "type": "text"
+            },
+            "number": {
+              "type": "integer"
+            },
+            "desc": {
+              "type": "text"
+            },
+            "url": {
+              "type": "text"
+            },
+            "language": {
+              "type": "text"
+            },
+            "dvi": {
+              "type": "boolean"
+            },
+            "stereo": {
+              "type": "keyword"
+            },
+            "hdtv": {
+              "type": "boolean"
+            },
+            "package_type": {
+              "type": "keyword"
+            },
+            "orig_broadcast_date": {
+              "type": "date",
+              "format": "epoch_second"
+            },
+            "genres": {
+              "type": "nested"
+            }
+          }
+        },
+        "show": {
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "code": {
+              "type": "keyword"
+            },
+            "title": {
+              "type": "text"
+            },
+            "desc": {
+              "type": "text"
+            },
+            "url": {
+              "type": "text"
+            },
+            "pgmtype": {
+              "type": "keyword"
+            },
+            "genres": {
+              "type": "nested"
+            }
+          }
+        }
+      }
+    }
+  }
+}
