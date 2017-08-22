@@ -1,5 +1,6 @@
 // @flow
 
+import { backup, remove } from './src/parse/s3';
 import type { Airing } from './src/airing';
 import parse from './src/parse/parser';
 import mapToAirings from './src/parse/protrack';
@@ -17,7 +18,6 @@ function q(event: Object, key: string): string {
 function attachCallback(p: Promise<any>, context: Object) {
   return p
     .then(function(result) {
-      console.log(JSON.stringify(result));
       return new Promise((resolve, reject) => {
         zlib.gzip(JSON.stringify(result), function(error, gzBody) {
           if (error) {
@@ -39,7 +39,6 @@ function attachCallback(p: Promise<any>, context: Object) {
     })
     .then(function(resp) {
       console.log('Success');
-      console.log(resp);
       context.succeed(resp);
     })
     .catch(function(err) {
@@ -107,8 +106,10 @@ export function search(event: Object, context: Object) {
 export function ingest({ Records: records }: Object, context: Object) {
   if (records.length > 0) {
 
+    let record = records[0]
+
     attachCallback(
-      parse(records[0])
+      parse(record)
         .then(mapToAirings)
         .then(function(airings): Promise<Array<Airing>> {
 
@@ -123,10 +124,30 @@ export function ingest({ Records: records }: Object, context: Object) {
             return airings;
           }
         })
-        .then(actions.insert),
+        .then(actions.insert)
+        .then(function(res) {
+          return backup(record)
+            .then(function() {
+              console.log('done backup');
+              return res;
+            });
+        }).then(function(res) {
+          return remove(record)
+            .then(function() {
+              console.log('done delete');
+              return res;
+            })
+        }),
       context
-    );
+    ).catch(function(fail) {
+      console.log('ingest failed');
+      console.log(fail);
+    });
   } else {
     context.fail('Invalid record set');
   }
+}
+
+export function health() {
+  // Noop for now. Implement for file generation monitoring
 }

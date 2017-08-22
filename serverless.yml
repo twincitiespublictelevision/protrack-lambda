@@ -37,16 +37,40 @@ provider:
         - "s3:ListBucket"
         - "s3:GetObject"
         - "s3:GetObjectAcl"
+        - "s3:DeleteObject"
       Resource:
         Fn::Join:
           - ""
           - - "arn:aws:s3:::"
-            - "protrack-schedule-ingest"
+            - "protrack-schedule-ingest-"
+            - ${self:provider.stage}
+            - "/"
+            - "*"
+    - Effect: "Allow"
+      Action:
+        - "s3:ListBucket"
+        - "s3:GetObject"
+        - "s3:GetObjectAcl"
+        - "s3:PutObject"
+      Resource:
+        Fn::Join:
+          - ""
+          - - "arn:aws:s3:::"
+            - "protrack-schedule-ingest-backup-"
             - ${self:provider.stage}
             - "/"
             - "*"
 
 functions:
+  health:
+    handler: handler.health
+    memorySize: 128
+    timeout: 30
+    events:
+      - s3:
+          bucket: protrack-schedule-ingest-backup-${self:provider.stage}
+          event: s3:ObjectCreated:*
+
   ingest:
     handler: handler.ingest
     memorySize: 1024
