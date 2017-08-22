@@ -17,17 +17,19 @@ function q(event: Object, key: string): string {
 function attachCallback(p: Promise<any>, context: Object) {
   return p
     .then(function(result) {
+      console.log(JSON.stringify(result));
       return new Promise((resolve, reject) => {
-        zlib.gzip(JSON.stringify(result), function(error, gzippedHelloWorld) {
+        zlib.gzip(JSON.stringify(result), function(error, gzBody) {
           if (error) {
             reject(error);
           }
 
           resolve({
             statusCode: 200,
-            body: gzippedHelloWorld.toString('base64'),
+            body: gzBody.toString('base64'),
             isBase64Encoded: true,
             headers: {
+              'Accept-Encoding': '*',
               'Content-Type': 'application/json',
               'Content-Encoding': 'gzip'
             }
@@ -37,6 +39,7 @@ function attachCallback(p: Promise<any>, context: Object) {
     })
     .then(function(resp) {
       console.log('Success');
+      console.log(resp);
       context.succeed(resp);
     })
     .catch(function(err) {

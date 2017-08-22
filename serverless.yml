@@ -15,7 +15,7 @@ service: protrack-lambda
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
-frameworkVersion: "=1.16.1"
+frameworkVersion: "=1.20.2"
 
 provider:
   name: aws
@@ -42,6 +42,7 @@ provider:
           - ""
           - - "arn:aws:s3:::"
             - "protrack-schedule-ingest"
+            - ${self:provider.stage}
             - "/"
             - "*"
 
@@ -52,7 +53,7 @@ functions:
     timeout: 300
     events:
       - s3:
-          bucket: protrack-schedule-ingest
+          bucket: protrack-schedule-ingest-${self:provider.stage}
           event: s3:ObjectCreated:*
 
   channel:
