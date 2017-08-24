@@ -1,6 +1,6 @@
 // @flow
 
-import { backup, remove } from './src/parse/s3';
+import { toBucket, toData, backup, remove } from './src/parse/s3';
 import type { Airing } from './src/airing';
 import parse from './src/parse/parser';
 import mapToAirings from './src/parse/protrack';
@@ -106,36 +106,41 @@ export function search(event: Object, context: Object) {
 export function ingest({ Records: records }: Object, context: Object) {
   if (records.length > 0) {
 
-    let record = records[0]
+    let record = records[0];
+    let bucket = toBucket(record);
+    let data = toData(bucket, record);
 
     attachCallback(
-      parse(record)
-        .then(mapToAirings)
-        .then(function(airings): Promise<Array<Airing>> {
+      data
+        .then(function(raw) {
+          return parse(raw)
+            .then(mapToAirings)
+            .then(function(airings): Promise<Array<Airing>> {
 
-          // Grab the first result and read the channel
-          if (airings.length > 0) {
-            let sample = airings[0];
-            return actions.remove(sample.channel)
-              .then(function() {
-                return airings;
-              });
-          } else {
-            return airings;
-          }
-        })
-        .then(actions.insert)
-        .then(function(res) {
-          return backup(record)
-            .then(function() {
-              console.log('done backup');
-              return res;
-            });
-        }).then(function(res) {
-          return remove(record)
-            .then(function() {
-              console.log('done delete');
-              return res;
+              // Grab the first result and read the channel
+              if (airings.length > 0) {
+                let sample = airings[0];
+                return actions.remove(sample.channel)
+                  .then(function() {
+                    return airings;
+                  });
+              } else {
+                return Promise.resolve(airings);
+              }
+            })
+            .then(actions.insert)
+            .then(function(res) {
+              return backup(bucket, record)
+                .then(function() {
+                  console.log('done backup');
+                  return res;
+                });
+            }).then(function(res) {
+              return remove(bucket, record)
+                .then(function() {
+                  console.log('done delete');
+                  return res;
+                })
             })
         }),
       context
@@ -149,5 +154,4 @@ export function ingest({ Records: records }: Object, context: Object) {
 }
 
 export function health() {
-  // Noop for now. Implement for file generation monitoring
 }

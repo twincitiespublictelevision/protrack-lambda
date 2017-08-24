@@ -20,12 +20,15 @@ function mapNameToBackupBucketName(name: string): string {
   return base + '-backup' + '-' + stage;
 }
 
-export function remove(record: S3EventRecord) {
-  return toBucket(record.s3.bucket.name).deleteObject({Key: record.s3.object.key}).promise();
+export function toBucket(record: S3EventRecord): S3 {
+  return new S3({params: {Bucket: record.s3.bucket.name}});
 }
 
-export function backup(record: S3EventRecord) {
-  let s3 = new S3();
+export function remove(bucket: S3, record: S3EventRecord): Promise<*> {
+  return bucket.deleteObject({Key: record.s3.object.key}).promise();
+}
+
+export function backup(s3: S3, record: S3EventRecord): Promise<*> {
   let backupName = mapNameToBackupBucketName(record.s3.bucket.name);
   let timestamp = Date.now();
 
@@ -36,15 +39,10 @@ export function backup(record: S3EventRecord) {
   }).promise();
 }
 
-export function read(bucket: S3, params: {}) {
+export function read(bucket: S3, params: {}): Promise<*> {
   return bucket.getObject(params).promise();
 }
 
-export function toBucket(bucket_name: string): S3 {
-  return new S3({params: {Bucket: bucket_name}});
-}
-
-export function recordToData(record: S3EventRecord) {
-  let bucket = toBucket(record.s3.bucket.name);
+export function toData(bucket: S3, record: S3EventRecord): Promise<*> {
   return read(bucket, {Key: record.s3.object.key});
 }
