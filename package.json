@@ -2,12 +2,12 @@
   "private": true,
   "name": "protrack-lambda",
   "version": "0.0.1",
-  "description": "Serverless API on top on ProTrack XML export",
+  "description": "Serverless API on top of ProTrack XML export",
   "scripts": {
     "test": "jest"
   },
   "author": "webmaster@tpt.org",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "jest": {
     "testMatch": [
       "**/__tests__/**/*.test.js?(x)"
