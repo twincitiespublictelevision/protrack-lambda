@@ -29,18 +29,3 @@ export default function parse({Body: content}: Object): Promise<*> {
     });
   });
 }
-
-// export default function parse(record: S3EventRecord): Promise<*> {
-//   return recordToData(eventToBucket(record), record)
-//     .then(function({Body: content}) {
-//       return new Promise(function(resolve, reject) {
-//         parser.parseString(content, function(err, data) {
-//           if (err) {
-//             reject(err)
-//           } else {
-//             resolve(data);
-//           }
-//         });
-//       });
-//     });
-// }
