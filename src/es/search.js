@@ -112,12 +112,9 @@ export class Searcher {
 
     filter.push({
       range: {
-        date_range: {
-          field: 'date',
-          ranges: [
-            { to: query.start !== null ? query.start : 'now-1d/d' },
-            { from: query.end !== null ? query.end : 'now/d' }
-          ]
+        date: {
+          gt: query.start  !== null ? query.start : 'now-1d/d',
+          lte: query.end !== null ? query.end : 'now/d'
         }
       }
     });
