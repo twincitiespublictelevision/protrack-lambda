@@ -47,6 +47,16 @@ function attachCallback(p: Promise<any>, context: Object) {
     });
 }
 
+export function all(event: Object, context: Object) {
+  attachCallback(
+    actions.search({
+      start: q(event, 'start'),
+      end: q(event, 'end')
+    }),
+    context
+  );
+}
+
 export function channel(event: Object, context: Object) {
   attachCallback(
     actions.search({

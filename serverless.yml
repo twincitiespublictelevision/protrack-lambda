@@ -90,6 +90,18 @@ functions:
           bucket: protrack-schedule-ingest-${self:provider.stage}
           event: s3:ObjectCreated:*
 
+  all:
+    handler: handler.all
+    memorySize: 1024
+    events:
+      - http:
+          path: all
+          method: get
+          integration: lambda-proxy
+          cors:
+            origins:
+              - '*'
+
   channel:
     handler: handler.channel
     memorySize: 512
