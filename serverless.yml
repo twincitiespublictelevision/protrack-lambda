@@ -15,11 +15,11 @@ service: protrack-lambda
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
-frameworkVersion: "=1.20.2"
+frameworkVersion: "=1.35.1"
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs8.10
   region: ${file(./env.json):AWS_REGION}
   stackTags:
     service: protrack-lambda
@@ -164,6 +164,7 @@ functions:
 
 plugins:
   - serverless-webpack
+  - serverless-offline
   - serverless-plugin-aws-alerts
 
 package:
@@ -178,7 +179,7 @@ package:
     - serverless.yml
 
 custom:
-  defaultStage: dev
+  defaultStage: qa
   custom:
   alerts:
     topics:

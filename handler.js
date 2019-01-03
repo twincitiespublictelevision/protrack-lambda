@@ -117,6 +117,9 @@ export function ingest({ Records: records }: Object, context: Object) {
   if (records.length > 0) {
 
     let record = records[0];
+
+    console.log('Preparing ingest request', records[0]);
+
     let bucket = toBucket(record);
     let data = toData(bucket, record);
 
@@ -126,6 +129,8 @@ export function ingest({ Records: records }: Object, context: Object) {
           return parse(raw)
             .then(mapToAirings)
             .then(function(airings): Promise<Array<Airing>> {
+
+              console.log('Parsed airings list', airings.length);
 
               // Grab the first result and read the channel
               if (airings.length > 0) {
@@ -140,6 +145,7 @@ export function ingest({ Records: records }: Object, context: Object) {
             })
             .then(actions.insert)
             .then(function(res) {
+              console.log('Insert completed', JSON.stringify(res));
               return backup(bucket, record)
                 .then(function() {
                   console.log('done backup');

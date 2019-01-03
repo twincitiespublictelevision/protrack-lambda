@@ -10,12 +10,24 @@ const parser = new xml2js.Parser({
   explicitArray: false,
   emptyTag: null,
   valueProcessors: [
-    function parseNumbers (str) {
+    function parseNumbers(str: *): number {
       if (!isNaN(str)) {
         str = str % 1 === 0 ? parseInt(str, 10) : parseFloat(str);
       }
       return str;
-    }]
+    },
+    function parseYesNo(value: *): boolean {
+      if (value && value.toLowerCase) {
+        if (value.toLowerCase() === 'yes') {
+          return true;
+        } else if (value.toLowerCase() === 'no') {
+          return false;
+        }
+      }
+
+      return value;
+    }
+  ]
 });
 
 export default function parse({Body: content}: Object): Promise<*> {
