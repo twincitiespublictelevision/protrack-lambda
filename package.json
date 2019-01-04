@@ -16,7 +16,7 @@
   "dependencies": {
     "aws-sdk": "^2.383.0",
     "elasticsearch": "^15.2.0",
-    "http-aws-es": "^2.0.3",
+    "http-aws-es": "^6.0.0",
     "moment": "^2.23.0",
     "moment-timezone": "^0.5.13",
     "xml2js": "^0.4.17"
