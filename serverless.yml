@@ -27,6 +27,8 @@ provider:
   environment:
     ES_ENDPOINT: ${file(./env.json):ES_ENDPOINT}
     PROTRACK_TZ: ${file(./env.json):PROTRACK_TZ}
+  apiGateway:
+    minimumCompressionSize: 15000
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -92,7 +94,7 @@ functions:
 
   all:
     handler: handler.all
-    memorySize: 1024
+    memorySize: 2048
     events:
       - http:
           path: all

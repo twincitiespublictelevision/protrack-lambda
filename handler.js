@@ -5,7 +5,6 @@ import type { Airing } from './src/airing';
 import parse from './src/parse/parser';
 import mapToAirings from './src/parse/protrack';
 import actions from './src/es/actions';
-import zlib from 'zlib';
 
 function p(event: Object, key: string): string {
   return event && event.pathParameters && event.pathParameters[key] || '';
@@ -18,24 +17,13 @@ function q(event: Object, key: string): string {
 function attachCallback(p: Promise<any>, context: Object) {
   return p
     .then(function(result) {
-      return new Promise((resolve, reject) => {
-        zlib.gzip(JSON.stringify(result), function(error, gzBody) {
-          if (error) {
-            reject(error);
-          }
-
-          resolve({
-            statusCode: 200,
-            body: gzBody.toString('base64'),
-            isBase64Encoded: true,
-            headers: {
-              'Accept-Encoding': '*',
-              'Content-Type': 'application/json',
-              'Content-Encoding': 'gzip'
-            }
-          });
-        });
-      });
+      return {
+        statusCode: 200,
+        body: JSON.stringify(result),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      };
     })
     .then(function(resp) {
       console.log('Success');
