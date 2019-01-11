@@ -6,6 +6,7 @@ import type { Airing } from './../airing';
 import type { AiringResults } from './airingResult';
 import { mapResults} from './airingResult';
 import { inspect } from 'util';
+import moment from "moment-timezone";
 
 type Query = {
   start: ?number,
@@ -77,6 +78,11 @@ export class Searcher {
 
   static buildQuery(query: Query): Object {
     let filter = [], must;
+    let start = moment.tz(process.env.PROTRACK_TZ).startOf('day').unix();
+    let end = moment.tz(process.env.PROTRACK_TZ).endOf('day').unix();
+
+    console.log("start: " + start);
+    console.log("end: " + end);
 
     if (query.channel !== null) {
       filter.push({
@@ -113,8 +119,8 @@ export class Searcher {
     filter.push({
       range: {
         date: {
-          gt: query.start  !== null ? query.start : 'now-1d/d',
-          lte: query.end !== null ? query.end : 'now/d'
+          gt: query.start  !== null ? query.start : start,
+          lte: query.end !== null ? query.end : end
         }
       }
     });
