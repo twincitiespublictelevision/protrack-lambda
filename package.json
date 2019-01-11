@@ -30,7 +30,7 @@
     "babel-preset-flow": "^6.23.0",
     "flow-bin": "^0.48.0",
     "jest": "^20.0.4",
-    "serverless-offline": "^3.31.3",
+    "serverless-offline": "^3.32.2",
     "serverless-plugin-aws-alerts": "^1.2.3",
     "serverless-plugin-stage-variables": "^1.8.2",
     "serverless-webpack": "^2.2.3",
