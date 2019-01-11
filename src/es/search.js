@@ -81,6 +81,9 @@ export class Searcher {
     let start = moment.tz(process.env.PROTRACK_TZ).startOf('day').unix();
     let end = moment.tz(process.env.PROTRACK_TZ).endOf('day').unix();
 
+    console.log("start: " + start);
+    console.log("end: " + end);
+
     if (query.channel !== null) {
       filter.push({
         term: {
@@ -116,7 +119,7 @@ export class Searcher {
     filter.push({
       range: {
         date: {
-          gte: query.start  !== null ? query.start : start,
+          gt: query.start  !== null ? query.start : start,
           lte: query.end !== null ? query.end : end
         }
       }
