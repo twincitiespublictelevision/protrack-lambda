@@ -14,9 +14,6 @@
         },
         "episode": {
           "properties": {
-            "id": {
-              "type": "integer"
-            },
             "program": {
               "properties": {
                 "id": {
