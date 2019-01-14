@@ -122,7 +122,6 @@ function extractEpisode(episode: ProTrackEpisode): Episode {
   let genres = toGenreList(epi_genrelist_nat).concat(toGenreList(epi_genrelist_loc));
 
   return {
-    id: parseInt("" + program_id + version_id),
     program: { id: program_id },
     version: { id: version_id, rating: version_rating, caption: version_caption },
     title: episode_title,
