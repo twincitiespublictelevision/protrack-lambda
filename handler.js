@@ -21,7 +21,6 @@ function attachCallback(p: Promise<any>, context: Object) {
       return {
         statusCode: 200,
         body: JSON.stringify(normalize(result)),
-        // body: JSON.stringify(result),
         headers: {
           'Content-Type': 'application/json',
         }
