@@ -6,6 +6,7 @@ export type Genre = {
 };
 
 export type Episode = {
+  id: number,
   program: {
     id: number
   },
