@@ -19,6 +19,7 @@
     "http-aws-es": "^6.0.0",
     "moment": "^2.23.0",
     "moment-timezone": "^0.5.13",
+    "normalizr": "^3.3.0",
     "xml2js": "^0.4.17"
   },
   "devDependencies": {

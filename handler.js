@@ -5,6 +5,7 @@ import type { Airing } from './src/airing';
 import parse from './src/parse/parser';
 import mapToAirings from './src/parse/protrack';
 import actions from './src/es/actions';
+import normalize from './src/results';
 
 function p(event: Object, key: string): string {
   return event && event.pathParameters && event.pathParameters[key] || '';
@@ -19,7 +20,7 @@ function attachCallback(p: Promise<any>, context: Object) {
     .then(function(result) {
       return {
         statusCode: 200,
-        body: JSON.stringify(result),
+        body: JSON.stringify(normalize(result)),
         headers: {
           'Content-Type': 'application/json',
         }
