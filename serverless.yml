@@ -164,6 +164,18 @@ functions:
             origins:
               - '*'
 
+  schedule:
+    handler: handler.schedule
+    memorySize: 512
+    events:
+      - http:
+          path: schedule/{granularity}/{month}/{day}/{channel?}
+          method: get
+          integration: lambda-proxy
+          cors:
+            origins:
+              - '*'
+
 plugins:
   - serverless-webpack
   - serverless-offline
