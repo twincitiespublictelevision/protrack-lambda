@@ -1,19 +1,19 @@
 import moment from "moment-timezone";
 
 class ChannelData {
-  constructor(start: number, interval: number) {
+  constructor(start: number, end: number, interval: number) {
+    this.endTime = end;
     this.timeslotStart = start;
     this.interval = interval;
     this.timeslotEnd = start + interval - 1;
+    this.previousTimeslotStart = 0;
     this.timeslotShows = [];
     this.schedule = {};
   }
 
   slotEntry(entry) {
-    console.log(entry);
-    if (entry.data.date >= this.timeslotEnd) {
+    while (entry.data.date >= this.timeslotEnd) {
       this.calculateCurrentTimeslot();
-      this.advanceToNextTimeslot();
     }
 
     let secondsInSlot = Math.min(this.timeslotEnd, entry.data.date + entry.data.duration) - Math.max(this.timeslotStart, entry.data.date);
@@ -27,58 +27,85 @@ class ChannelData {
 
     if (entry.data.date + entry.data.duration > this.timeslotEnd) {
       this.calculateCurrentTimeslot();
-      this.advanceToNextTimeslot();
       this.slotEntry(entry);
     }
   }
 
   calculateCurrentTimeslot() {
+    let index = this.timeslotStart;
+
     if (this.timeslotShows.length === 0) {
-      console.log("big fat nothing at " + this.timeslotStart + " and " + this.timeslotEnd);
-      // No shows fit the schedule of this timeslot!
-      this.schedule[this.timeslotStart] = { show: { title: "Nothing Scheduled" } };
+      // No shows fit the sc.hedule of this timeslot!
+      // just fill it out with the previous, if available
+      if (this.previousTimeslotStart === 0) {
+        this.schedule[index] = { show: { title: "Nothing Scheduled" } };
+      } else {
+        this.schedule[index] = this.schedule[this.previousTimeslotStart];
+      }
     } else {
       var highestTimeInSlot = Math.max.apply(Math, this.timeslotShows.map(function (o) {
         return o.secondsInSlot;
       }));
 
-      let index = moment(this.timeslotStart * 1000).format("MMMM Do YYYY, h:mm:ss a");
       this.schedule[index] = this.timeslotShows.find(function (o) {
         return o.secondsInSlot === highestTimeInSlot;
       }).show.data;
 
-//      this.schedule[index] = this.timeslotShows.find(function (o) {
-  //      return o.secondsInSlot === highestTimeInSlot;
-    //  }).show.data.show.title;
+      let o = this.timeslotShows.find(function (o) {
+        return o.secondsInSlot === highestTimeInSlot;
+      }).show.data;
+      /*
+      this.schedule[index] = {
+        data: {
+          channel: o.channel,
+          date: o.date,
+          duration: o.duration
+        }
+      }*/
     }
-  }
-
-  advanceToNextTimeslot() {
+    // Clean up and advance the timeslot
+    this.previousTimeslotStart = this.timeslotStart;
     this.timeslotStart += this.interval;
     this.timeslotEnd = this.timeslotStart + this.interval - 1;
     this.timeslotShows = [];
   }
+
+  finalize() {
+    // Calculate the last entry entered, and buffer slots up to the end time if necessary
+    while (this.timeslotEnd < this.endTime) {
+      this.calculateCurrentTimeslot();
+    }
+    this.calculateCurrentTimeslot();
+  }
 }
 
-export default function buildSchedule(airings: Object, interval: number, start: number): Array {
-  console.log('building schedule');
+export default function buildSchedule(airings: Object, interval: number, start: number, end: number): Array {
   interval = interval * 60; // Keep everything in seconds
   let channels = {};
-  let schedule = {};
 
-  console.log(moment(start * 1000).format("MMMM Do YYYY, h:mm:ss a"));
   airings.forEach(function (entry) {
     let channel = entry.data.channel;
 
     if (!channels[channel]) {
-      channels[channel] = new ChannelData(start, interval);
+      channels[channel] = new ChannelData(start, end, interval);
     }
 
     channels[channel].slotEntry(entry);
   });
 
-  for (var k in channels) {
-    if (channels.hasOwnProperty(k)) { schedule[k] = channels[k].schedule; }
+  let schedule = {};
+  var k;
+  for (k in channels) {
+    if (channels.hasOwnProperty(k)) {
+      channels[k].finalize();
+      schedule[k] = channels[k].schedule;
+    }
   }
-  return schedule;
+
+  if (Object.keys(schedule).length > 1) {
+    return schedule;
+  } else {
+    // Only one channel worth of data, so do not return keyed object
+    return schedule[k];
+  }
 }

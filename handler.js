@@ -117,8 +117,7 @@ export function schedule(event: Object, context: Object) {
     }
 
     let search = actions.search(options).then(function(result) {
-      let airings = buildSchedule(result, p(event,'granularity'), start);
-      console.log(airings);
+      let airings = buildSchedule(result, p(event,'granularity'), start, end);
       return {
         statusCode: 200,
         body: JSON.stringify(airings),
@@ -133,7 +132,6 @@ export function schedule(event: Object, context: Object) {
     })
     .catch(function(err) {
       console.warn('failed to compress response');
-      console.log(err);
       context.fail(err);
     });
 }
