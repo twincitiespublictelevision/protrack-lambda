@@ -1,6 +1,7 @@
 import getSearcher, { Searcher } from './../../src/es/search';
 import { mapResults} from './../../src/es/airingResult';
 import { r, mockAiring } from './helpers';
+import moment from "moment-timezone";
 
 let mockElasticGen = function() {
   return new (class Elastic {
@@ -112,26 +113,10 @@ describe('searcher', function() {
   });
 
   it('adds default (current day) timestamp to query', function() {
-    let dateQ = { range: { date: { gt: 'now-1d/d', lte: 'now/d' } } };
-    expect(Searcher.buildQuery(q).query.bool.filter).toEqual(
-      expect.arrayContaining([dateQ])
-    );
-  });
+    let start = moment.tz(process.env.PROTRACK_TZ).startOf('day').unix();
+    let end = moment.tz(process.env.PROTRACK_TZ).endOf('day').unix();
 
-  it('overwrites date query start with start date', function() {
-    let start = r(500, 999);
-    let dateQ = { range: { date: { gt: start, lte: 'now/d' } } };
-    q.start = start;
-
-    expect(Searcher.buildQuery(q).query.bool.filter).toEqual(
-      expect.arrayContaining([dateQ])
-    );
-  });
-
-  it('overwrites date query end with end date', function() {
-    let end = r(500, 999);
-    let dateQ = { range: { date: { gt: 'now-1d/d', lte: end } } };
-    q.end = end;
+    let dateQ = { range: { date: { gte: start, lte: end } } };
 
     expect(Searcher.buildQuery(q).query.bool.filter).toEqual(
       expect.arrayContaining([dateQ])
@@ -141,7 +126,7 @@ describe('searcher', function() {
   it('overwrites date query with start and end date', function() {
     let start = r(500, 999);
     let end = r(500, 999);
-    let dateQ = { range: { date: { gt: start, lte: end } } };
+    let dateQ = { range: { date: { gte: start, lte: end } } };
     q.start = start;
     q.end = end;
 
