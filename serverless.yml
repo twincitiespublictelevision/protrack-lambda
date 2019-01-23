@@ -169,7 +169,19 @@ functions:
     memorySize: 512
     events:
       - http:
-          path: schedule/{granularity}/{month}/{day}/{channel?}
+          path: schedule/{granularity}/{month}/{day}
+          method: get
+          integration: lambda-proxy
+          cors:
+            origins:
+              - '*'
+
+  schedule_channel:
+    handler: handler.schedule_channel
+    memorySize: 512
+    events:
+      - http:
+          path: schedule/{granularity}/{month}/{day}/{channel}
           method: get
           integration: lambda-proxy
           cors:
