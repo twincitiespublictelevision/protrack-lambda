@@ -5,7 +5,9 @@ import type { Airing } from './src/airing';
 import parse from './src/parse/parser';
 import mapToAirings from './src/parse/protrack';
 import actions from './src/es/actions';
+import buildSchedule from './src/es/schedule';
 import normalize from './src/results';
+import moment from "moment-timezone";
 
 function p(event: Object, key: string): string {
   return event && event.pathParameters && event.pathParameters[key] || '';
@@ -100,6 +102,38 @@ export function search(event: Object, context: Object) {
     }),
     context
   );
+}
+
+export function schedule(event: Object, context: Object) {
+    let start = moment().year(new Date().getFullYear()).month(p(event,'month') - 1).date(p(event,'day')).tz(process.env.PROTRACK_TZ).startOf('day').unix();
+    let end = moment().year(new Date().getFullYear()).month(p(event,'month') - 1).date(p(event,'day')).tz(process.env.PROTRACK_TZ).endOf('day').unix();
+    let options = {
+      start: start,
+      end: end
+    };
+
+    if (p(event, 'channel')) {
+      options.channel = p(event, 'channel');
+    }
+
+    let search = actions.search(options).then(function(result) {
+      let airings = buildSchedule(result, p(event,'granularity'), start, end);
+      return {
+        statusCode: 200,
+        body: JSON.stringify(airings),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    })
+    .then(function(resp) {
+      console.log('Success');
+      context.succeed(resp);
+    })
+    .catch(function(err) {
+      console.warn('failed to compress response');
+      context.fail(err);
+    });
 }
 
 export function ingest({ Records: records }: Object, context: Object) {

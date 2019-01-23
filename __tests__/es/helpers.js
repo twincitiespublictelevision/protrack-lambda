@@ -54,3 +54,3338 @@ export function mockAiring() {
     }
   }
 }
+
+export function mockSingleChannelAirings() {
+  return [
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547791200,
+        duration: 3406
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547791200,
+        duration: 3406
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547791200,
+        duration: 3406
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547791200,
+        duration: 3406
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547794800,
+        duration: 3406
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547794800,
+        duration: 3406
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547794800,
+        duration: 3406
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547794800,
+        duration: 3406
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547798400,
+        duration: 3333
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547798400,
+        duration: 3333
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547798400,
+        duration: 3333
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547798400,
+        duration: 3333
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547802000,
+        duration: 5291
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547802000,
+        duration: 5291
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547802000,
+        duration: 5291
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547802000,
+        duration: 5291
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547802000,
+        duration: 5291
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547802000,
+        duration: 5291
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547807400,
+        duration: 1629
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547807400,
+        duration: 1629
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547809200,
+        duration: 1743
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547809200,
+        duration: 1743
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547811000,
+        duration: 1640
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547811000,
+        duration: 1640
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547812800,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547812800,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547814600,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547814600,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547816400,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547816400,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547818200,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547818200,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547820000,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547820000,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547821800,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547821800,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547823600,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547823600,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547825400,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547825400,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547827200,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547827200,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547829000,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547829000,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547830800,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547830800,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547832600,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547832600,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547834400,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547834400,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547836200,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547836200,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547838000,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547838000,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547839800,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547839800,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547841600,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547841600,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547843400,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547843400,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547845200,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547845200,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547847000,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547847000,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547848800,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547848800,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547850600,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547850600,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547852400,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547852400,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547854200,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547854200,
+        duration: 1726
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547856000,
+        duration: 3406
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547856000,
+        duration: 3406
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547856000,
+        duration: 3406
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547856000,
+        duration: 3406
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547859600,
+        duration: 3400
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547859600,
+        duration: 3400
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547859600,
+        duration: 3400
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547859600,
+        duration: 3400
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547863200,
+        duration: 7006
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547863200,
+        duration: 7006
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547863200,
+        duration: 7006
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547863200,
+        duration: 7006
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547863200,
+        duration: 7006
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547863200,
+        duration: 7006
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547863200,
+        duration: 7006
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547863200,
+        duration: 7006
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547870400,
+        duration: 3376
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547870400,
+        duration: 3376
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547870400,
+        duration: 3376
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547870400,
+        duration: 3376
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547874000,
+        duration: 1432
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547874000,
+        duration: 1432
+      }
+    },
+    {
+      data: {
+        channel: "TPT2",
+        date: 1547875500,
+        duration: 1334
+      }
+    }
+  ];
+}
+
+export function mockAllChannelAirings() {
+  return [
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547704800,
+            duration: 3391
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547704800,
+            duration: 3391
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547704800,
+            duration: 3391
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547704800,
+            duration: 3391
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547708280,
+            duration: 3976
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547708280,
+            duration: 3976
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547708280,
+            duration: 3976
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547708280,
+            duration: 3976
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547712360,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547712360,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547712360,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547712360,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547715840,
+            duration: 5071
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547715840,
+            duration: 5071
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547715840,
+            duration: 5071
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547715840,
+            duration: 5071
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547715840,
+            duration: 5071
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547715840,
+            duration: 5071
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547721000,
+            duration: 1683
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547721000,
+            duration: 1683
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547722800,
+            duration: 1692
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547722800,
+            duration: 1692
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547724600,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547724600,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547726400,
+            duration: 825
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547727300,
+            duration: 826
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547728200,
+            duration: 1625
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547728200,
+            duration: 1625
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547730000,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547730000,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547731800,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547731800,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547733600,
+            duration: 1680
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547733600,
+            duration: 1680
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547735400,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547735400,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547737200,
+            duration: 1440
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547737200,
+            duration: 1440
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547739000,
+            duration: 1537
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547739000,
+            duration: 1537
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547740800,
+            duration: 1602
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547740800,
+            duration: 1602
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547742600,
+            duration: 1493
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547742600,
+            duration: 1493
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547744400,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547744400,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547746200,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547746200,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547748000,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547748000,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547748000,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547748000,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547751600,
+            duration: 1683
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547751600,
+            duration: 1683
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547753400,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547753400,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547755140,
+            duration: 3310
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547755140,
+            duration: 3310
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547755140,
+            duration: 3310
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547755140,
+            duration: 3310
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547758500,
+            duration: 3976
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547758500,
+            duration: 3976
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547758500,
+            duration: 3976
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547758500,
+            duration: 3976
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547762520,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547762520,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547764200,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547764200,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547766000,
+            duration: 1638
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547766000,
+            duration: 1638
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547767800,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547767800,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547769600,
+            duration: 3371
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547769600,
+            duration: 3371
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547769600,
+            duration: 3371
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547769600,
+            duration: 3371
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547773200,
+            duration: 2695
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547773200,
+            duration: 2695
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547773200,
+            duration: 2695
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547773200,
+            duration: 2695
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547776800,
+            duration: 3265
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547776800,
+            duration: 3265
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547776800,
+            duration: 3265
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547776800,
+            duration: 3265
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547780400,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547780400,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547780400,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547780400,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547784000,
+            duration: 1698
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547784000,
+            duration: 1698
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547785800,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547785800,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547785800,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547785800,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPTLIFE",
+            date: 1547789400,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547704800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547704800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547706600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547706600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547708400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547708400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547710200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547710200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547712000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547712000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547713800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547713800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547715600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547715600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547717400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547717400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547719200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547719200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547721000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547721000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547722800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547722800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547724600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547724600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547726400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547726400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547728200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547728200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547730000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547730000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547731800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547731800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547733600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547733600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547735400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547735400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547737200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547737200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547739000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547739000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547740800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547740800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547742600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547742600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547744400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547744400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547746200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547746200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547748000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547748000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547749800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547749800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547751600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547751600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547753400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547753400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547755200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547755200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547757000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547757000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547758800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547758800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547760600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547760600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547762400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547762400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547764200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547764200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547766000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547766000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547767800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547767800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547769600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547769600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547771400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547771400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547773200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547773200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547775000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547775000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547776800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547776800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547778600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547778600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547780400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547780400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547782200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547782200,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547784000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547784000,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547785800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547785800,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547787600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547787600,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPTKIDS",
+            date: 1547789400,
+            duration: 1735
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547704800,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547704800,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547704800,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547704800,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547708400,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547708400,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547708400,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547708400,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547712000,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547712000,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547712000,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547712000,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547715600,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547715600,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547715600,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547715600,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547719200,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547719200,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547721000,
+            duration: 1351
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547721000,
+            duration: 1351
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547722800,
+            duration: 3241
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547722800,
+            duration: 3241
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547722800,
+            duration: 3241
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547722800,
+            duration: 3241
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547726400,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547726400,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547728200,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547728200,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547730000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547730000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547731800,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547731800,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547733600,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547733600,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547735400,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547735400,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547737200,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547737200,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547739000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547739000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547740800,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547740800,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547742600,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547742600,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547744400,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547744400,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547746200,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547746200,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547748000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547748000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547749800,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547749800,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547751600,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547751600,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547753400,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547753400,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547755200,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547755200,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547757000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547757000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547758800,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547758800,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547760600,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547760600,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547762400,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547762400,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547764200,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547764200,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547766000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547766000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547767800,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547767800,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547769600,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547769600,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547769600,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547769600,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547773200,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547773200,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547773200,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547773200,
+            duration: 3406
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547776800,
+            duration: 3333
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547776800,
+            duration: 3333
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547776800,
+            duration: 3333
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547776800,
+            duration: 3333
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547780400,
+            duration: 5291
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547780400,
+            duration: 5291
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547780400,
+            duration: 5291
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547780400,
+            duration: 5291
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547780400,
+            duration: 5291
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547780400,
+            duration: 5291
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547785800,
+            duration: 1629
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547785800,
+            duration: 1629
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547787600,
+            duration: 1743
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547787600,
+            duration: 1743
+          }
+        },
+        {
+          data: {
+            channel: "TPT2",
+            date: 1547789400,
+            duration: 1640
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547704800,
+            duration: 1725
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547704800,
+            duration: 1725
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547706600,
+            duration: 1605
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547706600,
+            duration: 1605
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547708400,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547708400,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547710200,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547710200,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547712000,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547712000,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547712000,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547712000,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547715600,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547715600,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547715600,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547715600,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547719200,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547719200,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547721000,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547721000,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547722800,
+            duration: 1658
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547722800,
+            duration: 1658
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547724600,
+            duration: 1597
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547724600,
+            duration: 1597
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547726400,
+            duration: 1725
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547726400,
+            duration: 1725
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547728200,
+            duration: 1605
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547728200,
+            duration: 1605
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547730000,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547730000,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547731800,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547731800,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547733600,
+            duration: 35940
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547769600,
+            duration: 1725
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547769600,
+            duration: 1725
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547771400,
+            duration: 1605
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547771400,
+            duration: 1605
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547773200,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547773200,
+            duration: 1606
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547775000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547775000,
+            duration: 1726
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547776800,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547776800,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547776800,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547776800,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547780400,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547780400,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547780400,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547780400,
+            duration: 3420
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547784000,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547784000,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547785800,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547785800,
+            duration: 1600
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547787600,
+            duration: 1658
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547787600,
+            duration: 1658
+          }
+        },
+        {
+          data: {
+            channel: "TPTMN",
+            date: 1547789400,
+            duration: 1597
+          }
+        }
+  ];
+}
