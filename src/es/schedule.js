@@ -6,9 +6,8 @@ class ChannelData {
     this.timeslotStart = start;
     this.interval = interval;
     this.timeslotEnd = start + interval - 1;
-    this.previousTimeslotStart = 0;
     this.timeslotShows = [];
-    this.schedule = {};
+    this.schedule = [];
   }
 
   slotEntry(entry) {
@@ -26,45 +25,35 @@ class ChannelData {
     }
 
     if (entry.data.date + entry.data.duration > this.timeslotEnd) {
+      // Current entry extends past end of duration, computer again for next timeslot
       this.calculateCurrentTimeslot();
       this.slotEntry(entry);
     }
   }
 
   calculateCurrentTimeslot() {
-    let index = this.timeslotStart;
-
     if (this.timeslotShows.length === 0) {
-      // No shows fit the sc.hedule of this timeslot!
+      // No shows fit the schedule of this timeslot!
       // just fill it out with the previous, if available
-      if (this.previousTimeslotStart === 0) {
-        this.schedule[index] = { show: { title: "Nothing Scheduled" } };
+      if (this.schedule.length === 0) {
+        this.schedule.push({ show: { title: "Nothing Scheduled" } });
       } else {
-        this.schedule[index] = this.schedule[this.previousTimeslotStart];
+        this.schedule.push(this.schedule[this.schedule.length - 1]);
       }
     } else {
       var highestTimeInSlot = Math.max.apply(Math, this.timeslotShows.map(function (o) {
         return o.secondsInSlot;
       }));
 
-      this.schedule[index] = this.timeslotShows.find(function (o) {
+      this.schedule.push(this.timeslotShows.find(function (o) {
         return o.secondsInSlot === highestTimeInSlot;
-      }).show.data;
+      }).show.data);
 
       let o = this.timeslotShows.find(function (o) {
         return o.secondsInSlot === highestTimeInSlot;
       }).show.data;
-      /*
-      this.schedule[index] = {
-        data: {
-          channel: o.channel,
-          date: o.date,
-          duration: o.duration
-        }
-      }*/
     }
     // Clean up and advance the timeslot
-    this.previousTimeslotStart = this.timeslotStart;
     this.timeslotStart += this.interval;
     this.timeslotEnd = this.timeslotStart + this.interval - 1;
     this.timeslotShows = [];
@@ -93,19 +82,18 @@ export default function buildSchedule(airings: Object, interval: number, start: 
     channels[channel].slotEntry(entry);
   });
 
-  let schedule = {};
-  var k;
-  for (k in channels) {
+  let schedule = [];
+  for (let k in channels) {
     if (channels.hasOwnProperty(k)) {
       channels[k].finalize();
-      schedule[k] = channels[k].schedule;
+      schedule.push({ id : k, airings : channels[k].schedule});
     }
   }
 
-  if (Object.keys(schedule).length > 1) {
+  if (schedule.length > 1) {
     return schedule;
   } else {
     // Only one channel worth of data, so do not return keyed object
-    return schedule[k];
+    return schedule.pop().airings;
   }
 }
