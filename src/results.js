@@ -19,7 +19,6 @@ export default function normalize(results) {
 
 export function normalizeSchedule(results, singleChannel = false) {
   if (singleChannel) {
-    return results;
     return normalizer(results, [airing]);
   } else {
     return normalizer(results, [channel]);

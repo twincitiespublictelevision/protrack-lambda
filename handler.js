@@ -117,7 +117,7 @@ export function schedule(event: Object, context: Object) {
     let airings = buildSchedule(result, p(event,'granularity'), start, end);
     return {
       statusCode: 200,
-      body: JSON.stringify(airings),
+      body: JSON.stringify(normalizeSchedule(airings)),
       headers: {
         'Content-Type': 'application/json',
       }
@@ -149,7 +149,7 @@ export function schedule_channel(event: Object, context: Object) {
       let airings = buildSchedule(result, p(event,'granularity'), start, end);
       return {
         statusCode: 200,
-        body: JSON.stringify(normalizeSchedule(airings, options.channel)),
+        body: JSON.stringify(normalizeSchedule(airings, true)),
         headers: {
           'Content-Type': 'application/json',
         }
