@@ -7,6 +7,7 @@ import mapToAirings from './src/parse/protrack';
 import actions from './src/es/actions';
 import buildSchedule from './src/es/schedule';
 import normalize from './src/results';
+import { normalizeSchedule } from './src/results';
 import moment from "moment-timezone";
 
 function p(event: Object, key: string): string {
@@ -116,7 +117,7 @@ export function schedule(event: Object, context: Object) {
     let airings = buildSchedule(result, p(event,'granularity'), start, end);
     return {
       statusCode: 200,
-      body: JSON.stringify(airings),
+      body: JSON.stringify(normalizeSchedule(airings)),
       headers: {
         'Content-Type': 'application/json',
       }
@@ -148,7 +149,7 @@ export function schedule_channel(event: Object, context: Object) {
       let airings = buildSchedule(result, p(event,'granularity'), start, end);
       return {
         statusCode: 200,
-        body: JSON.stringify(airings),
+        body: JSON.stringify(normalizeSchedule(airings, true)),
         headers: {
           'Content-Type': 'application/json',
         }

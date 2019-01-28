@@ -11,18 +11,16 @@ describe('schedule', function() {
     expect(Object.keys(buildSchedule(airings, interval, startTime, endTime)).length).toEqual(Math.ceil(1440 / interval));
   });
 
-  it('for all channel schedule returns (1 day / interval rows) * number of channels', function() {
+  it('for all channel schedule each channel contains (1 day / interval rows)', function() {
     let airings = mockAllChannelAirings();
     let startTime = moment(airings[0].data.date * 1000).tz("America/Chicago").startOf('day').unix();
     let endTime = moment(airings[0].data.date * 1000).tz("America/Chicago").endOf('day').unix();
     let interval = (Math.floor(Math.random() * 12) + 1) * 5;
     let schedule = buildSchedule(airings, interval, startTime, endTime);
 
-    for (var k in schedule) {
-      if (schedule.hasOwnProperty(k)) {
-        expect(Object.keys(schedule[k]).length).toEqual(Math.ceil(1440 / interval));
-      }
-    }
+    schedule.forEach( function(value) {
+      expect(value.airings.length).toEqual(Math.ceil(1440 / interval));
+    });
   });
 
   it('empty timeslots fill with previous slot episode', function() {
@@ -39,10 +37,7 @@ describe('schedule', function() {
     let endTime = moment(airings[0].data.date * 1000).tz("America/Chicago").endOf('day').unix();
     let interval = 30;
     let schedule = buildSchedule(airings, interval, startTime, endTime);
-    let keys = Object.keys(schedule);
-    let firstElement = schedule[keys[0]];
-    let lastElement = schedule[keys[keys.length-1]];
-    expect(firstElement).toEqual(lastElement);
+    expect(schedule[0]).toEqual(schedule.pop());
   });
 
   it('"Nothing Scheduled" row if first timeslot has no entry', function() {
