@@ -74,9 +74,17 @@ function durationToNumber(duration: string): number {
 function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): Airing {
   let { schedule_channel, schedule_date, schedule_duration } = schedule;
 
+  // Check for timestamp that doesn't convert back, which is only possible during a "spring back"
+  // DST hour. Such entries should be dismissed.
+  if (moment(moment(schedule_date).unix() * 1000).format('YYYY-MM-DTHH:mm:ss') !== schedule_date) {
+    return null;
+  }
+
+  let date = protrackDateToTimestamp(schedule_date);
+
   return {
     channel: schedule_channel,
-    date: protrackDateToTimestamp(schedule_date),
+    date: date,
     duration: durationToNumber(schedule_duration),
     episode,
     show
@@ -173,5 +181,5 @@ export default function mapToAirings(input: Object): Array<Airing> {
         return buildAiring(schedule, extractEpisode(episode), extractSeries(series));
       }));
     }));
-  }));
+  })).filter(x => x);
 }

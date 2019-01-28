@@ -138,4 +138,57 @@ describe('schedule', function() {
     let firstElement = schedule[keys[0]];
     expect(firstElement.show.id).toEqual(airings[0].data.show.id);
   });
+
+  it('has one fewer hour when daylight savings time begins', function() {
+    // Daylight Savings Time skips 2:00AM to 3:00AM
+    let startTime = moment().month(2).date(1).isoWeekday(7).add(7, 'd').tz("America/Chicago").startOf('day').unix();
+    let endTime = moment().month(2).date(1).isoWeekday(7).add(7, 'd').tz("America/Chicago").endOf('day').unix();
+    let airings = [
+      {
+        data: {
+          channel: "TPT2",
+          date: startTime,
+          duration: 3600,
+          show: {
+            id: 1
+          }
+        }
+      }];
+    let interval = 30;
+    let schedule = buildSchedule(airings, interval, startTime, endTime);
+    expect(schedule.length).toEqual(46);
+    interval = 15;
+    schedule = buildSchedule(airings, interval, startTime, endTime);
+    expect(schedule.length).toEqual(92);
+  });
+
+  it('has one additional hour when daylight savings time ends', function() {
+    let schedule_date = '2018-03-11T02:00:00';
+    let tzDate = moment.tz(schedule_date, process.env.PROTRACK_TZ).unix();
+    let date = moment(schedule_date).unix();
+
+    console.log("tzDate " + tzDate);
+    console.log("utcDate " + date);
+    console.log("midnight: " + moment(1548309600));
+
+    let startTime = moment().month(10).date(1).isoWeekday(7).tz("America/Chicago").startOf('day').unix();
+    let endTime = moment().month(10).date(1).isoWeekday(7).tz("America/Chicago").endOf('day').unix();
+    let airings = [
+      {
+        data: {
+          channel: "TPT2",
+          date: startTime,
+          duration: 3600,
+          show: {
+            id: 1
+          }
+        }
+      }];
+    let interval = 30;
+    let schedule = buildSchedule(airings, interval, startTime, endTime);
+    expect(schedule.length).toEqual(50);
+    interval = 15;
+    schedule = buildSchedule(airings, interval, startTime, endTime);
+    expect(schedule.length).toEqual(100);
+  });
 });
