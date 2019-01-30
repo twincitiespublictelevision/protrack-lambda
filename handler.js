@@ -184,16 +184,7 @@ export function ingest({ Records: records }: Object, context: Object) {
 
               console.log('Parsed airings list', airings.length);
 
-              // Grab the first result and read the channel
-              if (airings.length > 0) {
-                let sample = airings[0];
-                return actions.remove(sample.channel)
-                  .then(function() {
-                    return airings;
-                  });
-              } else {
-                return Promise.resolve(airings);
-              }
+              return airings;
             })
             .then(actions.insert)
             .then(function(res) {

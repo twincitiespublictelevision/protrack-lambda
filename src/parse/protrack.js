@@ -72,7 +72,7 @@ function durationToNumber(duration: string): number {
 }
 
 function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): Airing {
-  let { schedule_channel, schedule_date, schedule_duration } = schedule;
+  let { schedule_id, schedule_channel, schedule_date, schedule_duration } = schedule;
 
   // Check for timestamp that doesn't convert back, which is only possible during a "spring ahead"
   // DST hour. Such entries should be dismissed.
@@ -83,6 +83,8 @@ function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): 
   let date = protrackDateToTimestamp(schedule_date);
 
   return {
+    _id: schedule_id,
+    id: schedule_id,
     channel: schedule_channel,
     date: date,
     duration: durationToNumber(schedule_duration),
