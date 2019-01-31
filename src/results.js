@@ -6,11 +6,7 @@ const episode = new schema.Entity('episode', {}, {
     return episode.id || parseInt(`${episode.program.id}${episode.version.id}`);
   }
 });
-const airing = new schema.Entity('airing', { show, episode }, {
-  idAttribute: function(airing) {
-    return `${airing.channel}.${airing.date}`;
-  }
-});
+const airing = new schema.Entity('airing', { show, episode });
 const channel = new schema.Entity('channel', { airings: [airing] });
 
 export default function normalize(results) {

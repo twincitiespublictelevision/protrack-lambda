@@ -39,6 +39,7 @@ export type Show = {
 };
 
 export type Airing = {
+  id: number,
   channel: string,
   date: string,
   duration: number,

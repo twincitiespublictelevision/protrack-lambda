@@ -2,6 +2,7 @@
   "mappings": {
     "airing": {
       "properties": {
+        "id": "integer",
         "channel": {
           "type": "keyword"
         },
@@ -14,6 +15,7 @@
         },
         "episode": {
           "properties": {
+            "id": "integer",
             "program": {
               "properties": {
                 "id": {

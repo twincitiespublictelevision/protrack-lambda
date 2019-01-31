@@ -34,13 +34,22 @@ export default class Elastic {
   }
 
   store(body: {}): Promise<{}> {
-    return this.client.index({ index: this.index, type: this.type, body });
+    if (typeof body.id !== 'undefined') {
+      return this.client.index({index: this.index, type: this.type, _id: body.id, body});
+    } else {
+      return this.client.index({index: this.index, type: this.type, body});
+    }
   }
 
   storeAll(body: Array<Object>): Promise<Object> {
     let expanded = body.reduce(
       function(list: Array<{}>, body: {}): Array<{}> {
-        list.push({ index:  { _index: this.index, _type: this.type } });
+        if (typeof body.id !== 'undefined') {
+          list.push({ index:  { _index: this.index, _type: this.type, _id: body.id } });
+        } else {
+          list.push({ index:  { _index: this.index, _type: this.type } });
+        }
+
         list.push(body);
         return list;
       }.bind(this),
