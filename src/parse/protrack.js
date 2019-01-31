@@ -83,7 +83,6 @@ function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): 
   let date = protrackDateToTimestamp(schedule_date);
 
   return {
-    _id: schedule_id,
     id: schedule_id,
     channel: schedule_channel,
     date: date,
