@@ -76,7 +76,7 @@ function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): 
 
   // Check for timestamp that doesn't convert back, which is only possible during a "spring ahead"
   // DST hour. Such entries should be dismissed.
-  if (moment(moment(schedule_date).unix() * 1000).format('YYYY-MM-DTHH:mm:ss') !== schedule_date) {
+  if (moment(moment(schedule_date).unix() * 1000).format('YYYY-MM-DDTHH:mm:ss') !== schedule_date) {
     return null;
   }
 
