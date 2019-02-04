@@ -2,7 +2,9 @@
   "mappings": {
     "airing": {
       "properties": {
-        "id": "integer",
+        "id": {
+          "type": "long"
+        },
         "channel": {
           "type": "keyword"
         },
@@ -15,18 +17,20 @@
         },
         "episode": {
           "properties": {
-            "id": "integer",
+            "id": {
+              "type": "long"
+            },
             "program": {
               "properties": {
                 "id": {
-                  "type": "integer"
+                  "type": "long"
                 }
               }
             },
             "version": {
               "properties": {
                 "id": {
-                  "type": "integer"
+                  "type": "long"
                 },
                 "rating": {
                   "type": "keyword"
@@ -75,7 +79,7 @@
         "show": {
           "properties": {
             "id": {
-              "type": "integer"
+              "type": "long"
             },
             "code": {
               "type": "keyword"
