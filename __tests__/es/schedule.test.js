@@ -1,8 +1,36 @@
 import buildSchedule from './../../src/es/schedule';
-import { mockAllChannelAirings, mockSingleChannelAirings } from './helpers';
+import { receive, getShow, getEpisode, getAiring, getViews } from './../../src/scheduleData';
+import { mockAllChannelAirings, mockSingleChannelAirings, mockNormalizedMultiChannelScheduleData, mockNormalizedSingleChannelScheduleData, mockScheduleDataShow, mockScheduleDataEpisode, mockScheduleDataAiring, mockScheduleDataView} from './helpers';
 import moment from "moment-timezone";
 
 describe('schedule', function() {
+
+  it('receives normalized multi channel data into the schedule data store', function() {
+    receive(mockNormalizedMultiChannelScheduleData(), false);
+    expect(getShow(30479)).toBeTruthy();
+  });
+
+  it('receives normalized single channel data into the schedule data store', function() {
+    receive(mockNormalizedSingleChannelScheduleData(), true);
+    expect(getShow(30479)).toBeTruthy();
+  });
+
+  it('returns the correct show from the schedule data store', function() {
+    expect(getShow(30479)).toEqual(mockScheduleDataShow());
+  });
+
+  it('returns the correct airing from the schedule data store', function() {
+    expect(getAiring(195068388602)).toEqual(mockScheduleDataAiring());
+  });
+
+  it('returns the correct episode from the schedule data store', function() {
+    expect(getEpisode(329203381780)).toEqual(mockScheduleDataEpisode());
+  });
+
+  it('verifies view data in the schedule data store', function() {
+    expect(getViews('TPTLIFE')).toEqual(mockScheduleDataView());
+  });
+
   it('for a single channel schedule returns 1 day / interval rows', function() {
     let airings = mockSingleChannelAirings();
     let startTime = moment(airings[0].data.date * 1000).tz("America/Chicago").startOf('day').unix();

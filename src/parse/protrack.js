@@ -4,6 +4,7 @@ import type { Airing, Episode, Show } from './../airing';
 import moment from 'moment-timezone';
 
 type ProTrackSchedule = {
+  schedule_id: string,
   schedule_channel: string,
   schedule_date: string,
   schedule_duration: string
@@ -71,7 +72,7 @@ function durationToNumber(duration: string): number {
   return 0;
 }
 
-function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): Airing {
+function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): ?Airing {
   let { schedule_id, schedule_channel, schedule_date, schedule_duration } = schedule;
 
   // Check for timestamp that doesn't convert back, which is only possible during a "spring ahead"
@@ -83,7 +84,7 @@ function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): 
   let date = protrackDateToTimestamp(schedule_date);
 
   return {
-    id: schedule_id,
+    id: parseInt(schedule_id),
     channel: schedule_channel,
     date: date,
     duration: durationToNumber(schedule_duration),
@@ -131,6 +132,7 @@ function extractEpisode(episode: ProTrackEpisode): Episode {
   let genres = toGenreList(epi_genrelist_nat).concat(toGenreList(epi_genrelist_loc));
 
   return {
+    id: program_id,
     program: { id: program_id },
     version: { id: version_id, rating: version_rating, caption: version_caption },
     title: episode_title,
