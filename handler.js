@@ -1,13 +1,15 @@
 // @flow
 
-import { toBucket, toData, backup, remove } from './src/parse/s3';
 import type { Airing } from './src/airing';
-import parse from './src/parse/parser';
-import mapToAirings from './src/parse/protrack';
+import type { ScheduleData } from './src/results';
+import type { AiringResults } from "./src/es/airingResult";
+import { toBucket, toData, backup, remove } from './src/parse/s3';
 import actions from './src/es/actions';
 import buildSchedule from './src/es/schedule';
-import normalize from './src/results';
-import { normalizeSchedule } from './src/results';
+import parse from './src/parse/parser';
+import mapToAirings from './src/parse/protrack';
+import { normalize, normalizeSchedule } from './src/results';
+import { receive, getShow, getEpisode, getAiring, getViews } from './src/scheduleData';
 import moment from "moment-timezone";
 
 function p(event: Object, key: string): string {
@@ -106,15 +108,15 @@ export function search(event: Object, context: Object) {
 }
 
 export function schedule(event: Object, context: Object) {
-  let start = moment().year(new Date().getFullYear()).month(p(event,'month') - 1).date(p(event,'day')).tz(process.env.PROTRACK_TZ).startOf('day').unix();
-  let end = moment().year(new Date().getFullYear()).month(p(event,'month') - 1).date(p(event,'day')).tz(process.env.PROTRACK_TZ).endOf('day').unix();
+  let start = moment().year(new Date().getFullYear()).month(parseInt(p(event,'month')) - 1).date(p(event,'day')).tz(process.env.PROTRACK_TZ).startOf('day').unix();
+  let end = moment().year(new Date().getFullYear()).month(parseInt(p(event,'month')) - 1).date(p(event,'day')).tz(process.env.PROTRACK_TZ).endOf('day').unix();
   let options = {
     start: start,
     end: end
   };
 
-  let search = actions.search(options).then(function(result) {
-    let airings = buildSchedule(result, p(event,'granularity'), start, end);
+  actions.search(options).then(function(result: AiringResults) {
+    let airings = buildSchedule(result, parseInt(p(event,'granularity')), start, end);
     return {
       statusCode: 200,
       body: JSON.stringify(normalizeSchedule(airings)),
@@ -134,19 +136,18 @@ export function schedule(event: Object, context: Object) {
 }
 
 export function schedule_channel(event: Object, context: Object) {
-    let start = moment().year(new Date().getFullYear()).month(p(event,'month') - 1).date(p(event,'day')).tz(process.env.PROTRACK_TZ).startOf('day').unix();
-    let end = moment().year(new Date().getFullYear()).month(p(event,'month') - 1).date(p(event,'day')).tz(process.env.PROTRACK_TZ).endOf('day').unix();
-    let options = {
-      start: start,
-      end: end
-    };
+    let start = moment().year(new Date().getFullYear()).month(parseInt(p(event,'month')) - 1).date(p(event,'day')).tz(process.env.PROTRACK_TZ).startOf('day').unix();
+    let end = moment().year(new Date().getFullYear()).month(parseInt(p(event,'month')) - 1).date(p(event,'day')).tz(process.env.PROTRACK_TZ).endOf('day').unix();
+    let options = {};
+    options.start = start;
+    options.end = end;
 
     if (p(event, 'channel')) {
       options.channel = p(event, 'channel');
     }
 
-    let search = actions.search(options).then(function(result) {
-      let airings = buildSchedule(result, p(event,'granularity'), start, end);
+    actions.search(options).then(function(result: AiringResults) {
+      let airings = buildSchedule(result, parseInt(p(event,'granularity')), start, end);
       return {
         statusCode: 200,
         body: JSON.stringify(normalizeSchedule(airings, true)),
@@ -180,7 +181,7 @@ export function ingest({ Records: records }: Object, context: Object) {
         .then(function(raw) {
           return parse(raw)
             .then(mapToAirings)
-            .then(function(airings): Promise<Array<Airing>> {
+            .then(function(airings) {
 
               console.log('Parsed airings list', airings.length);
 

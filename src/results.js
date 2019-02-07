@@ -9,11 +9,31 @@ const episode = new schema.Entity('episode', {}, {
 const airing = new schema.Entity('airing', { show, episode });
 const channel = new schema.Entity('channel', { airings: [airing] });
 
+type SingleScheduleData = {
+  entities: {
+    show: Object,
+    episode: Object,
+    airing: Object,
+  },
+  result: Array<number>
+}
+
+type MultiScheduleData = {
+  show: Object,
+  episode: Object,
+  airing: Object,
+  channel: Object,
+  result: Array<string>
+}
+
+export type ScheduleData = SingleScheduleData|MultiScheduleData;
+
 export default function normalize(results) {
   return normalizer(results.map(r => r.data), [airing]);
 }
 
-export function normalizeSchedule(results, singleChannel = false) {
+export function normalizeSchedule(results: Array<Object>,
+                                  singleChannel: boolean = false): ScheduleData {
   if (singleChannel) {
     return normalizer(results, [airing]);
   } else {

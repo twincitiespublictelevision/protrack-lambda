@@ -1,0 +1,928 @@
+{
+  "entities": {
+    "show": {
+      "38": {
+        "id": 38,
+        "code": "SESA",
+        "title": "Sesame Street",
+        "desc": "SESAME STREET has garnered more than 100 awards, including 101 Emmys, two Peabodys, four Parents' Choice Awards and an Action for Children's Television Special Achievement Award. The series delivers academic and social education that prepares kids for grade school. Since its premiere, the show's base curriculum has been set by academic research on preschoolers. Encore episodes focus on music and art and how these tools can be used to develop the whole child - the cognitive, social, emotional and physical attributes. In addition, \"Elmo's World,\" which looks at the world through the eyes of a three-year-old, continues as a featured segment. Themes include birthdays, pets, teeth, families, games and more.",
+        "url": "http://www.pbs.org/kids/sesame/",
+        "pgmtype": 0,
+        "genres": []
+      },
+      "54": {
+        "id": 54,
+        "code": "NOVA",
+        "title": "Nova",
+        "desc": "PBS' premier science series helps viewers of all ages explore the science behind the headlines. Along the way, NOVA programs demystify science and technology and highlight the people involved in scientific pursuits.",
+        "url": "http://www.pbs.org/wgbh/nova/",
+        "pgmtype": "ST",
+        "genres": []
+      },
+      "5671": {
+        "id": 5671,
+        "code": "ANRO",
+        "title": "Antiques Roadshow",
+        "desc": "ANTIQUES ROADSHOW cameras capture tales of family heirlooms, yard sale bargains and long-lost items salvaged from attics and basements, while experts reveal the fascinating truths about these finds.",
+        "url": "http://www.pbs.org/wgbh/pages/roadshow/",
+        "pgmtype": 0,
+        "genres": []
+      },
+      "8117": {
+        "id": 8117,
+        "code": "INLE",
+        "title": "Independent Lens",
+        "desc": "This acclaimed Emmy Award-winning anthology series features documentaries and a limited number of fiction films united by the creative freedom, artistic achievement and unflinching visions of their independent producers. INDEPENDENT LENS features unforgettable stories about a unique individual, community or moment in history. The series is supported by interactive companion Web sites and national publicity and community engagement campaigns.",
+        "url": "http://www.pbs.org/independentlens",
+        "pgmtype": 0,
+        "genres": []
+      },
+      "17117": {
+        "id": 17117,
+        "code": "CUGE",
+        "title": "Curious George",
+        "desc": "For more than 75 years, generations of young children have been charmed by the literary adventures of Curious George. Based on the best-selling Curious George books by Margret and H. A. Rey, the daily series expands George's world to include a host of colorful new characters and original locales, while maintaining the charm of the beloved books. Each half-hour episode includes two animated stories, followed by short live-action pieces showing real kids who are investigating the ideas that George introduces in his stories. The series aims to inspire kids to explore science, math and engineering in the world around them.",
+        "url": "http://pbskids.org/curiousgeorge",
+        "pgmtype": 0,
+        "genres": []
+      },
+      "19514": {
+        "id": 19514,
+        "code": "DINS",
+        "title": "Dinosaur Train",
+        "desc": "\"Dinosaur Train\" is an animated series for 3-to-6 year olds. The series features a curious young T-rex named Buddy who, together with his adopted Pteranodon family, takes the Dinosaur Train to meet, explore, and have adventures with all kinds of dinosaurs and prehistoric creatures.",
+        "url": "http://pbskids.org/dinosaurtrain/",
+        "pgmtype": 0,
+        "genres": []
+      },
+      "19965": {
+        "id": 19965,
+        "code": "MLNH",
+        "title": "PBS NewsHour",
+        "desc": "The PBS NewsHour continues to provide in-depth analysis of current events with a news summary, live interviews and discussions of domestic and international issues.",
+        "url": null,
+        "pgmtype": 0,
+        "genres": []
+      },
+      "20912": {
+        "id": 20912,
+        "code": "WILK",
+        "title": "Wild Kratts",
+        "desc": "\"Wild Kratts\" joins the adventures of Chris and Martin Kratt as they encounter incredible wild animals, combining science education with fun and adventure as the duo travels to animal habitats around the globe. Each adventure explores an age-appropriate science concept central to an animal's life and showcases a never-before-seen wildlife moment, all wrapped up in engaging stories of adventure, mystery, rescue, and the Kratt brothers' brand of laugh-out-loud-comedy that kids love. Real-life Chris and Martin introduce each \"Wild Kratts\" episode with a live action segment that imagines what it would be like to experience a never-before-seen wildlife moment, and asks, \"What if...?\" The Kratt brothers transition into animation and the adventure begins, bringing early-elementary school children into the secret lives of extraordinary creatures, many of which have never been animated before -- including Tiger quolls, Draco lizards, and Caracals!",
+        "url": "http://pbskids.org/wildkratts",
+        "pgmtype": 0,
+        "genres": []
+      },
+      "21813": {
+        "id": 21813,
+        "code": "FIYO",
+        "title": "Finding Your Roots",
+        "desc": "Finding Your Roots with Henry Louis Gates, Jr. is the 12th and latest series from the renowned cultural critic and Harvard scholar. In this 10-part series, Professor Gates continues the quest he begun in African American Lives 1 and 2 and Faces of America delving into the genealogy and genetics of an all new group of famous Americans. The series combines history and science in a fascinating exploration of race, family, and identity in today's America. Each hour features a different pair of celebrity guests, who are bound together by an intimate, sometimes hidden link, whether it be as old friends, through long-lost relatives, or even through a common ancestral past.",
+        "url": "http://www.pbs.org/wnet/finding-your-roots/",
+        "pgmtype": 0,
+        "genres": []
+      },
+      "22355": {
+        "id": 22355,
+        "code": "DTIG",
+        "title": "Daniel Tiger's Neighborhood",
+        "desc": "\"Daniel Tiger's Neighborhood\" is an animated series with live-action interstitials. Fred Rogers' original Neighborhood of Make Believe is recreated in vibrant color and texture; his signature puppet Daniel Striped Tiger is transformed into a curious and playful 4-year-old joined by his friends O the Owl, Prince Wednesday, Katerina Kittycat and Miss Elaina. The series curriculum is school-readiness and social-emotional learning, and each preschool themed episode offers a musical strategy for children and parents to use together.",
+        "url": "http://pbskids.org/daniel/",
+        "pgmtype": 0,
+        "genres": []
+      },
+      "23102": {
+        "id": 23102,
+        "code": "PCAT",
+        "title": "Peg + Cat",
+        "desc": "This series is designed to engage preschool children and teach them how to solve math-based problems with Peg, a chatty and tenacious five year-old, her feline pal, Cat, and her smart, handsome, cool friend Ramone.",
+        "url": "http://pbskids.org/peg/",
+        "pgmtype": 0,
+        "genres": []
+      },
+      "24010": {
+        "id": 24010,
+        "code": "ODDS",
+        "title": "Odd Squad",
+        "desc": "ODD SQUAD is a PBS KIDS live-action media property designed to help kids ages 5-8 learn math. The show focuses on two young agents, Olive and Otto, who are part of the Odd Squad, an agency whose mission is to come to the rescue whenever something unusual happens. A math concept is embedded in each of their cases, as Olive and Otto work together to problem-solve and save the day in each episode. ODD SQUAD is created by Tim McKeon (Foster's Home for Imaginary Friends, Adventure Time, The Electric Company) and Adam Peltzman (The Electric Company, The Backyardigans, Wallykazam!) and produced by Sinking Ship Entertainment and The Fred Rogers Company.",
+        "url": null,
+        "pgmtype": 0,
+        "genres": []
+      },
+      "25159": {
+        "id": 25159,
+        "code": "NCAT",
+        "title": "Nature Cat",
+        "desc": "NATURE CAT follows Fred, a house cat who dreams of exploring the great outdoors. In each episode, once his family leaves for the day, Fred transforms into Nature Cat, \"backyard explorer extraordinaire.\" Nature Cat can't wait to get outside for a day of backyard nature excursions and bravery, but there's one problem: He's still a house cat with no instincts for nature. Like many of today's kids, Nature Cat is eager and enthusiastic about outside activities, but is at times intimidated by them. With the help of his animal friends, Nature Cat embarks on action-packed adventures that include exciting missions full of nature investigation, \"aha\" discovery moments and humor, all while inspiring children to go outside and \"play the show.\"",
+        "url": "http://pbskids.org/naturecat/",
+        "pgmtype": 0,
+        "genres": []
+      },
+      "25338": {
+        "id": 25338,
+        "code": "RJGO",
+        "title": "Ready Jet Go!",
+        "desc": "READY JET GO! is a 3D animated series for 3-8 year-olds with a focus on astronomy, scientific exploration, innovation and invention, and Earth as it is affected by our solar system. The show is about two neighborhood kids-one with an all-consuming drive for science fact and another with an overwhelming passion for science fiction. They both befriend the new kid on their street, Jet Propulsion, whose family happens to be aliens from Bortron 7. The comedy series teaches kids a variety of Earth science concepts (gravity, tides, moon phases, seasons) as well as an introductory explanation of innovation, astronomy, and our solar system.",
+        "url": null,
+        "pgmtype": 0,
+        "genres": []
+      },
+      "28291": {
+        "id": 28291,
+        "code": "PIPE",
+        "title": "Pinkalicious & Peterrific",
+        "desc": "Pinkalicious imagines creative possibilities everywhere she looks. Aimed at kids 3-5, PINKALICIOUS & PETERRIFIC encourages viewers to engage in the creative arts and self-expression, including music, dance, theater and visual arts. Get creative with Pinkalicious, Peter and all their friends in Pinkville!",
+        "url": null,
+        "pgmtype": 0,
+        "genres": []
+      },
+      "29997": {
+        "id": 29997,
+        "code": "!TCEXP",
+        "title": "Minnesota Experience",
+        "desc": "The Minnesota Experience is tpt's weekly local history series.  The programs explore the people, places, and events from the state's past.",
+        "url": null,
+        "pgmtype": "HY",
+        "genres": [
+          {
+            "genrecd": "HI",
+            "genretxt": "HISTORY"
+          }
+        ]
+      },
+      "30147": {
+        "id": 30147,
+        "code": "LELU",
+        "title": "Let's Go Luna!",
+        "desc": null,
+        "url": null,
+        "pgmtype": 0,
+        "genres": []
+      },
+      "30479": {
+        "id": 30479,
+        "code": "DIPL",
+        "title": "Dictator's Playbook",
+        "desc": "Learn how six dictators, from Mussolini to Saddam Hussein, shaped the world. How did they seize and lose power? What forces were against them? Learn the answers in these six immersive hours, each a revealing portrait of brutality and power.",
+        "url": null,
+        "pgmtype": 0,
+        "genres": []
+      }
+    },
+    "episode": {
+      "329203381780": {
+        "program": {
+          "id": 329203
+        },
+        "version": {
+          "id": 381780,
+          "rating": "TVRE",
+          "caption": true
+        },
+        "title": null,
+        "number": 12456,
+        "desc": null,
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1549260000,
+        "genres": [
+          {
+            "genrecd": "PA",
+            "genretxt": "PUBLIC AFFAIRS"
+          }
+        ]
+      },
+      "344852402558": {
+        "program": {
+          "id": 344852
+        },
+        "version": {
+          "id": 402558,
+          "rating": "TVG",
+          "caption": true
+        },
+        "title": "Ca' D'zan - Hour Two",
+        "number": 2305,
+        "desc": "Head to Ca' d'Zan to discover treasures that are fitting for a celebration of \"The Greatest Show on Earth,\" like an 1866 Otto Georgi painting, an Augsburg silver Kiddush cup and \"How Man Learned to Fly\" illustrations. One is up to $30,000.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1549260000,
+        "genres": [
+          {
+            "genrecd": "CU",
+            "genretxt": "CULTURAL"
+          }
+        ]
+      },
+      "269898302307": {
+        "program": {
+          "id": 269898
+        },
+        "version": {
+          "id": 302307,
+          "rating": "TVG",
+          "caption": true
+        },
+        "title": "Celebrating Black Americana",
+        "number": 1934,
+        "desc": null,
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1423461600,
+        "genres": [
+          {
+            "genrecd": "CU",
+            "genretxt": "CULTURAL"
+          }
+        ]
+      },
+      "336932391954": {
+        "program": {
+          "id": 336932
+        },
+        "version": {
+          "id": 391954,
+          "rating": "TVPG",
+          "caption": true
+        },
+        "title": "North Star: Making Home",
+        "number": 117,
+        "desc": "The \"hidden history\" of African American who helped shape the North Star state of Minnesota. From fur trader George Bonga to the state's first black woman lawyer, Lena Smith.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "TPTHD",
+        "orig_broadcast_date": 1549519200,
+        "genres": []
+      },
+      "346455404857": {
+        "program": {
+          "id": 346455
+        },
+        "version": {
+          "id": 404857,
+          "rating": "TV14",
+          "caption": true
+        },
+        "title": "Black Memorabilia",
+        "number": 2010,
+        "desc": "From the South to Brooklyn to China, meet the people who reproduce, consume and reclaim black memorabilia, racially-charged objects often wrapped in the protective embrace of antiquity and historical preservation.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1549260000,
+        "genres": [
+          {
+            "genrecd": "CU",
+            "genretxt": "CULTURAL"
+          }
+        ]
+      },
+      "294514334277": {
+        "program": {
+          "id": 294514
+        },
+        "version": {
+          "id": 334277,
+          "rating": "TVPG",
+          "caption": true
+        },
+        "title": "Birth of a Movement",
+        "number": 1807,
+        "desc": "Learn how D.W. Griffith's 1915 The Birth of a Nation unleashed a battle still waging today about race relations and representation, and the power and influence of Hollywood. Featuring Spike Lee, Reginald Hudlin, Henry Louis Gates, Jr., and others.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1486879200,
+        "genres": [
+          {
+            "genrecd": "CU",
+            "genretxt": "CULTURAL"
+          }
+        ]
+      },
+      "285549321286": {
+        "program": {
+          "id": 285549
+        },
+        "version": {
+          "id": 321286,
+          "rating": "TVY",
+          "caption": true
+        },
+        "title": "The Sam Problem/Mac The Fork",
+        "number": 222,
+        "desc": "The Sam Problem - Peg's Pizza Place. Jesse fears that if his Mom gets married she'll love him less. Peg uses math to show he has nothing to worry about! Primary Content: Division Secondary Content: Finite / infinite. Mac the Fork - Mega Mall. Sweet treats are being swiped four at a time, on the infamous utensil of Mac the Fork. Primary Content: Counting to 40 by fours Secondary Content: Fair sharing.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1496984400,
+        "genres": [
+          {
+            "genrecd": "CH",
+            "genretxt": "CHILDREN'S"
+          }
+        ]
+      },
+      "284622320178": {
+        "program": {
+          "id": 284622
+        },
+        "version": {
+          "id": 320178,
+          "rating": "TVY",
+          "caption": true
+        },
+        "title": "Asteroids, Meteors, and Meteorites/Mindy's Meteorite Stand",
+        "number": 117,
+        "desc": "Asteroids, Meteors, and Meteorites - Sean is determined to beat his mystery competitor at a video game of \"Astro-Tracker.\" When Face 9000 tells the kids about the Asteroid Belt, Sean realizes that the best way to learn about asteroids is to see them for himself. Celery flies them out to space, and the kids learn the difference between an asteroid, a meteor, and a meteorite. Worried at first, Sean learns that only the rare asteroid (called a meteorite) makes it all the way to Earth, so he decides that he'll become really good at \"Astro-Tracker\" to prepare for the future when he can be on a team of scientists who track rogue asteroids. Curriculum: Asteroids are small solar system bodies that orbit the Sun. Asteroids are similar to comets but do not have a visible coma (fuzzy outline and tail) like comets do. A meteor is a small asteroid that burns up as it passes through the Earth's atmosphere. A meteorite is a piece of asteroid that survives falling through the Earth's atmosphere and collides with the Earth's surface. Mindy's Meteorite Stand - When Mindy and Sunspot are digging in the yard, they discover a unique rock that Mindy is convinced is a meteorite. The kids conduct a series of tests to find out and amazingly the rock passes each test. \"Meteorite fever\" grips the neighborhood, as Mindy sets up a stand so people can see her meteorite, and bring her rocks to assess. In the end, a DSA scientist confirms that Mindy's rock actually isn't a meteor... but, wait, the random rock Mindy's sitting on is! Curriculum: Meteorites are pieces of space rocks (asteroids) that break up when they hit the Earth's atmosphere and fall in small pieces. Meteorites are older than any rock from Earth, and share certain characteristics: density (high), attraction to a magnet, and rust.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "SRND51",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1460523600,
+        "genres": [
+          {
+            "genrecd": "CH",
+            "genretxt": "CHILDREN'S"
+          }
+        ]
+      },
+      "174385392611": {
+        "program": {
+          "id": 174385
+        },
+        "version": {
+          "id": 392611,
+          "rating": "TVY",
+          "caption": true
+        },
+        "title": "Monkey Underground/Cat Mother",
+        "number": 202,
+        "desc": "Cat Mother - Professor Wiseman entrusts George with Lucky, a tiny kitten too young to take care of herself. It's love at first sight for Lucky when she meets her first dog - Hundley, the proud lobby dachshund. But it's not such a fast friendship for Hundley, who sneezes when Lucky affectionately rubs against him. Hundley's allergic to cats! Lucky is inconsolable, having to stay away from her new friend, so George decides to build a substitute dog for Lucky. Can George use his sharp investigation and engineering skills to create an exact Hundley replica? Monkey Underground - When George stumbles across a gopher hole in the field near the country house, he suddenly finds himself inside a secret world of underground tunnels. Just below the mounds, Mama, Papa, and Junior Gopher have found a hiding place away from Mr. Gopher Getter - the man who plans to de-gopher the entire field. George warns his new pals about the looming trap. But only if George can dig super monkey-fast, and in the correct direction, will he be able to save his gopher friends from being removed from their home.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1549346400,
+        "genres": [
+          {
+            "genrecd": "CH",
+            "genretxt": "CHILDREN'S"
+          }
+        ]
+      },
+      "341685397663": {
+        "program": {
+          "id": 341685
+        },
+        "version": {
+          "id": 397663,
+          "rating": "TVY",
+          "caption": true
+        },
+        "title": "Hoopin' Hopper/A Chopsticky Situation",
+        "number": 108,
+        "desc": "When Andy loses his basketball in Beijing, he learns that although competitive sports are fun, friendship is more important than winning. / In Beijing, Leo wants to taste all kinds of delicious Chinese food, but must first exercise patience in learning to use chopsticks.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1544335200,
+        "genres": [
+          {
+            "genrecd": "CH",
+            "genretxt": "CHILDREN'S"
+          }
+        ]
+      },
+      "245100269409": {
+        "program": {
+          "id": 245100
+        },
+        "version": {
+          "id": 269409,
+          "rating": "TVY",
+          "caption": true
+        },
+        "title": "The Dragon Dance/Teacher Harriet's Birthday",
+        "number": 123,
+        "desc": "The Dragon Dance: In school, the children are all helping Teacher Harriet with a big art project: creating a dancing dragon! Everyone is eager to finish so the dragon can dance, but they learn that they need to work together so the big project can be finished. Teacher Harriet's Birthday: It's Teacher Harriet's birthday! Mom Tiger helps the children surprise her by decorating the classroom with streamers and making a birthday present while she is gone. The children learn that cooperation is necessary to pull off the surprise.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1364878800,
+        "genres": [
+          {
+            "genrecd": "CH",
+            "genretxt": "CHILDREN'S"
+          }
+        ]
+      },
+      "324385373670": {
+        "program": {
+          "id": 324385
+        },
+        "version": {
+          "id": 373670,
+          "rating": "TVY",
+          "caption": true
+        },
+        "title": "Abby and Zoe Love Karate",
+        "number": 4832,
+        "desc": "Nina teaches Abby and Zoe all about karate. After learning how to practice and focus, Abby and Zoe are able to kick a ball off of a stand with a special karate kick.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1537765200,
+        "genres": [
+          {
+            "genrecd": "CH",
+            "genretxt": "CHILDREN'S"
+          }
+        ]
+      },
+      "258787288240": {
+        "program": {
+          "id": 258787
+        },
+        "version": {
+          "id": 288240,
+          "rating": "TVY",
+          "caption": true
+        },
+        "title": "Solar Train/Birdwatching",
+        "number": 303,
+        "desc": "Our Pteranodon family accompanies Mr. Conductor to the Troodon Town Roundhouse to meet up with Thurston Troodon, the Rocket Train's conductor. They all soon learn that Tricia Troodon, a young hotshot conductor, actually invited everyone there to see her new train - the Solar Train! The kids learn that it's powered by the sun! To test the train's performance, the three Conductors, along with the help of Buddy, Tiny, Shiny and Don, race the Dinosaur Train, Thurston's Rocket Train and Tricia's new Solar Train to the Triassic! Buddy and Tiny give Elliot Enantiornithine, a first timer on the Dinosaur Train, a tour of the Train. When they go through Laura Giganotosaurus' car, she explains to them that today is her bird watching/drawing day, but she hasn't found a single bird to watch. But, there's Elliot. He hams it up for Laura, who watches and draws him. This is so fun that Buddy and Tiny bring Laura to meet another bird friend-- Arlene Archeopteryx. Then Arlene and Elliot introduce the kids and Laura to a new bird named Peng Protopteryx! It's a successful birdwatching/drawing day as all three birds are delighted to show off their unique feathers.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "SRND51",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1412658000,
+        "genres": [
+          {
+            "genrecd": "CH",
+            "genretxt": "CHILDREN'S"
+          }
+        ]
+      },
+      "315410361409": {
+        "program": {
+          "id": 315410
+        },
+        "version": {
+          "id": 361409,
+          "rating": "TVY",
+          "caption": true
+        },
+        "title": "Garden Gnome Party/That Unicorn Feeling",
+        "number": 118,
+        "desc": "Norman turns down an invitation to a garden gnome party because he can't dance the Big Jig. With a little help from Edna, the gnome, Pinkalicious and Peter help Norman point, hop, and step his way to the party. To Pinkalicious, Goldie the unicorn is her best friend - but to Kendra, Goldie doesn't exist! When Kendra accidentally causes Goldie to go missing, she's determined to find her - but first she has to learn to \"see\" her.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1534136400,
+        "genres": [
+          {
+            "genrecd": "CH",
+            "genretxt": "CHILDREN'S"
+          }
+        ]
+      },
+      "281889317006": {
+        "program": {
+          "id": 281889
+        },
+        "version": {
+          "id": 317006,
+          "rating": "TVY",
+          "caption": true
+        },
+        "title": "Appily Ever After/Sound Off",
+        "number": 126,
+        "desc": "Appily Ever After - It's Fall! Apple picking season! But Hal wants to know - how did the apples get up in the trees? An apple fairy? A magic spell? The internet? And how long does it take? Long time? Short time? No time? So many questions! That reminds Nature Cat of his all-time favorite nature story, which will help answer all of Hal's apple questions. It's time to tell Nature Cat's version of Johnny Appleseed! Sound Off - Man-oh-man! What's that noise?! Daisy keeps hearing the most annoying beeping sound and it's coming from across the lake. The terrible sound is even upsetting the lake fish and if it doesn't stop soon, the fish could be in big trouble! Can Nature Cat and his pals find where the rogue sound is coming from and stop the boisterous blaring beeps? Onward and soundward!",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1483423200,
+        "genres": [
+          {
+            "genrecd": "CH",
+            "genretxt": "CHILDREN'S"
+          }
+        ]
+      },
+      "245773270284": {
+        "program": {
+          "id": 245773
+        },
+        "version": {
+          "id": 270284,
+          "rating": "TVY",
+          "caption": true
+        },
+        "title": "Rattlesnake Crystal",
+        "number": 221,
+        "desc": "After the Tortuga crash lands in the Sonoran Desert, Koki discovers that the Tellurium crystals have run out of power and they need a new supply. Martin and Chris volunteer to go out in the desert to find this important source of energy and discover more than they were expecting!",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1376974800,
+        "genres": [
+          {
+            "genrecd": "CH",
+            "genretxt": "CHILDREN'S"
+          }
+        ]
+      },
+      "288437325897": {
+        "program": {
+          "id": 288437
+        },
+        "version": {
+          "id": 325897,
+          "rating": "TVY",
+          "caption": true
+        },
+        "title": "The Voice/Problem Partners",
+        "number": 219,
+        "desc": "The Voice - A villain steals Ms. O's voice. Curriculum: Understanding wholes and halves. Problem Partners - The agents are called in to help when Ohlm and Orchid have problems working together. Curriculum: Rounding to the nearest 10; Odd and even numbers.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "SRND51",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1500354000,
+        "genres": [
+          {
+            "genrecd": "CH",
+            "genretxt": "CHILDREN'S"
+          }
+        ]
+      },
+      "329204381781": {
+        "program": {
+          "id": 329204
+        },
+        "version": {
+          "id": 381781,
+          "rating": "TVRE",
+          "caption": true
+        },
+        "title": null,
+        "number": 12457,
+        "desc": null,
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1549346400,
+        "genres": [
+          {
+            "genrecd": "PA",
+            "genretxt": "PUBLIC AFFAIRS"
+          }
+        ]
+      },
+      "344881402613": {
+        "program": {
+          "id": 344881
+        },
+        "version": {
+          "id": 402613,
+          "rating": "TVPG",
+          "caption": true
+        },
+        "title": "Freedom Tales",
+        "number": 505,
+        "desc": "Host Henry Louis Gates, Jr. delves deep into the roots of two African American guests, actor S. Epatha Merkerson and athlete and television personality Michael Strahan. Both discover unexpected stories that challenge assumptions about black history.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1549346400,
+        "genres": [
+          {
+            "genrecd": "HI",
+            "genretxt": "HISTORY"
+          }
+        ]
+      },
+      "315347361308": {
+        "program": {
+          "id": 315347
+        },
+        "version": {
+          "id": 361308,
+          "rating": "TVPG",
+          "caption": true
+        },
+        "title": "First Face of America",
+        "number": 4504,
+        "desc": "Take a risky dive into an underwater cave in Mexico to uncover the 13, 000 year-old skeleton of a prehistoric teenager. Follow forensic clues that reveal intimate details of her life and death, and how her people first ventured into North America.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1517983200,
+        "genres": [
+          {
+            "genrecd": "SC",
+            "genretxt": "SCIENCE/NATURE"
+          }
+        ]
+      },
+      "344831402528": {
+        "program": {
+          "id": 344831
+        },
+        "version": {
+          "id": 402528,
+          "rating": "TV14",
+          "caption": true
+        },
+        "title": "Manuel Noriega",
+        "number": 104,
+        "desc": "Watch Manuel Noriega rise through the Panamanian military to become chief of intelligence -- and then, military dictator. He spied for the United States, but in the end, money laundering, drug trafficking and political crimes led to his downfall.",
+        "url": null,
+        "language": "English",
+        "dvi": false,
+        "stereo": "STEREO",
+        "hdtv": true,
+        "package_type": "HDBA",
+        "orig_broadcast_date": 1548828000,
+        "genres": [
+          {
+            "genrecd": "HI",
+            "genretxt": "HISTORY"
+          }
+        ]
+      }
+    },
+    "airing": {
+      "191101381780": {
+        "id": 191101381780,
+        "channel": "TPT2",
+        "date": 1549346400,
+        "duration": 3406,
+        "episode": 329203381780,
+        "show": 19965
+      },
+      "193092402558": {
+        "id": 193092402558,
+        "channel": "TPT2",
+        "date": 1549350000,
+        "duration": 3285,
+        "episode": 344852402558,
+        "show": 5671
+      },
+      "193093302307": {
+        "id": 193093302307,
+        "channel": "TPT2",
+        "date": 1549353600,
+        "duration": 3406,
+        "episode": 269898302307,
+        "show": 5671
+      },
+      "193094391954": {
+        "id": 193094391954,
+        "channel": "TPT2",
+        "date": 1549357200,
+        "duration": 3526,
+        "episode": 336932391954,
+        "show": 29997
+      },
+      "193095404857": {
+        "id": 193095404857,
+        "channel": "TPT2",
+        "date": 1549360820,
+        "duration": 3406,
+        "episode": 346455404857,
+        "show": 8117
+      },
+      "193096334277": {
+        "id": 193096334277,
+        "channel": "TPT2",
+        "date": 1549364400,
+        "duration": 3406,
+        "episode": 294514334277,
+        "show": 8117
+      },
+      "191435321286": {
+        "id": 191435321286,
+        "channel": "TPT2",
+        "date": 1549368000,
+        "duration": 1726,
+        "episode": 285549321286,
+        "show": 23102
+      },
+      "191475320178": {
+        "id": 191475320178,
+        "channel": "TPT2",
+        "date": 1549371600,
+        "duration": 1726,
+        "episode": 284622320178,
+        "show": 25338
+      },
+      "191515392611": {
+        "id": 191515392611,
+        "channel": "TPT2",
+        "date": 1549377000,
+        "duration": 1726,
+        "episode": 174385392611,
+        "show": 17117
+      },
+      "191535397663": {
+        "id": 191535397663,
+        "channel": "TPT2",
+        "date": 1549378800,
+        "duration": 1726,
+        "episode": 341685397663,
+        "show": 30147
+      },
+      "191575269409": {
+        "id": 191575269409,
+        "channel": "TPT2",
+        "date": 1549382400,
+        "duration": 1726,
+        "episode": 245100269409,
+        "show": 22355
+      },
+      "191619373670": {
+        "id": 191619373670,
+        "channel": "TPT2",
+        "date": 1549386000,
+        "duration": 1726,
+        "episode": 324385373670,
+        "show": 38
+      },
+      "191659288240": {
+        "id": 191659288240,
+        "channel": "TPT2",
+        "date": 1549389600,
+        "duration": 1726,
+        "episode": 258787288240,
+        "show": 19514
+      },
+      "191699373670": {
+        "id": 191699373670,
+        "channel": "TPT2",
+        "date": 1549393200,
+        "duration": 1726,
+        "episode": 324385373670,
+        "show": 38
+      },
+      "191739361409": {
+        "id": 191739361409,
+        "channel": "TPT2",
+        "date": 1549396800,
+        "duration": 1726,
+        "episode": 315410361409,
+        "show": 28291
+      },
+      "191779317006": {
+        "id": 191779317006,
+        "channel": "TPT2",
+        "date": 1549400400,
+        "duration": 1726,
+        "episode": 281889317006,
+        "show": 25159
+      },
+      "191799270284": {
+        "id": 191799270284,
+        "channel": "TPT2",
+        "date": 1549404000,
+        "duration": 1726,
+        "episode": 245773270284,
+        "show": 20912
+      },
+      "191839325897": {
+        "id": 191839325897,
+        "channel": "TPT2",
+        "date": 1549407600,
+        "duration": 1726,
+        "episode": 288437325897,
+        "show": 24010
+      },
+      "191082381781": {
+        "id": 191082381781,
+        "channel": "TPT2",
+        "date": 1549411200,
+        "duration": 3406,
+        "episode": 329204381781,
+        "show": 19965
+      },
+      "189629402613": {
+        "id": 189629402613,
+        "channel": "TPT2",
+        "date": 1549414800,
+        "duration": 3356,
+        "episode": 344881402613,
+        "show": 21813
+      },
+      "199422410544": {
+        "id": 199422410544,
+        "channel": "TPT2",
+        "date": 1549418400,
+        "duration": 7006,
+        "episode": 329204381781,
+        "show": 19965
+      },
+      "190834361308": {
+        "id": 190834361308,
+        "channel": "TPT2",
+        "date": 1549425600,
+        "duration": 3325,
+        "episode": 315347361308,
+        "show": 54
+      },
+      "187894402528": {
+        "id": 187894402528,
+        "channel": "TPT2",
+        "date": 1549429200,
+        "duration": 3270,
+        "episode": 344831402528,
+        "show": 30479
+      }
+    }
+  },
+  "result": [
+    191101381780,
+    193092402558,
+    193093302307,
+    193094391954,
+    193095404857,
+    193096334277,
+    191435321286,
+    191475320178,
+    191515392611,
+    191535397663,
+    191575269409,
+    191619373670,
+    191659288240,
+    191699373670,
+    191739361409,
+    191779317006,
+    191799270284,
+    191839325897,
+    191082381781,
+    189629402613,
+    199422410544,
+    199422410544,
+    190834361308,
+    187894402528
+  ]
+}

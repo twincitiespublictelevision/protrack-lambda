@@ -3389,3 +3389,27 @@ export function mockAllChannelAirings() {
         }
   ];
 }
+
+export function mockScheduleDataShow() {
+  return {"id":30479,"code":"DIPL","title":"Dictator's Playbook","desc":"Learn how six dictators, from Mussolini to Saddam Hussein, shaped the world. How did they seize and lose power? What forces were against them? Learn the answers in these six immersive hours, each a revealing portrait of brutality and power.","url":null,"pgmtype":0,"genres":[]};
+}
+
+export function mockScheduleDataEpisode() {
+  return {"program":{"id":329203},"version":{"id":381780,"rating":"TVRE","caption":true},"title":null,"number":12456,"desc":null,"url":null,"language":"English","dvi":false,"stereo":"STEREO","hdtv":true,"package_type":"HDBA","orig_broadcast_date":1549260000,"genres":[{"genrecd":"PA","genretxt":"PUBLIC AFFAIRS"}]};
+}
+
+export function mockScheduleDataAiring() {
+  return {"id":195068388602,"channel":"TPTLIFE","date":1549427400,"duration":3406,"episode":334533388602,"show":29652};
+}
+
+export function mockScheduleDataView() {
+  return [187705337040,195316324439,195317363565,194639270983,194725377073,187607316375,175478364555,184317400691,192745263504,189810288812,179327322143,194810388601,194853377074,195415262694,190536324439,179340322143,194937271446,190566332129,195203262400,190430382095,195220341079,195068388602];
+}
+
+export function mockNormalizedMultiChannelScheduleData() {
+  return require("./normalizedMultiScheduleData");
+}
+
+export function mockNormalizedSingleChannelScheduleData() {
+  return require("./normalizedSingleScheduleData");
+}
