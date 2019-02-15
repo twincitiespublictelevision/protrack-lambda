@@ -6,7 +6,11 @@ const episode = new schema.Entity('episode', {}, {
     return episode.id || parseInt(`${episode.program.id}${episode.version.id}`);
   }
 });
-const airing = new schema.Entity('airing', { show, episode });
+const airing = new schema.Entity('airing', { show, episode }, {
+  idAttribute: function(airing) {
+    return airing.id || `${airing.channel}.${airing.date}`;
+  }
+});
 const channel = new schema.Entity('channel', { airings: [airing] });
 
 type SingleScheduleData = {
