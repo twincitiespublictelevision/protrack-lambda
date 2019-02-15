@@ -169,7 +169,7 @@ functions:
     memorySize: 512
     events:
       - http:
-          path: schedule/{granularity}/{month}/{day}
+          path: schedule/{year}/{month}/{day}/{granularity}
           method: get
           integration: lambda-proxy
           cors:
@@ -181,7 +181,7 @@ functions:
     memorySize: 512
     events:
       - http:
-          path: schedule/{granularity}/{month}/{day}/{channel}
+          path: schedule/{year}/{month}/{day}/{granularity}/{channel}
           method: get
           integration: lambda-proxy
           cors:
