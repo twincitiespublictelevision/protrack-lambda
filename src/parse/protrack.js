@@ -82,12 +82,28 @@ function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): 
   }
 
   let date = protrackDateToTimestamp(schedule_date);
+  let duration = durationToNumber(schedule_duration);
+
+  let channelMap = {
+    "TPT2": 1,
+    "TPTLIFE": 2,
+    "TPTMN": 3,
+    "TPTKIDS": 4
+  }
+
+  let id;
+
+  if (typeof schedule_id !== 'undefined') {
+    id = schedule_id;
+  } else {
+    id = channelMap[schedule_channel] + '' + date;
+  }
 
   return {
-    id: parseInt(schedule_id),
+    id: parseInt(id),
     channel: schedule_channel,
     date: date,
-    duration: durationToNumber(schedule_duration),
+    duration: duration,
     episode,
     show
   }

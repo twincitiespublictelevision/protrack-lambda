@@ -1,13 +1,14 @@
 import moment from "moment-timezone";
 
 class ChannelData {
-  constructor(start: number, end: number, interval: number) {
+  constructor(start: number, end: number, interval: number, channel: string) {
     this.endTime = end;
     this.timeslotStart = start;
     this.interval = interval;
     this.timeslotEnd = start + interval - 1;
     this.timeslotShows = [];
     this.schedule = [];
+    this.channel = channel;
   }
 
   slotEntry(entry) {
@@ -36,7 +37,7 @@ class ChannelData {
       // No shows fit the schedule of this timeslot!
       // just fill it out with the previous, if available
       if (this.schedule.length === 0) {
-        this.schedule.push({ show: { title: "Nothing Scheduled" } });
+        this.schedule.push({ id: null });
       } else {
         this.schedule.push(this.schedule[this.schedule.length - 1]);
       }
