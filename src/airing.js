@@ -42,6 +42,7 @@ export type Airing = {
   id: number,
   channel: string,
   date: string,
+  end_date: number,
   duration: number,
   episode: Episode,
   show: Show

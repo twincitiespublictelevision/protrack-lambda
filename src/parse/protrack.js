@@ -103,6 +103,7 @@ function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): 
     id: parseInt(id),
     channel: schedule_channel,
     date: date,
+    end_date: date + duration,
     duration: duration,
     episode,
     show

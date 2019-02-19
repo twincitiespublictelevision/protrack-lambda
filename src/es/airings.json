@@ -12,6 +12,10 @@
           "type": "date",
           "format": "epoch_second"
         },
+        "end_date": {
+          "type": "date",
+          "format": "epoch_second"
+        },
         "duration": {
           "type": "integer"
         },
