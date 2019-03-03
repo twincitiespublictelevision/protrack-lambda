@@ -8,7 +8,7 @@ import actions from './src/es/actions';
 import buildSchedule from './src/es/schedule';
 import parse from './src/parse/parser';
 import mapToAirings from './src/parse/protrack';
-import { normalize, normalizeSchedule } from './src/results';
+import { normalize, normalizeAirings, normalizeChannels } from './src/results';
 import { receive, getShow, getEpisode, getAiring, getViews } from './src/scheduleData';
 import moment from "moment-timezone";
 
@@ -130,10 +130,10 @@ export function schedule(event: Object, context: Object) {
   };
 
   actions.search(options).then(function(result: AiringResults) {
-    let airings = buildSchedule(result, parseInt(p(event,'granularity')), start, end);
+    let channels = buildSchedule(result, parseInt(p(event,'granularity')), start, end);
     return {
       statusCode: 200,
-      body: JSON.stringify(normalizeSchedule(airings)),
+      body: JSON.stringify(normalizeChannels(channels)),
       headers: {
         'Content-Type': 'application/json',
       }
@@ -175,10 +175,12 @@ export function schedule_channel(event: Object, context: Object) {
     }
 
     actions.search(options).then(function(result: AiringResults) {
-      let airings = buildSchedule(result, parseInt(p(event,'granularity')), start, end);
+      let channels = buildSchedule(result, parseInt(p(event,'granularity')), start, end)
+        .filter(channel => channel.id === options.channel);
+
       return {
         statusCode: 200,
-        body: JSON.stringify(normalizeSchedule(airings, true)),
+        body: JSON.stringify(normalizeChannels(channels, true)),
         headers: {
           'Content-Type': 'application/json',
         }

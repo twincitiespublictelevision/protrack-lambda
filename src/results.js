@@ -28,16 +28,14 @@ type MultiScheduleData = {
 
 export type ScheduleData = SingleScheduleData|MultiScheduleData;
 
-export default function normalize(results) {
+export function normalize(results) {
   return normalizer(results.map(r => r.data), [airing]);
 }
 
-export function normalizeSchedule(results: Array<Object>,
-                                  singleChannel: boolean = false): ScheduleData {
-  console.log(results);
-  if (singleChannel) {
-    return normalizer(results, [airing]);
-  } else {
-    return normalizer(results, [channel]);
-  }
+export function normalizeAirings(airings: Array<Airing>): SingleScheduleData {
+  return normalizer(airings, [airing]);
+}
+
+export function normalizeChannels(channels: Array<Channel>): MultiScheduleData {
+  return normalizer(channels, [channel]);
 }
