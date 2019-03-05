@@ -28,6 +28,7 @@ function attachCallback(p: Promise<any>, context: Object) {
         body: JSON.stringify(normalize(result)),
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin' : '*'
         }
       };
     })
@@ -136,6 +137,7 @@ export function schedule(event: Object, context: Object) {
       body: JSON.stringify(normalizeChannels(channels)),
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin' : '*'
       }
     }
   })
@@ -183,6 +185,7 @@ export function schedule_channel(event: Object, context: Object) {
         body: JSON.stringify(normalizeChannels(channels, true)),
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin' : '*'
         }
       }
     })
