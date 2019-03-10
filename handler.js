@@ -110,20 +110,60 @@ export function search(event: Object, context: Object) {
 
 export function schedule(event: Object, context: Object) {
   let start = moment()
+    .tz(process.env.PROTRACK_TZ)
     .year(parseInt(p(event,'year')))
     .month(parseInt(p(event,'month')) - 1)
     .date(p(event,'day'))
-    .tz(process.env.PROTRACK_TZ)
     .startOf('day')
     .unix();
 
   let end = moment()
+    .tz(process.env.PROTRACK_TZ)
     .year(parseInt(p(event,'year')))
     .month(parseInt(p(event,'month')) - 1)
     .date(p(event,'day'))
-    .tz(process.env.PROTRACK_TZ)
     .endOf('day')
     .unix();
+
+  console.log(
+    'Fetching schedule for: ',
+    moment()
+      .tz(process.env.PROTRACK_TZ)
+      .year(parseInt(p(event,'year')))
+      .month(parseInt(p(event,'month')) - 1)
+      .date(p(event,'day'))
+      .unix()
+  );
+
+  console.log(
+    'Start: ',
+    parseInt(p(event,'year')),
+    parseInt(p(event,'month')) - 1,
+    p(event,'day'),
+    process.env.PROTRACK_TZ,
+    moment()
+    .tz(process.env.PROTRACK_TZ)
+    .year(parseInt(p(event,'year')))
+    .month(parseInt(p(event,'month')) - 1)
+    .date(p(event,'day'))
+    .startOf('day'),
+    start
+  );
+
+  console.log(
+    'End: ',
+    parseInt(p(event,'year')),
+    parseInt(p(event,'month')) - 1,
+    p(event,'day'),
+    process.env.PROTRACK_TZ,
+    moment()
+    .tz(process.env.PROTRACK_TZ)
+    .year(parseInt(p(event,'year')))
+    .month(parseInt(p(event,'month')) - 1)
+    .date(p(event,'day'))
+    .endOf('day'),
+    end
+  );
 
   let options = {
     start: start,
@@ -153,18 +193,18 @@ export function schedule(event: Object, context: Object) {
 
 export function schedule_channel(event: Object, context: Object) {
   let start = moment()
+    .tz(process.env.PROTRACK_TZ)
     .year(parseInt(p(event,'year')))
     .month(parseInt(p(event,'month')) - 1)
     .date(p(event,'day'))
-    .tz(process.env.PROTRACK_TZ)
     .startOf('day')
     .unix();
 
   let end = moment()
+    .tz(process.env.PROTRACK_TZ)
     .year(parseInt(p(event,'year')))
     .month(parseInt(p(event,'month')) - 1)
     .date(p(event,'day'))
-    .tz(process.env.PROTRACK_TZ)
     .endOf('day')
     .unix();
 

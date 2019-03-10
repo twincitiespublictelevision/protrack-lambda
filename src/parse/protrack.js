@@ -75,9 +75,23 @@ function durationToNumber(duration: string): number {
 function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): ?Airing {
   let { schedule_id, schedule_channel, schedule_date, schedule_duration } = schedule;
 
+  let format = iso => {
+    return moment.tz(
+      moment.tz(schedule_date, process.env.PROTRACK_TZ).unix() * 1000,
+      process.env.PROTRACK_TZ
+    ).format('YYYY-MM-DDTHH:mm:ss');
+  }
+
   // Check for timestamp that doesn't convert back, which is only possible during a "spring ahead"
   // DST hour. Such entries should be dismissed.
-  if (moment(moment(schedule_date).unix() * 1000).format('YYYY-MM-DDTHH:mm:ss') !== schedule_date) {
+  if (format(schedule_date) !== schedule_date) {
+    console.log(
+      'Ignoring due to invalid daylight savings time',
+      schedule,
+      format(schedule_date),
+      schedule_date
+    );
+
     return null;
   }
 
