@@ -1,0 +1,29 @@
+{
+  "mappings": {
+    "show": {
+      "properties": {
+        "id": {
+          "type": "long"
+        },
+        "code": {
+          "type": "keyword"
+        },
+        "title": {
+          "type": "text"
+        },
+        "desc": {
+          "type": "text"
+        },
+        "url": {
+          "type": "text"
+        },
+        "pgmtype": {
+          "type": "keyword"
+        },
+        "genres": {
+          "type": "nested"
+        }
+      }
+    }
+  }
+}

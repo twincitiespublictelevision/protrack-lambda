@@ -1,14 +1,29 @@
-import moment from "moment-timezone";
+// @flow
+
+import type { Result } from "./mapResults";
+import type { Airing, Channel } from "../types";
+
+type ShowEntry = {
+  show: Result<Airing>,
+  secondsInSlot: number
+}
 
 class ChannelData {
-  constructor(start: number, end: number, interval: number, channel: string) {
+  endTime: number;
+  timeslotStart: number;
+  interval: number;
+  timeslotEnd: number;
+  timeslotShows: Array<ShowEntry>;
+  schedule: Array<Airing>;
+  missingInitialSlots: number;
+
+  constructor(start: number, end: number, interval: number) {
     this.endTime = end;
     this.timeslotStart = start;
     this.interval = interval;
     this.timeslotEnd = start + interval - 1;
     this.timeslotShows = [];
     this.schedule = [];
-    this.channel = channel;
     this.missingInitialSlots = 0;
   }
 
@@ -55,6 +70,8 @@ class ChannelData {
         return o.secondsInSlot;
       }));
 
+      // $FlowFixMe - Given that we checked above that timeslotShows is not empty,
+      // $FlowFixMe - we can be confident that find will return an element
       let showToAdd = this.timeslotShows.find(function (o) {
         return o.secondsInSlot === highestTimeInSlot;
       }).show.data;
@@ -88,7 +105,7 @@ class ChannelData {
   }
 }
 
-export default function buildSchedule(airings: Object, interval: number, start: number, end: number): Array {
+export default function buildSchedule(airings: Object, interval: number, start: number, end: number): Array<Channel> {
   interval = interval * 60; // Keep everything in seconds
   let channels = {};
 

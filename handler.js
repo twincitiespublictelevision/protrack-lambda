@@ -1,14 +1,14 @@
 // @flow
 
-import type { Airing } from './src/airing';
+import type { Airing, Show } from './src/types';
 import type { ScheduleData } from './src/results';
-import type { AiringResults } from "./src/es/airingResult";
+import type { Result } from "./src/es/mapResults";
 import { toBucket, toData, backup, remove } from './src/parse/s3';
 import actions from './src/es/actions';
 import buildSchedule from './src/es/schedule';
 import parse from './src/parse/parser';
 import mapToAirings from './src/parse/protrack';
-import { normalize, normalizeAirings, normalizeChannels } from './src/results';
+import { normalize, normalizeShows, normalizeAirings, normalizeChannels } from './src/results';
 import { receive, getShow, getEpisode, getAiring, getViews } from './src/scheduleData';
 import moment from "moment-timezone";
 
@@ -44,7 +44,7 @@ function attachCallback(p: Promise<any>, context: Object) {
 
 export function all(event: Object, context: Object) {
   attachCallback(
-    actions.search({
+    actions.searchAirings({
       start: q(event, 'start'),
       end: q(event, 'end')
     }),
@@ -54,7 +54,7 @@ export function all(event: Object, context: Object) {
 
 export function channel(event: Object, context: Object) {
   attachCallback(
-    actions.search({
+    actions.searchAirings({
       channel: p(event, 'channel'),
       start: q(event, 'start'),
       end: q(event, 'end')
@@ -65,7 +65,7 @@ export function channel(event: Object, context: Object) {
 
 export function show(event: Object, context: Object) {
   attachCallback(
-    actions.search({
+    actions.searchAirings({
       show: p(event, 'show'),
       start: q(event, 'start'),
       end: q(event, 'end')
@@ -74,9 +74,33 @@ export function show(event: Object, context: Object) {
   );
 }
 
+export function shows(event: Object, context: Object) {
+  actions.searchShows()
+    .then(function(result) {
+      let normal = normalizeShows(result);
+      normal.result.sort((a, b) => parseInt(a) - parseInt(b));
+      return {
+        statusCode: 200,
+        body: JSON.stringify(normal),
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin' : '*'
+        }
+      };
+    })
+    .then(function(resp) {
+      console.log('Success');
+      context.succeed(resp);
+    })
+    .catch(function(err) {
+      console.warn('failed to compress response');
+      context.fail(err);
+    });
+}
+
 export function episode(event: Object, context: Object) {
   attachCallback(
-    actions.search({
+    actions.searchAirings({
       episode: p(event, 'episode'),
       start: q(event, 'start'),
       end: q(event, 'end')
@@ -87,7 +111,7 @@ export function episode(event: Object, context: Object) {
 
 export function version(event: Object, context: Object) {
   attachCallback(
-    actions.search({
+    actions.searchAirings({
       episode: p(event, 'episode'),
       version: p(event, 'version'),
       start: q(event, 'start'),
@@ -99,7 +123,7 @@ export function version(event: Object, context: Object) {
 
 export function search(event: Object, context: Object) {
   attachCallback(
-    actions.search({
+    actions.searchAirings({
       term: p(event, 'term'),
       start: q(event, 'start') || 0,
       end: q(event, 'end') || Number.MAX_SAFE_INTEGER
@@ -170,7 +194,7 @@ export function schedule(event: Object, context: Object) {
     end: end
   };
 
-  actions.search(options).then(function(result: AiringResults) {
+  actions.searchAirings(options).then(function(result: Array<Result<Airing>>) {
     let channels = buildSchedule(result, parseInt(p(event,'granularity')), start, end);
     return {
       statusCode: 200,
@@ -216,13 +240,13 @@ export function schedule_channel(event: Object, context: Object) {
       options.channel = p(event, 'channel');
     }
 
-    actions.search(options).then(function(result: AiringResults) {
+    actions.searchAirings(options).then(function(result: Array<Result<Airing>>) {
       let channels = buildSchedule(result, parseInt(p(event,'granularity')), start, end)
         .filter(channel => channel.id === options.channel);
 
       return {
         statusCode: 200,
-        body: JSON.stringify(normalizeChannels(channels, true)),
+        body: JSON.stringify(normalizeChannels(channels)),
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin' : '*'
@@ -260,7 +284,7 @@ export function ingest({ Records: records }: Object, context: Object) {
 
               return airings;
             })
-            .then(actions.insert)
+            .then(actions.insertAirings)
             .then(function(res) {
               console.log('Insert completed', JSON.stringify(res));
               return backup(bucket, record)

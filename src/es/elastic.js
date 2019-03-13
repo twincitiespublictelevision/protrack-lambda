@@ -2,11 +2,10 @@
 
 import AWS from 'aws-sdk';
 import type { ESResults } from './result';
-import type { Airing } from './../airing';
 let ES = require('elasticsearch');
 let Connector = require('http-aws-es');
 
-export default class Elastic {
+export default class Elastic<T> {
   client: ES.Client;
   index: string;
   type: string;
@@ -33,7 +32,7 @@ export default class Elastic {
     return this.client.indices.create({ index: this.index, body });
   }
 
-  store(body: {}): Promise<{}> {
+  store(body: Object): Promise<{}> {
     if (typeof body.id !== 'undefined') {
       return this.client.index({index: this.index, type: this.type, _id: body.id, body});
     } else {
@@ -43,7 +42,7 @@ export default class Elastic {
 
   storeAll(body: Array<Object>): Promise<Object> {
     let expanded = body.reduce(
-      function(list: Array<{}>, body: {}): Array<{}> {
+      (list: Array<{}>, body: Object): Array<{}> => {
         if (typeof body.id !== 'undefined') {
           list.push({ index:  { _index: this.index, _type: this.type, _id: body.id } });
         } else {
@@ -52,7 +51,7 @@ export default class Elastic {
 
         list.push(body);
         return list;
-      }.bind(this),
+      },
       []
     );
 
@@ -63,7 +62,7 @@ export default class Elastic {
     return this.client.deleteByQuery({ index: this.index, body });
   }
 
-  search(body: Object): Promise<ESResults<Airing>> {
+  search(body: Object): Promise<ESResults<T>> {
     return this.client.search({ index: this.index, body });
   }
 }
