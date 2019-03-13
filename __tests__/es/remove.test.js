@@ -101,23 +101,13 @@ describe('builder', function() {
     expect(unit.client).toEqual(mockElastic);
   });
 
-  it('accepts custom remover', function() {
-    let remover = new Remover();
-    expect(getRemover({ remover })).toEqual(remover);
-  });
-
   it('accepts custom index', function() {
     let test = 'test-' + r(100, 999);
     expect(getRemover({ index: test }).client.index).toBe(test);
   });
 
-  it('prefers custom remover to custom index', function() {
-    let testI = 'test-' + r(100, 999);
-
-    let testRemover = new Remover(mockElastic);
-    testRemover.hiddenValue = 'hidden-' + r(100, 999);
-
-    let remover = getRemover({ remover: testRemover, index: testI });
-    expect(remover.hiddenValue).toEqual(testRemover.hiddenValue);
+  it('accepts custom type', function() {
+    let test = 'test-' + r(100, 999);
+    expect(getRemover({ type: test }).client.type).toBe(test);
   });
 });

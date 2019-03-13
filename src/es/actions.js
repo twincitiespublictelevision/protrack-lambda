@@ -32,8 +32,8 @@ function insertShows(shows: Array<Show>, options: ?InsertOptions): Promise<Objec
   return getIndexer(options).indexMany(shows);
 }
 
-function remove(channel: string, options: ?RemoveOptions): Promise<boolean> {
-  return getRemover(options || {}).removeChannel(channel);
+function remove(channel: string, options: RemoveOptions): Promise<boolean> {
+  return getRemover(options).removeChannel(channel);
 }
 
 export default { searchAirings, searchShows, insertAirings, insertShows, remove }
