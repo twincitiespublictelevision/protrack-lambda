@@ -61,10 +61,8 @@ export class ShowSearcher {
               multi_match: {
                 query: query.term,
                 fields: [
-                  'episode.title',
-                  'episode.desc',
-                  'show.title',
-                  'show.desc'
+                  'title',
+                  'desc'
                 ]
               }
             },
@@ -83,8 +81,7 @@ export class ShowSearcher {
             },
             filter
           }
-        },
-        sort: [{ date: 'asc' }]
+        }
       };
     }
   }

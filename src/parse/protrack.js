@@ -1,6 +1,6 @@
 // @flow
 
-import type { Types, Episode, Show } from './../airing';
+import type { Airing, Episode, Show } from './../types';
 import moment from 'moment-timezone';
 
 type ProTrackSchedule = {
@@ -72,7 +72,7 @@ function durationToNumber(duration: string): number {
   return 0;
 }
 
-function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): ?Types {
+function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): ?Airing {
   let { schedule_id, schedule_channel, schedule_date, schedule_duration } = schedule;
 
   let format = iso => {
@@ -204,7 +204,7 @@ function extractSeries(series: ProTrackSeries): Show {
   };
 }
 
-export default function mapToAirings(input: Object): Array<Types> {
+export default function mapToAirings(input: Object): Array<Airing> {
   return [].concat.apply([], input.schedule_data.series.map(function(series) {
 
     let episodes = Array.isArray(series.episode) ? series.episode : [series.episode];

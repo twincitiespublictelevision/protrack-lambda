@@ -282,9 +282,11 @@ export function ingest({ Records: records }: Object, context: Object) {
 
               console.log('Parsed airings list', airings.length);
 
-              return airings;
+              let p1 = actions.insertAirings(airings);
+              let p2 = actions.insertShows(airings.map(a => a.show));
+
+              return p1.then(() => p2)
             })
-            .then(actions.insertAirings)
             .then(function(res) {
               console.log('Insert completed', JSON.stringify(res));
               return backup(bucket, record)
