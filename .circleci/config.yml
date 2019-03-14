@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:8.10
     steps:
       - run: echo $CIRCLE_SHA1 > .circle-sha
-      - run: npm ci
+      - run: npm install
       - run:
           name: Run Tests
           command: npm test
