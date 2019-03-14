@@ -47,3 +47,8 @@ export type Airing = {
   episode: Episode,
   show: Show
 };
+
+export type Channel = {
+  id: string,
+  airings: Array<Airing>
+};

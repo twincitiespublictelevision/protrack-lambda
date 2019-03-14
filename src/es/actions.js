@@ -1,24 +1,39 @@
 //@flow
 
-import type { Airing } from './../airing';
-import type { AiringResults } from './airingResult';
-import type { SearchOptions } from './search';
-import getSearcher from './search';
+import type { Result } from './mapResults';
+
+import type { Airing, Show } from './../types';
+import AiringMapping from './airings.json';
+import ShowMapping from './shows.json';
+import type { AiringSearchOptions } from './airingSearcher';
+import getAiringSearcher from './airingSearcher';
+import type { ShowSearchOptions } from './showSearcher';
+import getShowSearcher from './showSearcher';
 import type { InsertOptions } from './insert';
 import getIndexer from './insert';
 import type { RemoveOptions } from './remove';
 import getRemover from './remove';
 
-function search(options: ?SearchOptions): Promise<AiringResults> {
-  return getSearcher(options || {}).run();
+function searchAirings(options: ?AiringSearchOptions): Promise<Array<Result<Airing>>> {
+  return getAiringSearcher(options || {}).run();
 }
 
-function insert(airings: Array<Airing>, options: ?InsertOptions): Promise<Object> {
-  return getIndexer(options || {}).indexMany(airings);
+function searchShows(options: ?ShowSearchOptions): Promise<Array<Result<Show>>> {
+  return getShowSearcher(options || {}).run();
 }
 
-function remove(channel: string, options: ?RemoveOptions): Promise<boolean> {
-  return getRemover(options || {}).removeChannel(channel);
+function insertAirings(airings: Array<Airing>, options: ?InsertOptions): Promise<Object> {
+  options = options || { index: 'airings', type: 'airing', mapping: AiringMapping };
+  return getIndexer(options).indexMany(airings);
 }
 
-export default { search, insert, remove }
+function insertShows(shows: Array<Show>, options: ?InsertOptions): Promise<Object> {
+  options = options || { index: 'shows', type: 'show', mapping: ShowMapping };
+  return getIndexer(options).indexMany(shows);
+}
+
+function remove(channel: string, options: RemoveOptions): Promise<boolean> {
+  return getRemover(options).removeChannel(channel);
+}
+
+export default { searchAirings, searchShows, insertAirings, insertShows, remove }

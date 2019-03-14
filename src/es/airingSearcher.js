@@ -2,9 +2,9 @@
 
 import Elastic from './elastic';
 import type { ESResults } from './result';
-import type { Airing } from './../airing';
-import type { AiringResults } from './airingResult';
-import { mapResults} from './airingResult';
+import type { Airing } from './../types';
+import type { Result } from './mapResults';
+import { mapResults } from './mapResults';
 import { inspect } from 'util';
 import moment from "moment-timezone";
 
@@ -20,11 +20,11 @@ type Query = {
 
 const max_size = 10000;
 
-export class Searcher {
-  client: Elastic;
+export class AiringSearcher {
+  client: Elastic<Airing>;
   query: Query;
 
-  constructor(client: Elastic) {
+  constructor(client: Elastic<Airing>) {
     this.client = client;
     this.resetQuery();
   }
@@ -182,14 +182,13 @@ export class Searcher {
     }
   }
 
-  run(): Promise<AiringResults> {
-    let query = Searcher.buildQuery(this.query);
+  run(): Promise<Array<Result<Airing>>> {
+    let query = AiringSearcher.buildQuery(this.query);
     console.log('Run query', inspect(query, { depth: null }));
 
     return this.client.search(query)
       .then(function(results: ESResults<Airing>) {
-        let res = mapResults(results);
-        return res;
+        return mapResults(results);
       })
       .catch(function(err) {
         console.warn('Failed to run query', query, err);
@@ -198,10 +197,7 @@ export class Searcher {
   }
 }
 
-export type SearchOptions = {
-  searcher?: Searcher,
-  index?: string,
-  type?: string,
+export type AiringSearchOptions = {
   start?: number|string,
   end?: number|string,
   channel?: string,
@@ -211,14 +207,8 @@ export type SearchOptions = {
   term?: string
 };
 
-export default function getSearcher(options: SearchOptions): Searcher {
-  if (options.searcher instanceof Searcher) {
-    return options.searcher;
-  }
-
+export default function getAiringSearcher(options: AiringSearchOptions): AiringSearcher {
   let {
-    index: index,
-    type: type,
     start: start,
     end: end,
     channel: channel,
@@ -228,9 +218,7 @@ export default function getSearcher(options: SearchOptions): Searcher {
     term: term
   } = options;
 
-  index = index || 'airings';
-  type = type || 'airings';
-  let searcher = new Searcher(new Elastic(null, index, type));
+  let searcher = new AiringSearcher(new Elastic(null, 'airings', 'airing'));
 
   if (typeof start !== 'undefined') {
     if (Number.isInteger(parseInt(start))) {

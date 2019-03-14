@@ -1,21 +1,21 @@
 // @flow
 
 import Elastic from './elastic';
-import type { Airing } from './../airing';
-import AiringMapping from './airings.json';
 
-export class Indexer {
-  client: Elastic;
+export class Indexer<T> {
+  client: Elastic<T>;
+  mapping: Object;
 
-  constructor(client: Elastic) {
+  constructor(client: Elastic<T>, mapping: Object) {
     this.client = client;
+    this.mapping = mapping;
   }
 
   prepareToIndex(): Promise<boolean> {
     return this.client.checkIndex()
       .then((status: boolean) => {
         if (!status) {
-          return this.client.createIndex(AiringMapping)
+          return this.client.createIndex(this.mapping)
             .then(function(status) {
               return true;
             })
@@ -28,14 +28,14 @@ export class Indexer {
       });
   }
 
-  indexOne(airing: Airing): Promise<Object> {
+  indexOne(airing: T): Promise<Object> {
     return this.prepareToIndex()
       .then(() => {
         return this.client.store(airing);
       });
   }
 
-  indexMany(airings: Array<Airing>): Promise<Object> {
+  indexMany(airings: Array<T>): Promise<Object> {
     return this.prepareToIndex()
       .then(() => {
         return this.client.storeAll(airings);
@@ -44,13 +44,11 @@ export class Indexer {
 }
 
 export type InsertOptions = {
-  indexer?: Indexer,
-  index?: string,
-  type?: string
+  index: string,
+  type: string,
+  mapping: Object
 };
 
-export default function getIndexer(options: InsertOptions): Indexer {
-  let index = options.index || 'airings';
-  let type = options.type || 'airing';
-  return options.indexer || new Indexer(new Elastic(null, index, type));
+export default function getIndexer<T>(options: InsertOptions): Indexer<T> {
+  return new Indexer(new Elastic(null, options.index, options.type), options.mapping);
 }
