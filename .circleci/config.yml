@@ -4,6 +4,7 @@ jobs:
     docker:
       - image: circleci/node:8.10
     steps:
+      - checkout
       - run: echo $CIRCLE_SHA1 > .circle-sha
       - run: npm install
       - run:
