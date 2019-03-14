@@ -239,6 +239,16 @@ export function schedule_channel(event: Object, context: Object) {
     });
 }
 
+export function ingesttest(event: Object, context: Object) {
+  var fs = require('fs');
+  let bucket = '';
+
+  fs.readFile('ingesttest.json', 'utf8', function(err, contents) {
+    contents = JSON.parse(contents);
+    ingest(contents, context);
+  });
+}
+
 export function ingest({ Records: records }: Object, context: Object) {
   if (records.length > 0) {
 
@@ -255,9 +265,34 @@ export function ingest({ Records: records }: Object, context: Object) {
           return parse(raw)
             .then(mapToAirings)
             .then(function(airings) {
-
               console.log('Parsed airings list', airings.length);
 
+              let airingIds = {};
+
+              airings.forEach(function(a: Airing) {
+                if (airingIds[a.channel] === 'undefined') {
+                  airingIds[a.channel] = {
+                    channel: a.channel,
+                    startTime: 0,
+                    endTime: 0,
+                    airings: []
+                  };
+                }
+
+                airingIds[a.channel].airings.push(a.id);
+                if (a.date > airingIds[a.channel].startTime) { airingIds[a.channel].startTime = a.date; }
+                if (airingIds[a.channel].endTime === 0 || a.end_date < airingIds[a.channel].endTime) { airingIds[a.channel].endTime = a.date; }
+              });
+
+              airingIds.forEach(function(a: Object) {
+                actions.search({
+                  channel: a.channel,
+                  start: a.startTime,
+                  end: a.endTime
+                })
+              });
+
+              console.log(airingIds);
               return airings;
             })
             .then(actions.insert)
