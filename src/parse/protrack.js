@@ -1,6 +1,6 @@
 // @flow
 
-import type { Airing, Episode, Show } from './../airing';
+import type { Airing, Episode, Show } from './../types';
 import moment from 'moment-timezone';
 
 type ProTrackSchedule = {

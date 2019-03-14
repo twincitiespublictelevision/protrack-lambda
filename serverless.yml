@@ -141,6 +141,18 @@ functions:
             origins:
               - '*'
 
+  shows:
+    handler: handler.shows
+    memorySize: 512
+    events:
+      - http:
+          path: shows
+          method: get
+          integration: lambda-proxy
+          cors:
+            origins:
+              - '*'
+
   episode:
     handler: handler.episode
     memorySize: 128

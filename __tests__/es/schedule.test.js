@@ -36,7 +36,7 @@ describe('schedule', function() {
     let startTime = moment(airings[0].data.date * 1000).tz("America/Chicago").startOf('day').unix();
     let endTime = moment(airings[0].data.date * 1000).tz("America/Chicago").endOf('day').unix();
     let interval = (Math.floor(Math.random() * 12) + 1) * 5;
-    expect(Object.keys(buildSchedule(airings, interval, startTime, endTime)).length).toEqual(Math.ceil(1440 / interval));
+    expect(buildSchedule(airings, interval, startTime, endTime)[0].airings.length).toEqual(Math.ceil(1440 / interval));
   });
 
   it('for all channel schedule each channel contains (1 day / interval rows)', function() {
@@ -68,13 +68,16 @@ describe('schedule', function() {
     expect(schedule[0]).toEqual(schedule.pop());
   });
 
-  it('"Nothing Scheduled" row if first timeslot has no entry', function() {
+  it('Initial row if first timeslot has no entry', function() {
     let airings = [
       {
         data: {
           channel: "TPT2",
           date: 1547795000,
-          duration: 1800
+          duration: 1800,
+          show: {
+            title: "Initial Show"
+          }
         }
       }
     ];
@@ -82,9 +85,8 @@ describe('schedule', function() {
     let endTime = moment(airings[0].data.date * 1000).tz("America/Chicago").endOf('day').unix();
     let interval = 30;
     let schedule = buildSchedule(airings, interval, startTime, endTime);
-    let keys = Object.keys(schedule);
-    let firstElement = schedule[keys[0]];
-    expect(firstElement.show.title).toEqual("Nothing Scheduled");
+    let firstElement = schedule[0].airings[0];
+    expect(firstElement.show.title).toEqual("Initial Show");
   });
 
   it('chooses the show with the most duration in a timeslot when multiple shows are in the same timeslot', function() {
@@ -122,8 +124,7 @@ describe('schedule', function() {
     let endTime = moment(airings[1].data.date * 1000).tz("America/Chicago").endOf('day').unix();
     let interval = 60;
     let schedule = buildSchedule(airings, interval, startTime, endTime);
-    let keys = Object.keys(schedule);
-    let firstElement = schedule[keys[0]];
+    let firstElement = schedule[0].airings[0];
     expect(firstElement.show.id).toEqual(airings[1].data.show.id);
   });
 
@@ -162,8 +163,7 @@ describe('schedule', function() {
     let endTime = moment(airings[0].data.date * 1000).tz("America/Chicago").endOf('day').unix();
     let interval = 60;
     let schedule = buildSchedule(airings, interval, startTime, endTime);
-    let keys = Object.keys(schedule);
-    let firstElement = schedule[keys[0]];
+    let firstElement = schedule[0].airings[0];
     expect(firstElement.show.id).toEqual(airings[0].data.show.id);
   });
 
@@ -184,21 +184,13 @@ describe('schedule', function() {
       }];
     let interval = 30;
     let schedule = buildSchedule(airings, interval, startTime, endTime);
-    expect(schedule.length).toEqual(46);
+    expect(schedule[0].airings.length).toEqual(46);
     interval = 15;
     schedule = buildSchedule(airings, interval, startTime, endTime);
-    expect(schedule.length).toEqual(92);
+    expect(schedule[0].airings.length).toEqual(92);
   });
 
   it('has one additional hour when daylight savings time ends', function() {
-    let schedule_date = '2018-03-11T02:00:00';
-    let tzDate = moment.tz(schedule_date, process.env.PROTRACK_TZ).unix();
-    let date = moment(schedule_date).unix();
-
-    console.log("tzDate " + tzDate);
-    console.log("utcDate " + date);
-    console.log("midnight: " + moment(1548309600));
-
     let startTime = moment().month(10).date(1).isoWeekday(7).tz("America/Chicago").startOf('day').unix();
     let endTime = moment().month(10).date(1).isoWeekday(7).tz("America/Chicago").endOf('day').unix();
     let airings = [
@@ -214,9 +206,9 @@ describe('schedule', function() {
       }];
     let interval = 30;
     let schedule = buildSchedule(airings, interval, startTime, endTime);
-    expect(schedule.length).toEqual(50);
+    expect(schedule[0].airings.length).toEqual(50);
     interval = 15;
     schedule = buildSchedule(airings, interval, startTime, endTime);
-    expect(schedule.length).toEqual(100);
+    expect(schedule[0].airings.length).toEqual(100);
   });
 });

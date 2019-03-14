@@ -1,5 +1,5 @@
-import getSearcher, { Searcher } from './../../src/es/search';
-import { mapResults} from './../../src/es/airingResult';
+import getAiringSearcher, { AiringSearcher } from './../../src/es/airingSearcher';
+import { mapResults } from './../../src/es/mapResults';
 import { r, mockAiring } from './helpers';
 import moment from "moment-timezone";
 
@@ -60,7 +60,10 @@ describe('searcher', function() {
       _shards: { failed: 0, successful: 0, total: 0 }
     };
 
-    unit = new Searcher(client);
+    unit = new AiringSearcher(client);
+
+    console.log = jest.fn();
+    console.warn = jest.fn()
   });
 
   it('starts with empty query', function() {
@@ -116,21 +119,34 @@ describe('searcher', function() {
     let start = moment.tz(process.env.PROTRACK_TZ).startOf('day').unix();
     let end = moment.tz(process.env.PROTRACK_TZ).endOf('day').unix();
 
-    let dateQ = { range: { date: { gte: start, lte: end } } };
+    let dateQ = {
+      bool: {
+        must: [
+          { range: { date: { gte: 0, lte: end } } },
+          { range: { end_date: { gte: start, lte: 9999999999 } } }
+        ]
+      }
+    };
 
-    expect(Searcher.buildQuery(q).query.bool.filter).toEqual(
+    expect(AiringSearcher.buildQuery(q).query.bool.filter).toEqual(
       expect.arrayContaining([dateQ])
     );
   });
-
   it('overwrites date query with start and end date', function() {
     let start = r(500, 999);
     let end = r(500, 999);
-    let dateQ = { range: { date: { gte: start, lte: end } } };
+    let dateQ = {
+      bool: {
+        must: [
+          { range: { date: { gte: 0, lte: end } } },
+          { range: { end_date: { gte: start, lte: 9999999999 } } }
+        ]
+      }
+    };
     q.start = start;
     q.end = end;
 
-    expect(Searcher.buildQuery(q).query.bool.filter).toEqual(
+    expect(AiringSearcher.buildQuery(q).query.bool.filter).toEqual(
       expect.arrayContaining([dateQ])
     );
   });
@@ -144,7 +160,7 @@ describe('searcher', function() {
     let channelQ = { term: { channel } };
     q.channel = channel;
 
-    expect(Searcher.buildQuery(q).query.bool.filter).toEqual(
+    expect(AiringSearcher.buildQuery(q).query.bool.filter).toEqual(
       expect.arrayContaining([channelQ])
     );
   });
@@ -159,7 +175,7 @@ describe('searcher', function() {
     let episodeQ = { term: { 'episode.program.id': episode } };
     q.episode = episode;
 
-    expect(Searcher.buildQuery(q).query.bool.filter).toEqual(
+    expect(AiringSearcher.buildQuery(q).query.bool.filter).toEqual(
       expect.arrayContaining([episodeQ])
     );
   });
@@ -179,13 +195,13 @@ describe('searcher', function() {
     let versionQ = { term: { 'episode.version.id': version } };
     q.version = version;
 
-    expect(Searcher.buildQuery(q).query.bool.filter).not.toEqual(
+    expect(AiringSearcher.buildQuery(q).query.bool.filter).not.toEqual(
       expect.arrayContaining([versionQ])
     );
 
     q.episode = episode;
 
-    expect(Searcher.buildQuery(q).query.bool.filter).toEqual(
+    expect(AiringSearcher.buildQuery(q).query.bool.filter).toEqual(
       expect.arrayContaining([episodeQ, versionQ])
     );
   });
@@ -200,7 +216,7 @@ describe('searcher', function() {
     let showQ = { term: { 'show.id': show } };
     q.show = show;
 
-    expect(Searcher.buildQuery(q).query.bool.filter).toEqual(
+    expect(AiringSearcher.buildQuery(q).query.bool.filter).toEqual(
       expect.arrayContaining([showQ])
     );
   });
@@ -224,18 +240,18 @@ describe('searcher', function() {
     };
     q.term = term;
 
-    expect(Searcher.buildQuery(q).query.bool.must).toEqual(termQ);
+    expect(AiringSearcher.buildQuery(q).query.bool.must).toEqual(termQ);
   });
 
   it('sorts by date ascending without term', function() {
-    expect(Searcher.buildQuery(q).sort).toEqual([{ date: 'asc' }]);
+    expect(AiringSearcher.buildQuery(q).sort).toEqual([{ date: 'asc' }]);
   });
 
   it('sorts by elastic default with term', function() {
     let term = 'term-' + r(500, 999);
     q.term = term;
 
-    expect(Searcher.buildQuery(q).sort).toEqual(undefined);
+    expect(AiringSearcher.buildQuery(q).sort).toEqual(undefined);
   });
 
   it('passes query to client', function() {
@@ -243,7 +259,7 @@ describe('searcher', function() {
     let start = r(255, 355);
     q.start = start;
     q.term = term;
-    let query = Searcher.buildQuery(q);
+    let query = AiringSearcher.buildQuery(q);
     client.search.mockReturnValueOnce(Promise.resolve(results));
 
     return unit.byStartDate(start).forTerm(term).run().then(function() {
@@ -278,71 +294,36 @@ describe('builder', function() {
   });
 
   it('accepts no options', function() {
-    let unit = getSearcher({});
+    let unit = getAiringSearcher({});
 
-    expect(unit).toBeInstanceOf(Searcher);
+    expect(unit).toBeInstanceOf(AiringSearcher);
     expect(unit.client).toEqual(mockElastic);
-  });
-
-  it('accepts custom searcher', function() {
-    let searcher = new Searcher();
-    expect(getSearcher({ searcher })).toEqual(searcher);
-  });
-
-  it('accepts custom index', function() {
-    let test = 'test-' + r(100, 999);
-    expect(getSearcher({ index: test }).client.index).toBe(test);
-  });
-
-  it('accepts custom type', function() {
-    let test = 'test-' + r(100, 999);
-    expect(getSearcher({ type: test }).client.type).toBe(test);
-  });
-
-  it('accepts custom index and type', function() {
-    let testI = 'test-' + r(100, 999);
-    let testT = 'test-' + r(100, 999);
-    let searcher = getSearcher({ index: testI, type: testT });
-
-    expect(searcher.client.index).toBe(testI);
-    expect(searcher.client.type).toBe(testT);
   });
 
   it('accepts start', function() {
     let start = r(100, 999);
-    expect(getSearcher({ start }).query.start).toBe(start);
+    expect(getAiringSearcher({ start }).query.start).toBe(start);
   });
 
   it('accepts end', function() {
     let end = r(100, 999);
-    expect(getSearcher({ end }).query.end).toBe(end);
+    expect(getAiringSearcher({ end }).query.end).toBe(end);
   });
 
   it('accepts channel', function() {
     let channel = 'channel-' + r(100, 999);
-    expect(getSearcher({ channel }).query.channel).toBe(channel);
+    expect(getAiringSearcher({ channel }).query.channel).toBe(channel);
   });
 
   it('accepts episode', function() {
     let episode = r(100, 999);
-    expect(getSearcher({ episode }).query.episode).toBe(episode);
+    expect(getAiringSearcher({ episode }).query.episode).toBe(episode);
   });
 
   it('accepts version only if episode', function() {
     let episode = r(100, 999);
     let version = r(100, 999);
-    expect(getSearcher({ version }).query.version).toBe(null);
-    expect(getSearcher({ episode, version }).query.version).toBe(version);
-  });
-
-  it('prefers custom searcher to custom settings', function() {
-    let testI = 'test-' + r(100, 999);
-    let testT = 'test-' + r(100, 999);
-
-    let testSearcher = new Searcher(mockElastic);
-    testSearcher.hiddenValue = 'hidden-' + r(100, 999);
-
-    let searcher = getSearcher({ searcher: testSearcher, index: testI, type: testT });
-    expect(searcher.hiddenValue).toEqual(testSearcher.hiddenValue);
+    expect(getAiringSearcher({ version }).query.version).toBe(null);
+    expect(getAiringSearcher({ episode, version }).query.version).toBe(version);
   });
 });

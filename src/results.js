@@ -1,3 +1,8 @@
+// @flow
+
+import type { Airing, Show, Channel } from './types';
+import type { Result } from './es/mapResults';
+
 import { normalize as normalizer, schema } from 'normalizr';
 
 const show = new schema.Entity('show');
@@ -8,6 +13,13 @@ const episode = new schema.Entity('episode', {}, {
 });
 const airing = new schema.Entity('airing', { show, episode });
 const channel = new schema.Entity('channel', { airings: [airing] });
+
+type ShowData = {
+  entities: {
+    show: Object
+  },
+  result: Array<number>
+}
 
 type SingleScheduleData = {
   entities: {
@@ -28,8 +40,12 @@ type MultiScheduleData = {
 
 export type ScheduleData = SingleScheduleData|MultiScheduleData;
 
-export function normalize(results) {
+export function normalize(results: Array<Result<Airing>>) {
   return normalizer(results.map(r => r.data), [airing]);
+}
+
+export function normalizeShows(results: Array<Result<Show>>): ShowData {
+  return normalizer(results.map(r => r.data), [show]);
 }
 
 export function normalizeAirings(airings: Array<Airing>): SingleScheduleData {

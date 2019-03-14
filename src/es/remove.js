@@ -2,10 +2,10 @@
 
 import Elastic from './elastic';
 
-export class Remover {
-  client: Elastic;
+export class Remover<T> {
+  client: Elastic<T>;
 
-  constructor(client: Elastic) {
+  constructor(client: Elastic<T>) {
     this.client = client;
   }
 
@@ -28,11 +28,10 @@ export class Remover {
 }
 
 export type RemoveOptions = {
-  remover?: Remover,
-  index?: string
+  index: string,
+  type: string
 };
 
-export default function getRemover(options: RemoveOptions): Remover {
-  let index = options && options.index || 'airings';
-  return options && options.remover || new Remover(new Elastic(null, index, 'airing'));
+export default function getRemover<T>(options: RemoveOptions): Remover<T> {
+  return new Remover(new Elastic(null, options.index, options.type));
 }

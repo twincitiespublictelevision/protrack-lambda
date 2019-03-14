@@ -1,4 +1,4 @@
-import { mapResults } from './../../src/es/airingResult';
+import { mapResults } from './../../src/es/mapResults';
 import { mockResult } from './helpers';
 
 it('maps each element', function() {

@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  node_test:
+    docker:
+      - image: circleci/node:8.10
+    steps:
+      - checkout
+      - run: echo $CIRCLE_SHA1 > .circle-sha
+      - run: npm install
+      - run:
+          name: Run Tests
+          command: npm test
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - node_test

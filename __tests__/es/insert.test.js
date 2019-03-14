@@ -130,11 +130,6 @@ describe('builder', function() {
     expect(unit.client).toEqual(mockElastic);
   });
 
-  it('accepts custom indexer', function() {
-    let indexer = new Indexer();
-    expect(getIndexer({ indexer })).toEqual(indexer);
-  });
-
   it('accepts custom index', function() {
     let test = 'test-' + r(100, 999);
     expect(getIndexer({ index: test }).client.index).toBe(test);
@@ -152,16 +147,5 @@ describe('builder', function() {
 
     expect(indexer.client.index).toBe(testI);
     expect(indexer.client.type).toBe(testT);
-  });
-
-  it('prefers custom indexer to custom index/type', function() {
-    let testI = 'test-' + r(100, 999);
-    let testT = 'test-' + r(100, 999);
-
-    let testIndexer = new Indexer(mockElastic);
-    testIndexer.hiddenValue = 'hidden-' + r(100, 999);
-
-    let indexer = getIndexer({ indexer: testIndexer, index: testI, type: testT });
-    expect(indexer.hiddenValue).toEqual(testIndexer.hiddenValue);
   });
 });
