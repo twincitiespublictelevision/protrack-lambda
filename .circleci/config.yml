@@ -2,7 +2,7 @@ version: 2
 jobs:
   node_test:
     docker:
-      - image: circleci/node:6.10
+      - image: circleci/node:8.10
     steps:
       - run: echo $CIRCLE_SHA1 > .circle-sha
       - run: npm ci
