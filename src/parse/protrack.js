@@ -1,6 +1,6 @@
 // @flow
 
-import type { Airing, Episode, Show } from './../types';
+import type {Airing, Episode, Genre, Show} from './../types';
 import moment from 'moment-timezone';
 
 type ProTrackSchedule = {
@@ -205,7 +205,7 @@ function extractSeries(series: ProTrackSeries): Show {
 }
 
 export default function mapToAirings(input: Object): Array<Airing> {
-  return [].concat.apply([], input.schedule_data.series.map(function(series) {
+  let airings = [].concat.apply([], input.schedule_data.series.map(function(series) {
 
     let episodes = Array.isArray(series.episode) ? series.episode : [series.episode];
     return [].concat.apply([], episodes.map(function(episode) {
@@ -216,4 +216,89 @@ export default function mapToAirings(input: Object): Array<Airing> {
       }));
     }));
   })).filter(x => x);
+
+  return expandToCompositeShows(airings);
+}
+
+function extractShows(airings: Array<Airing>): Map<number, Show> {
+  let shows = new Map();
+
+  airings.forEach(function(airing: Airing) {
+    shows.set(airing.show.id, airing.show);
+  });
+
+  return shows;
+}
+
+function findEpisodesForSeriesId(airings: Array<Airing>, seriesId: number): Map<number, Episode> {
+  let episodes = new Map();
+
+  airings
+    .filter(a => a.show.id === seriesId)
+    .forEach(a => episodes.set(a.episode.id, a.episode));
+
+  return episodes;
+}
+
+function extractGenreCount(episodes: Map<number, Episode>): Map<Genre, number> {
+  let genres = new Map();
+
+  episodes.forEach(function(episode) {
+    episode.genres.forEach(function(genre) {
+      genres.set(genre, (genres.get(genre) || 0) + 1);
+    })
+  });
+
+  return genres;
+}
+
+/**
+ * ProTrack data is rarely in a clean enough form to be usable. Descriptions
+ * and genres may be scattered across series and episode objects. To try and
+ * create a better set of data we compute a composite Show object that contains
+ * a combination of series and episode information.
+ *
+ * This mutates the passed in structure and returns it back
+ *
+ * @param airings
+ * @returns {Array}
+ */
+function expandToCompositeShows(airings: Array<Airing>): Array<Airing> {
+  let shows = extractShows(airings);
+
+  shows.forEach(function(show: Show) {
+
+    let episodes = findEpisodesForSeriesId(airings, show.id);
+
+    // Lift common genre information from the episode level up to the show
+    let episodeGenres = extractGenreCount(episodes);
+
+    let showGenres = new Set(show.genres);
+
+    episodeGenres.forEach(function(count, genre) {
+      if (count / episodes.size > 0.5) {
+        showGenres.add(genre);
+      }
+    });
+
+    show.genres = [...showGenres];
+
+    // Lift an episode description if the show is missing one, and there is a
+    // single representative episode
+    if (!show.desc) {
+      console.log('Show is missing description', show.id, JSON.stringify(show));
+
+      if (episodes.size === 1) {
+        console.log('Show has a single episode');
+        let ep = episodes.values().next().value;
+
+        if (ep) {
+          console.log('Borrowing episode description for show', show.id, ep.id, ep.desc);
+          show.desc = ep.desc;
+        }
+      }
+    }
+  });
+
+  return airings;
 }
