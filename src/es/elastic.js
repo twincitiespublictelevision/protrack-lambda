@@ -66,8 +66,7 @@ export default class Elastic<T> {
       },
       []
     );
-console.log("removeAll list is ");
-console.log(expanded);
+
     return this.client.bulk({ body: expanded });
   }
 
