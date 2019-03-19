@@ -301,8 +301,11 @@ export function ingest({ Records: records }: Object, context: Object) {
                 }
               });
 
-              let removeAiringPromises = airingData.map(function (a) {
+              let removeAiringPromises = [];
+
+              for (let a in airingData) {
                 if (airingData.hasOwnProperty(a)) {
+                  a = airingData[a];
                   let searchPromise = actions.searchAirings({
                     channel: a.channel,
                     start: a.startTime,
@@ -315,11 +318,11 @@ export function ingest({ Records: records }: Object, context: Object) {
                     });
 
                     if (diff.length) {
-                      return actions.removeAirings(diff.map(a => a.data));
+                      removeAiringPromises.push(actions.removeAirings(diff.map(a => a.data)));
                     }
                   });
                 }
-              });
+              }
 
               let p1 = actions.insertAirings(airings);
               let p2 = actions.insertShows(airings.map(a => a.show));
