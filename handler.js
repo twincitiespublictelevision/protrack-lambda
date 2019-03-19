@@ -293,8 +293,8 @@ export function ingest({ Records: records }: Object, context: Object) {
 
               let airingIds = {};
 
-              airings.forEach(function(a: Airing) {
-                if (airingIds[a.channel] === 'undefined') {
+              airings.forEach(function (a: Airing) {
+                if (airingIds[a.channel] === undefined) {
                   airingIds[a.channel] = {
                     channel: a.channel,
                     startTime: 0,
@@ -302,19 +302,46 @@ export function ingest({ Records: records }: Object, context: Object) {
                     airings: []
                   };
                 }
-
                 airingIds[a.channel].airings.push(a.id);
-                if (a.date > airingIds[a.channel].startTime) { airingIds[a.channel].startTime = a.date; }
-                if (airingIds[a.channel].endTime === 0 || a.end_date < airingIds[a.channel].endTime) { airingIds[a.channel].endTime = a.date; }
+                if (airingIds[a.channel].endTime === 0 || a.date < airingIds[a.channel].startTime) {
+                  airingIds[a.channel].startTime = a.date;
+                }
+                if (airingIds[a.channel].endTime === 0 || a.end_date > airingIds[a.channel].endTime) {
+                  airingIds[a.channel].endTime = a.date;
+                }
               });
 
-              airingIds.forEach(function(a: Object) {
-                actions.search({
-                  channel: a.channel,
-                  start: a.startTime,
-                  end: a.endTime
-                })
-              });
+              for(let a in airingIds) {
+                if (airingIds.hasOwnProperty(a)) {
+                  a = airingIds[a];
+                  console.log("WELCOME TO GOING THROUGH AIRING IDS TODAY WE HAVE");
+                  console.log(a);
+                  console.log(a.channel + " " + a.startTime + " " + a.endTime);
+
+                  let searchPromise = actions.searchAirings({
+                    channel: a.channel,
+                    start: a.startTime,
+                    end: a.endTime
+                  });
+
+                  searchPromise.then(function (channelAirings) {
+                    console.log("Channel Airings Be Like:");
+                    console.log(channelAirings);
+                    let diff = channelAirings.filter((airing) => {
+                      return !a.airings.includes(airing.data.id);
+                    });
+
+                    console.log("we got our diff:");
+                    console.log(diff);
+                    if (diff.length) {
+                      actions.removeAirings(diff.map(a => a.data)).then(function(res) {
+                        console.log('done deleting diff airings');
+                        return res;
+                      });
+                    }
+                  });
+                }
+              }
 
               console.log(airingIds);
 

@@ -25,6 +25,22 @@ export class Remover<T> {
         }
       });
   }
+
+  removeMany(body: Array<Object>): Promise<boolean> {
+    return this.client.checkIndex()
+      .then(status => {
+        if (status === true) {
+          return this.client.removeAll(body).then(function() {
+            return true;
+          })
+          .catch(function() {
+            return false;
+          });
+        } else {
+          return true;
+        }
+  });
+  }
 }
 
 export type RemoveOptions = {
