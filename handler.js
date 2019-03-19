@@ -281,30 +281,28 @@ export function ingest({ Records: records }: Object, context: Object) {
             .then(function(airings) {
               console.log('Parsed airings list', airings.length);
 
-              let airingIds = {};
+              let airingData = {};
 
               airings.forEach(function (a: Airing) {
-                if (airingIds[a.channel] === undefined) {
-                  airingIds[a.channel] = {
+                if (airingData[a.channel] === undefined) {
+                  airingData[a.channel] = {
                     channel: a.channel,
                     startTime: 0,
                     endTime: 0,
                     airings: []
                   };
                 }
-                airingIds[a.channel].airings.push(a.id);
-                if (airingIds[a.channel].endTime === 0 || a.date < airingIds[a.channel].startTime) {
-                  airingIds[a.channel].startTime = a.date;
+                airingData[a.channel].airings.push(a.id);
+                if (airingData[a.channel].endTime === 0 || a.date < airingData[a.channel].startTime) {
+                  airingData[a.channel].startTime = a.date;
                 }
-                if (airingIds[a.channel].endTime === 0 || a.end_date > airingIds[a.channel].endTime) {
-                  airingIds[a.channel].endTime = a.date;
+                if (airingData[a.channel].endTime === 0 || a.end_date > airingData[a.channel].endTime) {
+                  airingData[a.channel].endTime = a.date;
                 }
               });
 
-              for(let a in airingIds) {
-                if (airingIds.hasOwnProperty(a)) {
-                  a = airingIds[a];
-
+              let removeAiringPromises = airingData.map(function (a) {
+                if (airingData.hasOwnProperty(a)) {
                   let searchPromise = actions.searchAirings({
                     channel: a.channel,
                     start: a.startTime,
@@ -317,21 +315,18 @@ export function ingest({ Records: records }: Object, context: Object) {
                     });
 
                     if (diff.length) {
-                      actions.removeAirings(diff.map(a => a.data)).then(function(res) {
-                        console.log('done deleting diff airings');
-                        return res;
-                      });
+                      return actions.removeAirings(diff.map(a => a.data));
                     }
                   });
                 }
-              }
-
-              console.log(airingIds);
+              });
 
               let p1 = actions.insertAirings(airings);
               let p2 = actions.insertShows(airings.map(a => a.show));
 
-              return p1.then(() => p2)
+              return Promise.all(removeAiringPromises)
+                .then(() => p1)
+                .then(() => p2);
             })
             .then(function(res) {
               console.log('Insert completed', JSON.stringify(res));
