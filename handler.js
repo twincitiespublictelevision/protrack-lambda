@@ -263,16 +263,6 @@ export function schedule_channel(event: Object, context: Object) {
     });
 }
 
-export function ingesttest(event: Object, context: Object) {
-  var fs = require('fs');
-  let bucket = '';
-
-  fs.readFile('ingesttest.json', 'utf8', function(err, contents) {
-    contents = JSON.parse(contents);
-    ingest(contents, context);
-  });
-}
-
 export function ingest({ Records: records }: Object, context: Object) {
   if (records.length > 0) {
 
@@ -314,9 +304,6 @@ export function ingest({ Records: records }: Object, context: Object) {
               for(let a in airingIds) {
                 if (airingIds.hasOwnProperty(a)) {
                   a = airingIds[a];
-                  console.log("WELCOME TO GOING THROUGH AIRING IDS TODAY WE HAVE");
-                  console.log(a);
-                  console.log(a.channel + " " + a.startTime + " " + a.endTime);
 
                   let searchPromise = actions.searchAirings({
                     channel: a.channel,
@@ -325,14 +312,10 @@ export function ingest({ Records: records }: Object, context: Object) {
                   });
 
                   searchPromise.then(function (channelAirings) {
-                    console.log("Channel Airings Be Like:");
-                    console.log(channelAirings);
                     let diff = channelAirings.filter((airing) => {
                       return !a.airings.includes(airing.data.id);
                     });
 
-                    console.log("we got our diff:");
-                    console.log(diff);
                     if (diff.length) {
                       actions.removeAirings(diff.map(a => a.data)).then(function(res) {
                         console.log('done deleting diff airings');
