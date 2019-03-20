@@ -1,15 +1,13 @@
 // @flow
 
-import type { Airing, Show } from './src/types';
-import type { ScheduleData } from './src/results';
+import type { Airing } from './src/types';
 import type { Result } from "./src/es/mapResults";
 import { toBucket, toData, backup, remove } from './src/parse/s3';
 import actions from './src/es/actions';
 import buildSchedule from './src/es/schedule';
 import parse from './src/parse/parser';
 import mapToAirings from './src/parse/protrack';
-import { normalize, normalizeShows, normalizeAirings, normalizeChannels } from './src/results';
-import { receive, getShow, getEpisode, getAiring, getViews } from './src/scheduleData';
+import { normalize, normalizeShows, normalizeChannels } from './src/results';
 import moment from "moment-timezone";
 
 function p(event: Object, key: string): string {
