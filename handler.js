@@ -281,55 +281,30 @@ export function ingest({ Records: records }: Object, context: Object) {
             .then(function(airings) {
               console.log('Parsed airings list', airings.length);
 
-              let airingData = {};
+              let airingIds = airings.map( airing => airing.id );
+              let removeAiringPromise = Promise.resolve();
 
-              airings.forEach(function (a: Airing) {
-                if (airingData[a.channel] === undefined) {
-                  airingData[a.channel] = {
-                    channel: a.channel,
-                    startTime: 0,
-                    endTime: 0,
-                    airings: []
-                  };
-                }
-                airingData[a.channel].airings.push(a.id);
-                if (airingData[a.channel].endTime === 0 || a.date < airingData[a.channel].startTime) {
-                  airingData[a.channel].startTime = a.date;
-                }
-                if (airingData[a.channel].endTime === 0 || a.end_date > airingData[a.channel].endTime) {
-                  airingData[a.channel].endTime = a.date;
+              let searchPromise = actions.searchAirings({
+                channel: airings[0].channel,
+                start: 0,
+                end: Number.MAX_SAFE_INTEGER
+              });
+
+              searchPromise.then(function (channelAirings) {
+                let diff = channelAirings.filter((airing) => {
+                  return !airingIds.includes(airing.data.id);
+                });
+
+                if (diff.length) {
+                  removeAiringPromise = actions.removeAirings(diff.map(a => a.data));
                 }
               });
 
-              let removeAiringPromises = [];
-
-              for (let a in airingData) {
-                if (airingData.hasOwnProperty(a)) {
-                  a = airingData[a];
-                  let searchPromise = actions.searchAirings({
-                    channel: a.channel,
-                    start: a.startTime,
-                    end: a.endTime
-                  });
-
-                  searchPromise.then(function (channelAirings) {
-                    let diff = channelAirings.filter((airing) => {
-                      return !a.airings.includes(airing.data.id);
-                    });
-
-                    if (diff.length) {
-                      removeAiringPromises.push(actions.removeAirings(diff.map(a => a.data)));
-                    }
-                  });
-                }
-              }
-
-              let p1 = actions.insertAirings(airings);
-              let p2 = actions.insertShows(airings.map(a => a.show));
-
-              return Promise.all(removeAiringPromises)
-                .then(() => p1)
-                .then(() => p2);
+              removeAiringPromise.then(() => {
+                let p1 = actions.insertAirings(airings);
+                let p2 = actions.insertShows(airings.map(a => a.show));
+                return Promise.all([p1, p2]);
+              });
             })
             .then(function(res) {
               console.log('Insert completed', JSON.stringify(res));
