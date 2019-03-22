@@ -58,6 +58,18 @@ export default class Elastic<T> {
     return this.client.bulk({ body: expanded });
   }
 
+  removeAll(body: Array<Object>): Promise<Object> {
+    let expanded = body.reduce(
+      (list: Array<{}>, body: Object): Array<{}> => {
+        list.push({ delete: { _index: this.index, _type: this.type, _id: body.id } });
+        return list;
+      },
+      []
+    );
+
+    return this.client.bulk({ body: expanded });
+  }
+
   remove(body: Object): Promise<Object> {
     return this.client.deleteByQuery({ index: this.index, body });
   }

@@ -277,13 +277,32 @@ export function ingest({ Records: records }: Object, context: Object) {
           return parse(raw)
             .then(mapToAirings)
             .then(function(airings) {
-
               console.log('Parsed airings list', airings.length);
 
-              let p1 = actions.insertAirings(airings);
-              let p2 = actions.insertShows(airings.map(a => a.show));
+              let airingIds = airings.map( airing => airing.id );
+              let removeAiringPromise = Promise.resolve();
 
-              return p1.then(() => p2)
+              let searchPromise = actions.searchAirings({
+                channel: airings[0].channel,
+                start: 0,
+                end: Number.MAX_SAFE_INTEGER
+              });
+
+              searchPromise.then(function (channelAirings) {
+                let diff = channelAirings.filter((airing) => {
+                  return !airingIds.includes(airing.data.id);
+                });
+
+                if (diff.length) {
+                  removeAiringPromise = actions.removeAirings(diff.map(a => a.data));
+                }
+              });
+
+              return removeAiringPromise.then(() => {
+                let p1 = actions.insertAirings(airings);
+                let p2 = actions.insertShows(airings.map(a => a.show));
+                return Promise.all([p1, p2]);
+              });
             })
             .then(function(res) {
               console.log('Insert completed', JSON.stringify(res));
