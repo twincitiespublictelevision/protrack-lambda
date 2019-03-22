@@ -298,7 +298,7 @@ export function ingest({ Records: records }: Object, context: Object) {
                 }
               });
 
-              removeAiringPromise.then(() => {
+              return removeAiringPromise.then(() => {
                 let p1 = actions.insertAirings(airings);
                 let p2 = actions.insertShows(airings.map(a => a.show));
                 return Promise.all([p1, p2]);
