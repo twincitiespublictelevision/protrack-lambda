@@ -205,7 +205,9 @@ function extractSeries(series: ProTrackSeries): Show {
 }
 
 export default function mapToAirings(input: Object): Array<Airing> {
-  let airings = [].concat.apply([], input.schedule_data.series.map(function(series) {
+  let series = Array.isArray(input.schedule_data.series) ? input.schedule_data.series : [input.schedule_data.series];
+
+  let airings = [].concat.apply([], series.map(function(series) {
 
     let episodes = Array.isArray(series.episode) ? series.episode : [series.episode];
     return [].concat.apply([], episodes.map(function(episode) {
@@ -286,14 +288,14 @@ function expandToCompositeShows(airings: Array<Airing>): Array<Airing> {
     // Lift an episode description if the show is missing one, and there is a
     // single representative episode
     if (!show.desc) {
-      console.log('Show is missing description', show.id, JSON.stringify(show));
+      console.debug('Show is missing description', show.id, JSON.stringify(show));
 
       if (episodes.size === 1) {
-        console.log('Show has a single episode');
+        console.debug('Show has a single episode');
         let ep = episodes.values().next().value;
 
         if (ep) {
-          console.log('Borrowing episode description for show', show.id, ep.id, ep.desc);
+          console.debug('Borrowing episode description for show', show.id, ep.id, ep.desc);
           show.desc = ep.desc;
         }
       }
