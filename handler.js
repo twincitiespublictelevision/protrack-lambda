@@ -9,7 +9,6 @@ import parse from './src/parse/parser';
 import mapToAirings from './src/parse/protrack';
 import { normalize, normalizeShows, normalizeChannels } from './src/results';
 import moment from "moment-timezone";
-import { applyOverlay } from './src/overlay';
 
 function p(event: Object, key: string): string {
   return event && event.pathParameters && event.pathParameters[key] || '';
@@ -262,36 +261,7 @@ export function schedule_channel(event: Object, context: Object) {
     });
 }
 
-function getOverlayAirings(bucket: Object, channel: string): Promise<Array<Airing>> {
-  let fixedOverlayRecord = {
-    s3: {
-      bucket,
-      object: {
-        key: `${channel}-overlay.xml`
-      }
-    }
-  };
-
-  return toData(
-    toBucket(fixedOverlayRecord),
-    fixedOverlayRecord
-  ).then(raw => {
-    return parse(raw).then(mapToAirings);
-  }).catch(err => {
-    console.error(err);
-    console.error(`Failed to get overlay for ${channel}`);
-    return [];
-  });
-}
-
 export function ingest({ Records: records }: Object, context: Object) {
-  // Filter out any special overlay records
-  let overlayCheck = /overlay\.xml$/;
-
-  records = records.filter(record => {
-    return !overlayCheck.test(record.s3.object.key);
-  });
-
   if (records.length > 0) {
 
     let record = records[0];
@@ -306,14 +276,6 @@ export function ingest({ Records: records }: Object, context: Object) {
         .then(function(raw) {
           return parse(raw)
             .then(mapToAirings)
-            .then(function(airings) {
-              let channel = airings[0].channel;
-              return getOverlayAirings(record.s3.bucket, channel).then(
-                overlayAirings => {
-                  return applyOverlay(airings, overlayAirings);
-                }
-              )
-            })
             .then(function(airings) {
               console.log('Parsed airings list', airings.length);
 

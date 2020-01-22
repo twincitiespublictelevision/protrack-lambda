@@ -15,11 +15,11 @@ service: protrack-lambda
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
-frameworkVersion: ">1.35.1"
+frameworkVersion: "=1.35.1"
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs8.10
   region: ${file(./env.json):AWS_REGION}
   stackTags:
     service: protrack-lambda
@@ -85,8 +85,8 @@ functions:
 
   ingest:
     handler: handler.ingest
-    memorySize: 2048
-    timeout: 60
+    memorySize: 1024
+    timeout: 300
     events:
       - s3:
           bucket: protrack-schedule-ingest-${self:provider.stage}

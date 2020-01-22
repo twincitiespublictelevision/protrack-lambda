@@ -1,5 +1,7 @@
 // @flow
 
+import type { S3EventRecord } from './s3';
+// import { eventToBucket, recordToData } from './s3';
 const xml2js = require('xml2js');
 
 const parser = new xml2js.Parser({

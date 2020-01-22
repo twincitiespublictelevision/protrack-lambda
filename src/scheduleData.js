@@ -1,11 +1,11 @@
 // @flow
 
-import type {Airing, Episode, Show} from './types';
+import type {Types, Episode, Show} from './airing';
 import type {ScheduleData} from './results';
 
 const showStore: Map<number, Show> = new Map();
 const episodeStore: Map<number, Episode> = new Map();
-const airingStore: Map<number, Airing> = new Map();
+const airingStore: Map<number, Types> = new Map();
 const viewStore: Map<string, Set<number>> = new Map(); // map of channels to airing IDs
 
 function addToStore(o: Object, s: Object): void {
@@ -89,7 +89,7 @@ export function getEpisode(id: number): ?Episode {
   return episodeStore.get(id) || null;
 }
 
-export function getAiring(id: number): ?Airing {
+export function getAiring(id: number): ?Types {
   return airingStore.get(id) || null;
 }
 

@@ -23,16 +23,16 @@
     "xml2js": "^0.4.17"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-flow": "^7.0.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-flow": "^6.23.0",
     "flow-bin": "^0.92.1",
-    "jest": "^24.8.0",
+    "jest": "^20.0.4",
     "serverless-offline": "^3.32.2",
     "serverless-plugin-aws-alerts": "^1.2.3",
-    "serverless-plugin-stage-variables": "^1.9.2",
+    "serverless-plugin-stage-variables": "^1.8.2",
     "serverless-webpack": "^2.2.3",
     "webpack": "^3.0.0",
     "webpack-node-externals": "^1.6.0"

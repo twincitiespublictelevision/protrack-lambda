@@ -1,4 +1,4 @@
 {
   "plugins": ["transform-class-properties"],
-  "presets": ["@babel/flow", "@babel/env"]
+  "presets": ["flow", "env"]
 }
