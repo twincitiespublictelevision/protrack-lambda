@@ -41,7 +41,7 @@ export type Show = {
 export type Airing = {
   id: number,
   channel: string,
-  date: string,
+  date: number,
   end_date: number,
   duration: number,
   episode: Episode,
