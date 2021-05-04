@@ -1,23 +1,21 @@
-// @flow
-
 import Elastic from './elastic';
 
-export class Remover<T> {
-  client: Elastic<T>;
+export class Remover {
+  client;
 
-  constructor(client: Elastic<T>) {
+  constructor(client) {
     this.client = client;
   }
 
-  removeChannel(channel: string): Promise<boolean> {
+  removeChannel(channel) {
     return this.client.checkIndex()
       .then(status => {
         if (status === true) {
           return this.client.remove({ query: { term: { channel } } })
-            .then(function() {
+            .then(function () {
               return true;
             })
-            .catch(function() {
+            .catch(function () {
               return false;
             });
         } else {
@@ -26,28 +24,23 @@ export class Remover<T> {
       });
   }
 
-  removeMany(body: Array<Object>): Promise<boolean> {
+  removeMany(body) {
     return this.client.checkIndex()
       .then(status => {
         if (status === true) {
-          return this.client.removeAll(body).then(function() {
+          return this.client.removeAll(body).then(function () {
             return true;
           })
-          .catch(function() {
-            return false;
-          });
+            .catch(function () {
+              return false;
+            });
         } else {
           return true;
         }
-  });
+      });
   }
 }
 
-export type RemoveOptions = {
-  index: string,
-  type: string
-};
-
-export default function getRemover<T>(options: RemoveOptions): Remover<T> {
+export default function getRemover(options) {
   return new Remover(new Elastic(null, options.index, options.type));
 }

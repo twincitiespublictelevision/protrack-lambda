@@ -1,30 +1,15 @@
-// @flow
-
 import Elastic from './elastic';
-import type { ESResults } from './result';
-import type { Airing } from './../types';
-import type { Result } from './mapResults';
 import { mapResults } from './mapResults';
 import { inspect } from 'util';
 import moment from "moment-timezone";
 
-type Query = {
-  start: ?number,
-  end: ?number,
-  channel: ?string,
-  episode: ?number,
-  version: ?number,
-  show: ?number,
-  term: string
-};
-
 const max_size = 10000;
 
 export class AiringSearcher {
-  client: Elastic<Airing>;
-  query: Query;
+  client;
+  query;
 
-  constructor(client: Elastic<Airing>) {
+  constructor(client) {
     this.client = client;
     this.resetQuery();
   }
@@ -41,22 +26,22 @@ export class AiringSearcher {
     };
   }
 
-  byStartDate(start: number) {
+  byStartDate(start) {
     this.query.start = start;
     return this;
   }
 
-  byEndDate(end: number) {
+  byEndDate(end) {
     this.query.end = end;
     return this;
   }
 
-  byChannel(channel: string) {
+  byChannel(channel) {
     this.query.channel = channel;
     return this;
   }
 
-  byEpisode(episode: number, version: ?number = null) {
+  byEpisode(episode, version = null) {
     this.query.episode = episode;
 
     if (episode && version) {
@@ -66,17 +51,17 @@ export class AiringSearcher {
     return this;
   }
 
-  byShow(show: number) {
+  byShow(show) {
     this.query.show = show;
     return this;
   }
 
-  forTerm(term: string) {
+  forTerm(term) {
     this.query.term = term;
     return this;
   }
 
-  static buildQuery(query: Query): Object {
+  static buildQuery(query) {
     let filter = [], must;
     let start = moment.tz(process.env.PROTRACK_TZ).startOf('day').unix();
     let end = moment.tz(process.env.PROTRACK_TZ).endOf('day').unix();
@@ -118,7 +103,7 @@ export class AiringSearcher {
     filter.push({
       bool: {
         must: [
-          { 
+          {
             range: {
               date: {
                 gte: 0,
@@ -126,7 +111,7 @@ export class AiringSearcher {
               }
             }
           },
-          { 
+          {
             range: {
               end_date: {
                 gte: query.start !== null ? query.start : start,
@@ -182,32 +167,22 @@ export class AiringSearcher {
     }
   }
 
-  run(): Promise<Array<Result<Airing>>> {
+  run() {
     let query = AiringSearcher.buildQuery(this.query);
     console.log('Run query', inspect(query, { depth: null }));
 
     return this.client.search(query)
-      .then(function(results: ESResults<Airing>) {
+      .then(function (results) {
         return mapResults(results);
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.warn('Failed to run query', query, err);
         return [];
       });
   }
 }
 
-export type AiringSearchOptions = {
-  start?: number|string,
-  end?: number|string,
-  channel?: string,
-  episode?: number|string,
-  version?: number|string,
-  show?: number|string,
-  term?: string
-};
-
-export default function getAiringSearcher(options: AiringSearchOptions): AiringSearcher {
+export default function getAiringSearcher(options) {
   let {
     start: start,
     end: end,

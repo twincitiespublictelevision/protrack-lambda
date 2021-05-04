@@ -1,9 +1,6 @@
-// @flow
-
-import type {Airing, Episode, Genre, Show} from './../types';
 import util from 'util';
 
-export function removeCoveredScheduleEntries(base: Array<Airing>, overlay: Array<Airing>): Array<Airing> {
+export function removeCoveredScheduleEntries(base, overlay) {
   return base.filter(
     airing => {
       return overlay.reduce(
@@ -29,7 +26,7 @@ export function removeCoveredScheduleEntries(base: Array<Airing>, overlay: Array
   );
 }
 
-export function applyOverlay(base: Array<Airing>, overlay: Array<Airing>): Array<Airing> {
+export function applyOverlay(base, overlay) {
   console.debug(`Applying overlay to ${base.length} base records`);
 
   let filteredRecords = removeCoveredScheduleEntries(base, overlay);

@@ -1,58 +1,4 @@
-// @flow
-
-import type {Airing, Episode, Genre, Show} from './../types';
 import moment from 'moment-timezone';
-
-type ProTrackSchedule = {
-  schedule_id: string,
-  schedule_channel: string,
-  schedule_date: string,
-  schedule_duration: string
-};
-
-type ProTrackEpisode = {
-  program_id: number,
-  version_id: number,
-  episode_title: string,
-  episode_number: number,
-  episode_desc: string,
-  episode_url: string,
-  episode_language: string,
-  episode_dvi: boolean,
-  episode_stereo: string,
-  episode_hdtv: boolean,
-  version_rating: string,
-  version_caption: boolean,
-  package_type: string,
-  orig_broadcast_date: string,
-  epi_genrelist_loc: ProTrackGenreWrapped|ProTrackGenreList,
-  epi_genrelist_nat: ProTrackGenreWrapped|ProTrackGenreList,
-  schedule: any
-};
-
-type ProTrackSeries = {
-  series_id: number,
-  series_code: string,
-  series_title: string,
-  series_desc: string,
-  series_url: string,
-  series_pgmtype: string,
-  series_genrelist_loc: ProTrackGenreWrapped|ProTrackGenreList,
-  episode: any
-};
-
-type ProTrackGenre = {
-  genrecd: string,
-  genretxt: string
-};
-
-type ProTrackGenreWrapped = {
-  genre: ProTrackGenre
-};
-
-type ProTrackGenreList = {
-  genre: Array<ProTrackGenre>
-};
 
 function protrackDateToTimestamp(date) {
   return moment.tz(date, process.env.PROTRACK_TZ).unix();
@@ -60,7 +6,7 @@ function protrackDateToTimestamp(date) {
 
 let durationRegex = /^P(\d+)H(\d+)M(\d+)S$/;
 
-function durationToNumber(duration: string): number {
+function durationToNumber(duration) {
   let matches = duration.match(durationRegex);
 
   if (matches && matches.length > 3) {
@@ -72,7 +18,7 @@ function durationToNumber(duration: string): number {
   return 0;
 }
 
-function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): ?Airing {
+function buildAiring(schedule, episode, show) {
   let { schedule_id, schedule_channel, schedule_date, schedule_duration } = schedule;
 
   let format = iso => {
@@ -124,7 +70,7 @@ function buildAiring(schedule: ProTrackSchedule, episode: Episode, show: Show): 
   }
 }
 
-function toGenreList(genres: ProTrackGenreWrapped|ProTrackGenreList): Array<ProTrackGenre> {
+function toGenreList(genres) {
   let genreList = [];
 
   if (genres && genres.genre && genres.genre instanceof Array) {
@@ -134,13 +80,13 @@ function toGenreList(genres: ProTrackGenreWrapped|ProTrackGenreList): Array<ProT
   }
 
   return genreList.filter(
-    function(genre) {
+    function (genre) {
       return genre.genrecd && genre.genrecd.trim() && genre.genrecd && genre.genretxt.trim();
     }
   );
 }
 
-function extractEpisode(episode: ProTrackEpisode): Episode {
+function extractEpisode(episode) {
   let {
     program_id,
     version_id,
@@ -180,7 +126,7 @@ function extractEpisode(episode: ProTrackEpisode): Episode {
   };
 }
 
-function extractSeries(series: ProTrackSeries): Show {
+function extractSeries(series) {
   let {
     series_id,
     series_code,
@@ -204,16 +150,16 @@ function extractSeries(series: ProTrackSeries): Show {
   };
 }
 
-export default function mapToAirings(input: Object): Array<Airing> {
+export default function mapToAirings(input) {
   let series = Array.isArray(input.schedule_data.series) ? input.schedule_data.series : [input.schedule_data.series];
 
-  let airings = [].concat.apply([], series.map(function(series) {
+  let airings = [].concat.apply([], series.map(function (series) {
 
     let episodes = Array.isArray(series.episode) ? series.episode : [series.episode];
-    return [].concat.apply([], episodes.map(function(episode) {
+    return [].concat.apply([], episodes.map(function (episode) {
 
       let schedules = Array.isArray(episode.schedule) ? episode.schedule : [episode.schedule];
-      return [].concat.apply([], schedules.map(function(schedule) {
+      return [].concat.apply([], schedules.map(function (schedule) {
         return buildAiring(schedule, extractEpisode(episode), extractSeries(series));
       }));
     }));
@@ -222,17 +168,17 @@ export default function mapToAirings(input: Object): Array<Airing> {
   return expandToCompositeShows(airings);
 }
 
-function extractShows(airings: Array<Airing>): Map<number, Show> {
+function extractShows(airings) {
   let shows = new Map();
 
-  airings.forEach(function(airing: Airing) {
+  airings.forEach(function (airing) {
     shows.set(airing.show.id, airing.show);
   });
 
   return shows;
 }
 
-function findEpisodesForSeriesId(airings: Array<Airing>, seriesId: number): Map<number, Episode> {
+function findEpisodesForSeriesId(airings, seriesId) {
   let episodes = new Map();
 
   airings
@@ -242,11 +188,11 @@ function findEpisodesForSeriesId(airings: Array<Airing>, seriesId: number): Map<
   return episodes;
 }
 
-function extractGenreCount(episodes: Map<number, Episode>): Map<Genre, number> {
+function extractGenreCount(episodes) {
   let genres = new Map();
 
-  episodes.forEach(function(episode) {
-    episode.genres.forEach(function(genre) {
+  episodes.forEach(function (episode) {
+    episode.genres.forEach(function (genre) {
       genres.set(genre, (genres.get(genre) || 0) + 1);
     })
   });
@@ -265,10 +211,10 @@ function extractGenreCount(episodes: Map<number, Episode>): Map<Genre, number> {
  * @param airings
  * @returns {Array}
  */
-function expandToCompositeShows(airings: Array<Airing>): Array<Airing> {
+function expandToCompositeShows(airings) {
   let shows = extractShows(airings);
 
-  shows.forEach(function(show: Show) {
+  shows.forEach(function (show) {
 
     let episodes = findEpisodesForSeriesId(airings, show.id);
 
@@ -277,7 +223,7 @@ function expandToCompositeShows(airings: Array<Airing>): Array<Airing> {
 
     let showGenres = new Set(show.genres);
 
-    episodeGenres.forEach(function(count, genre) {
+    episodeGenres.forEach(function (count, genre) {
       if (count / episodes.size > 0.5) {
         showGenres.add(genre);
       }

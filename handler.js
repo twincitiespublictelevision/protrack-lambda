@@ -1,7 +1,3 @@
-// @flow
-
-import type { Airing } from './src/types';
-import type { Result } from "./src/es/mapResults";
 import { toBucket, toData, backup, remove } from './src/parse/s3';
 import actions from './src/es/actions';
 import buildSchedule from './src/es/schedule';
@@ -11,37 +7,37 @@ import { normalize, normalizeShows, normalizeChannels } from './src/results';
 import moment from "moment-timezone";
 import { applyOverlay } from './src/overlay';
 
-function p(event: Object, key: string): string {
+function p(event, key) {
   return event && event.pathParameters && event.pathParameters[key] || '';
 }
 
-function q(event: Object, key: string): string {
+function q(event, key) {
   return event && event.queryStringParameters && event.queryStringParameters[key] || '';
 }
 
-function attachCallback(p: Promise<any>, context: Object) {
+function attachCallback(p, context) {
   return p
-    .then(function(result) {
+    .then(function (result) {
       return {
         statusCode: 200,
         body: JSON.stringify(normalize(result)),
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin' : '*'
+          'Access-Control-Allow-Origin': '*'
         }
       };
     })
-    .then(function(resp) {
+    .then(function (resp) {
       console.log('Success');
       context.succeed(resp);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       console.warn('failed to compress response');
       context.fail(err);
     });
 }
 
-export function all(event: Object, context: Object) {
+export function all(event, context) {
   attachCallback(
     actions.searchAirings({
       start: q(event, 'start'),
@@ -51,7 +47,7 @@ export function all(event: Object, context: Object) {
   );
 }
 
-export function channel(event: Object, context: Object) {
+export function channel(event, context) {
   attachCallback(
     actions.searchAirings({
       channel: p(event, 'channel'),
@@ -62,7 +58,7 @@ export function channel(event: Object, context: Object) {
   );
 }
 
-export function show(event: Object, context: Object) {
+export function show(event, context) {
   attachCallback(
     actions.searchAirings({
       show: p(event, 'show'),
@@ -73,9 +69,9 @@ export function show(event: Object, context: Object) {
   );
 }
 
-export function shows(event: Object, context: Object) {
+export function shows(event, context) {
   actions.searchShows()
-    .then(function(result) {
+    .then(function (result) {
       let normal = normalizeShows(result);
       normal.result.sort((a, b) => parseInt(a) - parseInt(b));
       return {
@@ -83,21 +79,21 @@ export function shows(event: Object, context: Object) {
         body: JSON.stringify(normal),
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin' : '*'
+          'Access-Control-Allow-Origin': '*'
         }
       };
     })
-    .then(function(resp) {
+    .then(function (resp) {
       console.log('Success');
       context.succeed(resp);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       console.warn('failed to compress response');
       context.fail(err);
     });
 }
 
-export function episode(event: Object, context: Object) {
+export function episode(event, context) {
   attachCallback(
     actions.searchAirings({
       episode: p(event, 'episode'),
@@ -108,7 +104,7 @@ export function episode(event: Object, context: Object) {
   );
 }
 
-export function version(event: Object, context: Object) {
+export function version(event, context) {
   attachCallback(
     actions.searchAirings({
       episode: p(event, 'episode'),
@@ -120,7 +116,7 @@ export function version(event: Object, context: Object) {
   );
 }
 
-export function search(event: Object, context: Object) {
+export function search(event, context) {
   attachCallback(
     actions.searchAirings({
       term: p(event, 'term'),
@@ -131,20 +127,20 @@ export function search(event: Object, context: Object) {
   );
 }
 
-export function schedule(event: Object, context: Object) {
+export function schedule(event, context) {
   let start = moment()
     .tz(process.env.PROTRACK_TZ)
-    .year(parseInt(p(event,'year')))
-    .month(parseInt(p(event,'month')) - 1)
-    .date(p(event,'day'))
+    .year(parseInt(p(event, 'year')))
+    .month(parseInt(p(event, 'month')) - 1)
+    .date(p(event, 'day'))
     .startOf('day')
     .unix();
 
   let end = moment()
     .tz(process.env.PROTRACK_TZ)
-    .year(parseInt(p(event,'year')))
-    .month(parseInt(p(event,'month')) - 1)
-    .date(p(event,'day'))
+    .year(parseInt(p(event, 'year')))
+    .month(parseInt(p(event, 'month')) - 1)
+    .date(p(event, 'day'))
     .endOf('day')
     .unix();
 
@@ -152,39 +148,39 @@ export function schedule(event: Object, context: Object) {
     'Fetching schedule for: ',
     moment()
       .tz(process.env.PROTRACK_TZ)
-      .year(parseInt(p(event,'year')))
-      .month(parseInt(p(event,'month')) - 1)
-      .date(p(event,'day'))
+      .year(parseInt(p(event, 'year')))
+      .month(parseInt(p(event, 'month')) - 1)
+      .date(p(event, 'day'))
       .unix()
   );
 
   console.log(
     'Start: ',
-    parseInt(p(event,'year')),
-    parseInt(p(event,'month')) - 1,
-    p(event,'day'),
+    parseInt(p(event, 'year')),
+    parseInt(p(event, 'month')) - 1,
+    p(event, 'day'),
     process.env.PROTRACK_TZ,
     moment()
-    .tz(process.env.PROTRACK_TZ)
-    .year(parseInt(p(event,'year')))
-    .month(parseInt(p(event,'month')) - 1)
-    .date(p(event,'day'))
-    .startOf('day'),
+      .tz(process.env.PROTRACK_TZ)
+      .year(parseInt(p(event, 'year')))
+      .month(parseInt(p(event, 'month')) - 1)
+      .date(p(event, 'day'))
+      .startOf('day'),
     start
   );
 
   console.log(
     'End: ',
-    parseInt(p(event,'year')),
-    parseInt(p(event,'month')) - 1,
-    p(event,'day'),
+    parseInt(p(event, 'year')),
+    parseInt(p(event, 'month')) - 1,
+    p(event, 'day'),
     process.env.PROTRACK_TZ,
     moment()
-    .tz(process.env.PROTRACK_TZ)
-    .year(parseInt(p(event,'year')))
-    .month(parseInt(p(event,'month')) - 1)
-    .date(p(event,'day'))
-    .endOf('day'),
+      .tz(process.env.PROTRACK_TZ)
+      .year(parseInt(p(event, 'year')))
+      .month(parseInt(p(event, 'month')) - 1)
+      .date(p(event, 'day'))
+      .endOf('day'),
     end
   );
 
@@ -193,76 +189,76 @@ export function schedule(event: Object, context: Object) {
     end: end
   };
 
-  actions.searchAirings(options).then(function(result: Array<Result<Airing>>) {
-    let channels = buildSchedule(result, parseInt(p(event,'granularity')), start, end);
+  actions.searchAirings(options).then(function (result) {
+    let channels = buildSchedule(result, parseInt(p(event, 'granularity')), start, end);
     return {
       statusCode: 200,
       body: JSON.stringify(normalizeChannels(channels)),
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin' : '*'
+        'Access-Control-Allow-Origin': '*'
       }
     }
   })
-    .then(function(resp) {
+    .then(function (resp) {
       console.log('Success');
       context.succeed(resp);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       console.warn('failed to compress response');
       context.fail(err);
     });
 }
 
-export function schedule_channel(event: Object, context: Object) {
+export function schedule_channel(event, context) {
   let start = moment()
     .tz(process.env.PROTRACK_TZ)
-    .year(parseInt(p(event,'year')))
-    .month(parseInt(p(event,'month')) - 1)
-    .date(p(event,'day'))
+    .year(parseInt(p(event, 'year')))
+    .month(parseInt(p(event, 'month')) - 1)
+    .date(p(event, 'day'))
     .startOf('day')
     .unix();
 
   let end = moment()
     .tz(process.env.PROTRACK_TZ)
-    .year(parseInt(p(event,'year')))
-    .month(parseInt(p(event,'month')) - 1)
-    .date(p(event,'day'))
+    .year(parseInt(p(event, 'year')))
+    .month(parseInt(p(event, 'month')) - 1)
+    .date(p(event, 'day'))
     .endOf('day')
     .unix();
 
-    let options = {};
-    options.start = start;
-    options.end = end;
+  let options = {};
+  options.start = start;
+  options.end = end;
 
-    if (p(event, 'channel')) {
-      options.channel = p(event, 'channel');
-    }
+  if (p(event, 'channel')) {
+    options.channel = p(event, 'channel');
+  }
 
-    actions.searchAirings(options).then(function(result: Array<Result<Airing>>) {
-      let channels = buildSchedule(result, parseInt(p(event,'granularity')), start, end)
-        .filter(channel => channel.id === options.channel);
+  actions.searchAirings(options).then(function (result) {
+    let channels = buildSchedule(result, parseInt(p(event, 'granularity')), start, end)
+      .filter(channel => channel.id === options.channel);
 
-      return {
-        statusCode: 200,
-        body: JSON.stringify(normalizeChannels(channels)),
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin' : '*'
-        }
+    return {
+      statusCode: 200,
+      body: JSON.stringify(normalizeChannels(channels)),
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
-    })
-    .then(function(resp) {
+    }
+  })
+    .then(function (resp) {
       console.log('Success');
       context.succeed(resp);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       console.warn('failed to compress response');
       context.fail(err);
     });
 }
 
-function getOverlayAirings(bucket: Object, channel: string): Promise<Array<Airing>> {
+function getOverlayAirings(bucket, channel) {
   let fixedOverlayRecord = {
     s3: {
       bucket,
@@ -284,7 +280,7 @@ function getOverlayAirings(bucket: Object, channel: string): Promise<Array<Airin
   });
 }
 
-export function ingest({ Records: records }: Object, context: Object) {
+export function ingest({ Records: records }, context) {
   // Filter out any special overlay records
   let overlayCheck = /overlay\.xml$/;
 
@@ -303,10 +299,10 @@ export function ingest({ Records: records }: Object, context: Object) {
 
     attachCallback(
       data
-        .then(function(raw) {
+        .then(function (raw) {
           return parse(raw)
             .then(mapToAirings)
-            .then(function(airings) {
+            .then(function (airings) {
               let channel = airings[0].channel;
               return getOverlayAirings(record.s3.bucket, channel).then(
                 overlayAirings => {
@@ -314,10 +310,10 @@ export function ingest({ Records: records }: Object, context: Object) {
                 }
               )
             })
-            .then(function(airings) {
+            .then(function (airings) {
               console.log('Parsed airings list', airings.length);
 
-              let airingIds = airings.map( airing => airing.id );
+              let airingIds = airings.map(airing => airing.id);
               let removeAiringPromise = Promise.resolve();
 
               let searchPromise = actions.searchAirings({
@@ -342,23 +338,23 @@ export function ingest({ Records: records }: Object, context: Object) {
                 return Promise.all([p1, p2]);
               });
             })
-            .then(function(res) {
+            .then(function (res) {
               console.log('Insert completed', JSON.stringify(res));
               return backup(bucket, record)
-                .then(function() {
+                .then(function () {
                   console.log('done backup');
                   return res;
                 });
-            }).then(function(res) {
+            }).then(function (res) {
               return remove(bucket, record)
-                .then(function() {
+                .then(function () {
                   console.log('done delete');
                   return res;
                 })
             })
         }),
       context
-    ).catch(function(fail) {
+    ).catch(function (fail) {
       console.log('ingest failed');
       console.log(fail);
     });
