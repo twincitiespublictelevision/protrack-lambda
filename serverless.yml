@@ -214,6 +214,7 @@ package:
     - env.json
     - package.json
     - serverless.yml
+    - mock.json
 
 custom:
   defaultStage: qa
@@ -225,6 +226,5 @@ custom:
           - protocol: email
             endpoint: ${file(./env.json):NOTIFICATION_EMAIL}
 
-  webpack:
-    packager: 'npm'
-    individually: true
+  webpackIncludeModules:
+    packagePath: './package.json'
