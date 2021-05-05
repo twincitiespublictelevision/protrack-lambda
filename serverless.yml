@@ -204,7 +204,6 @@ plugins:
   - serverless-webpack
   - serverless-offline
   - serverless-plugin-aws-alerts
-
 package:
   exclude:
     - .serverless
@@ -225,6 +224,7 @@ custom:
         notifications:
           - protocol: email
             endpoint: ${file(./env.json):NOTIFICATION_EMAIL}
+
   webpack:
     packager: 'npm'
     individually: true
