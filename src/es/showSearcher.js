@@ -1,24 +1,14 @@
-// @flow
-
 import Elastic from './elastic';
-import type { ESResults } from './result';
-import type { Show } from './../types';
-import type { Result } from './mapResults';
 import { mapResults } from './mapResults';
 import { inspect } from 'util';
-
-type Query = {
-  show: ?number,
-  term: string
-};
 
 const max_size = 10000;
 
 export class ShowSearcher {
-  client: Elastic<Show>;
-  query: Query;
+  client;
+  query;
 
-  constructor(client: Elastic<Show>) {
+  constructor(client) {
     this.client = client;
     this.resetQuery();
   }
@@ -30,17 +20,17 @@ export class ShowSearcher {
     };
   }
 
-  byShow(show: number) {
+  byShow(show) {
     this.query.show = show;
     return this;
   }
 
-  forTerm(term: string) {
+  forTerm(term) {
     this.query.term = term;
     return this;
   }
 
-  static buildQuery(query: Query): Object {
+  static buildQuery(query) {
     let filter = [];
 
     if (query.show !== null) {
@@ -86,27 +76,22 @@ export class ShowSearcher {
     }
   }
 
-  run(): Promise<Array<Result<Show>>> {
+  run() {
     let query = ShowSearcher.buildQuery(this.query);
     console.log('Run query', inspect(query, { depth: null }));
 
     return this.client.search(query)
-      .then(function(results: ESResults<Show>) {
+      .then(function (results) {
         return mapResults(results);
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.warn('Failed to run query', query, err);
         return [];
       });
   }
 }
 
-export type ShowSearchOptions = {
-  show?: number|string,
-  term?: string
-};
-
-export default function getShowSearcher(options: ShowSearchOptions): ShowSearcher {
+export default function getShowSearcher(options) {
   let {
     show: show,
     term: term

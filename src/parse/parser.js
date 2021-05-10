@@ -1,5 +1,3 @@
-// @flow
-
 const xml2js = require('xml2js');
 
 const parser = new xml2js.Parser({
@@ -8,13 +6,13 @@ const parser = new xml2js.Parser({
   explicitArray: false,
   emptyTag: null,
   valueProcessors: [
-    function parseNumbers(str: *): number {
+    function parseNumbers(str) {
       if (!isNaN(str)) {
         str = str % 1 === 0 ? parseInt(str, 10) : parseFloat(str);
       }
       return str;
     },
-    function parseYesNo(value: *): boolean {
+    function parseYesNo(value) {
       if (value && value.toLowerCase) {
         if (value.toLowerCase() === 'yes') {
           return true;
@@ -28,9 +26,9 @@ const parser = new xml2js.Parser({
   ]
 });
 
-export default function parse({Body: content}: Object): Promise<*> {
-  return new Promise(function(resolve, reject) {
-    parser.parseString(content, function(err, data) {
+export default function parse({ Body: content }) {
+  return new Promise(function (resolve, reject) {
+    parser.parseString(content, function (err, data) {
       if (err) {
         reject(err)
       } else {

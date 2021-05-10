@@ -1,52 +1,49 @@
-// @flow
-
 import AWS from 'aws-sdk';
-import type { ESResults } from './result';
 let ES = require('elasticsearch');
 let Connector = require('http-aws-es');
 
-export default class Elastic<T> {
-  client: ES.Client;
-  index: string;
-  type: string;
+export default class Elastic {
+  client;
+  index;
+  type;
 
-  constructor(client: ?ES.Client, index: string, type: string) {
-    AWS.config.update({region: process.env.AWS_REGION});
+  constructor(client, index, type) {
+    AWS.config.update({ region: process.env.AWS_REGION });
     this.client = client || ES.Client({
-        hosts: [process.env.ES_ENDPOINT],
-        connectionClass: Connector
+      hosts: [process.env.ES_ENDPOINT],
+      connectionClass: Connector
     });
 
     this.index = index;
     this.type = type;
   }
 
-  checkIndex(): Promise<boolean> {
+  checkIndex() {
     return this.client.indices.exists({ index: this.index })
-      .catch(function() {
+      .catch(function () {
         return false;
       });
   }
 
-  createIndex(body: {}): Promise<{}> {
+  createIndex(body) {
     return this.client.indices.create({ index: this.index, body });
   }
 
-  store(body: Object): Promise<{}> {
+  store(body) {
     if (typeof body.id !== 'undefined') {
-      return this.client.index({index: this.index, type: this.type, _id: body.id, body});
+      return this.client.index({ index: this.index, type: this.type, _id: body.id, body });
     } else {
-      return this.client.index({index: this.index, type: this.type, body});
+      return this.client.index({ index: this.index, type: this.type, body });
     }
   }
 
-  storeAll(body: Array<Object>): Promise<Object> {
+  storeAll(body) {
     let expanded = body.reduce(
-      (list: Array<{}>, body: Object): Array<{}> => {
+      (list, body) => {
         if (typeof body.id !== 'undefined') {
-          list.push({ index:  { _index: this.index, _type: this.type, _id: body.id } });
+          list.push({ index: { _index: this.index, _type: this.type, _id: body.id } });
         } else {
-          list.push({ index:  { _index: this.index, _type: this.type } });
+          list.push({ index: { _index: this.index, _type: this.type } });
         }
 
         list.push(body);
@@ -58,9 +55,9 @@ export default class Elastic<T> {
     return this.client.bulk({ body: expanded });
   }
 
-  removeAll(body: Array<Object>): Promise<Object> {
+  removeAll(body) {
     let expanded = body.reduce(
-      (list: Array<{}>, body: Object): Array<{}> => {
+      (list, body) => {
         list.push({ delete: { _index: this.index, _type: this.type, _id: body.id } });
         return list;
       },
@@ -70,11 +67,11 @@ export default class Elastic<T> {
     return this.client.bulk({ body: expanded });
   }
 
-  remove(body: Object): Promise<Object> {
+  remove(body) {
     return this.client.deleteByQuery({ index: this.index, body });
   }
 
-  search(body: Object): Promise<ESResults<T>> {
+  search(body) {
     return this.client.search({ index: this.index, body });
   }
 }

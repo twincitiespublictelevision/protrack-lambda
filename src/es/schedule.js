@@ -1,23 +1,13 @@
-// @flow
-
-import type { Result } from "./mapResults";
-import type { Airing, Channel } from "../types";
-
-type ShowEntry = {
-  show: Result<Airing>,
-  secondsInSlot: number
-}
-
 class ChannelData {
-  endTime: number;
-  timeslotStart: number;
-  interval: number;
-  timeslotEnd: number;
-  timeslotShows: Array<ShowEntry>;
-  schedule: Array<Airing>;
-  missingInitialSlots: number;
+  endTime;
+  timeslotStart;
+  interval;
+  timeslotEnd;
+  timeslotShows;
+  schedule;
+  missingInitialSlots;
 
-  constructor(start: number, end: number, interval: number) {
+  constructor(start, end, interval) {
     this.endTime = end;
     this.timeslotStart = start;
     this.interval = interval;
@@ -105,7 +95,7 @@ class ChannelData {
   }
 }
 
-export default function buildSchedule(airings: Object, interval: number, start: number, end: number): Array<Channel> {
+export default function buildSchedule(airings, interval, start, end) {
   interval = interval * 60; // Keep everything in seconds
   let channels = {};
 
@@ -123,7 +113,7 @@ export default function buildSchedule(airings: Object, interval: number, start: 
   for (let k in channels) {
     if (channels.hasOwnProperty(k)) {
       channels[k].finalize();
-      schedule.push({ id : k, airings : channels[k].schedule});
+      schedule.push({ id: k, airings: channels[k].schedule });
     }
   }
 

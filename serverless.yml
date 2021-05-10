@@ -19,8 +19,8 @@ frameworkVersion: ">1.35.1"
 
 provider:
   name: aws
-  runtime: nodejs10.x
-  region: ${file(./env.json):AWS_REGION}
+  runtime: nodejs14.x
+  region: ${file(./env.json):AWS_REGION, "us-east-1"}
   stackTags:
     service: protrack-lambda
   stage: ${opt:stage, self:custom.defaultStage}
@@ -204,7 +204,6 @@ plugins:
   - serverless-webpack
   - serverless-offline
   - serverless-plugin-aws-alerts
-
 package:
   exclude:
     - .serverless
@@ -215,10 +214,10 @@ package:
     - env.json
     - package.json
     - serverless.yml
+    - mock.json
 
 custom:
   defaultStage: qa
-  custom:
   alerts:
     topics:
       alarm:
@@ -226,5 +225,6 @@ custom:
         notifications:
           - protocol: email
             endpoint: ${file(./env.json):NOTIFICATION_EMAIL}
+
   webpackIncludeModules:
     packagePath: './package.json'

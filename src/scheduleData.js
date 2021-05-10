@@ -1,14 +1,9 @@
-// @flow
+const showStore = new Map();
+const episodeStore = new Map();
+const airingStore = new Map();
+const viewStore = new Map(); // map of channels to airing IDs
 
-import type {Airing, Episode, Show} from './types';
-import type {ScheduleData} from './results';
-
-const showStore: Map<number, Show> = new Map();
-const episodeStore: Map<number, Episode> = new Map();
-const airingStore: Map<number, Airing> = new Map();
-const viewStore: Map<string, Set<number>> = new Map(); // map of channels to airing IDs
-
-function addToStore(o: Object, s: Object): void {
+function addToStore(o, s) {
   for (let id in o) {
     if (o.hasOwnProperty(id)) {
       s.set(parseInt(id), o[id]);
@@ -16,22 +11,22 @@ function addToStore(o: Object, s: Object): void {
   }
 }
 
-function addView(channel: string, id: number): void {
+function addView(channel, id) {
   let airings = viewStore.get(channel) || new Set();
   airings.add(id);
   viewStore.set(channel, airings);
 }
 
-function getChannelFromAirings(airings: Object):? string {
+function getChannelFromAirings(airings) {
   let airing = airings[Object.keys(airings)[0]];
   return airing.channel || null;
 }
 
-function getEpisodeKey(episode: Episode): number {
+function getEpisodeKey(episode) {
   return episode.id || parseInt(`${episode.program.id}${episode.version.id}`);
 }
 
-export function receive(scheduleData: ScheduleData, singleChannel: boolean = false): void {
+export function receive(scheduleData, singleChannel = false) {
 
   if (!scheduleData.entities) {
     return;
@@ -81,19 +76,19 @@ export function receive(scheduleData: ScheduleData, singleChannel: boolean = fal
   }
 }
 
-export function getShow(id: number): ?Show {
+export function getShow(id) {
   return showStore.get(id) || null;
 }
 
-export function getEpisode(id: number): ?Episode {
+export function getEpisode(id) {
   return episodeStore.get(id) || null;
 }
 
-export function getAiring(id: number): ?Airing {
+export function getAiring(id) {
   return airingStore.get(id) || null;
 }
 
-export function getViews(channel: string):? Array<number> {
+export function getViews(channel) {
   let airings = viewStore.get(channel);
   return airings ? [...airings] : null;
 }

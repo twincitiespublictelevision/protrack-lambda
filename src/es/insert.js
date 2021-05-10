@@ -1,25 +1,23 @@
-// @flow
-
 import Elastic from './elastic';
 
-export class Indexer<T> {
-  client: Elastic<T>;
-  mapping: Object;
+export class Indexer {
+  client;
+  mapping;
 
-  constructor(client: Elastic<T>, mapping: Object) {
+  constructor(client, mapping) {
     this.client = client;
     this.mapping = mapping;
   }
 
-  prepareToIndex(): Promise<boolean> {
+  prepareToIndex() {
     return this.client.checkIndex()
-      .then((status: boolean) => {
+      .then((status) => {
         if (!status) {
           return this.client.createIndex(this.mapping)
-            .then(function(status) {
+            .then(function (status) {
               return true;
             })
-            .catch(function(failure) {
+            .catch(function (failure) {
               return false;
             });
         }
@@ -28,14 +26,14 @@ export class Indexer<T> {
       });
   }
 
-  indexOne(airing: T): Promise<Object> {
+  indexOne(airing) {
     return this.prepareToIndex()
       .then(() => {
         return this.client.store(airing);
       });
   }
 
-  indexMany(airings: Array<T>): Promise<Object> {
+  indexMany(airings) {
     return this.prepareToIndex()
       .then(() => {
         return this.client.storeAll(airings);
@@ -43,12 +41,6 @@ export class Indexer<T> {
   }
 }
 
-export type InsertOptions = {
-  index: string,
-  type: string,
-  mapping: Object
-};
-
-export default function getIndexer<T>(options: InsertOptions): Indexer<T> {
+export default function getIndexer(options) {
   return new Indexer(new Elastic(null, options.index, options.type), options.mapping);
 }

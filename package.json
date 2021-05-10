@@ -14,27 +14,27 @@
     ]
   },
   "dependencies": {
-    "aws-sdk": "^2.395.0",
-    "elasticsearch": "^15.2.0",
+    "aws-sdk": "^2.900.0",
+    "elasticsearch": "^15.5.0",
     "http-aws-es": "^6.0.0",
-    "moment": "^2.23.0",
-    "moment-timezone": "^0.5.13",
-    "normalizr": "^3.3.0",
-    "xml2js": "^0.4.17"
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "normalizr": "^3.6.1",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-flow": "^7.0.0",
-    "babel-loader": "^7.1.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
+    "babel-loader": "^8.2.2",
     "flow-bin": "^0.92.1",
-    "jest": "^24.8.0",
-    "serverless-offline": "^3.32.2",
-    "serverless-plugin-aws-alerts": "^1.2.3",
-    "serverless-plugin-stage-variables": "^1.9.2",
-    "serverless-webpack": "^2.2.3",
-    "webpack": "^3.0.0",
-    "webpack-node-externals": "^1.6.0"
+    "jest": "^24.9.0",
+    "serverless": "^2.39.2",
+    "serverless-offline": "^7.0.0",
+    "serverless-plugin-aws-alerts": "^1.7.3",
+    "serverless-plugin-stage-variables": "^1.9.5",
+    "serverless-plugin-webpack": "^1.5.1",
+    "serverless-webpack": "^5.4.2",
+    "webpack": "^5.36.2",
+    "webpack-node-externals": "^3.0.0"
   }
 }
