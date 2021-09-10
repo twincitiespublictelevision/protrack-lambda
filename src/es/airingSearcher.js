@@ -78,7 +78,7 @@ export class AiringSearcher {
 
     if (query.episode !== null) {
       filter.push({
-        term: {
+        terms: {
           "episode.program.id": query.episode
         }
       });
@@ -94,7 +94,7 @@ export class AiringSearcher {
 
     if (query.show !== null) {
       filter.push({
-        term: {
+        terms: {
           "show.id": query.show
         }
       });
@@ -212,17 +212,21 @@ export default function getAiringSearcher(options) {
   }
 
   if (typeof episode !== 'undefined') {
-    if (Number.isInteger(parseInt(episode))) {
+    episode = episode.split(",").filter(e => Number.isInteger(parseInt(e)));
+
+    if (episode.length > 0) {
       searcher = searcher.byEpisode(
-        parseInt(episode),
-        Number.isInteger(parseInt(version)) ? parseInt(version) : null
+        episode.map(e => parseInt(e)),
+        null
       );
     }
   }
 
   if (typeof show !== 'undefined') {
-    if (Number.isInteger(parseInt(show))) {
-      searcher = searcher.byShow(parseInt(show));
+    show = show.split(",").filter(s => Number.isInteger(parseInt(s)));
+
+    if (show.length > 0) {
+      searcher = searcher.byShow(show.map(s => parseInt(s)));
     }
   }
 
