@@ -1,10 +1,11 @@
+import { jest } from '@jest/globals';
 import { mapResults } from './../../src/es/mapResults';
 import { mockResult } from './helpers';
 
-it('maps each element', function() {
+it('maps each element', function () {
   let results = {
     hits: {
-      hits: Array.from({length: 10}, () => {
+      hits: Array.from({ length: 10 }, () => {
         return mockResult();
       })
     }
@@ -13,10 +14,10 @@ it('maps each element', function() {
   expect(mapResults(results).length).toBe(results.hits.hits.length);
 });
 
-it('maintains order of results', function() {
+it('maintains order of results', function () {
   let results = {
     hits: {
-      hits: Array.from({length: 10}, () => {
+      hits: Array.from({ length: 10 }, () => {
         return mockResult();
       })
     }

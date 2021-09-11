@@ -1,4 +1,5 @@
-const xml2js = require('xml2js');
+// const xml2js = require('xml2js');
+import xml2js from 'xml2js';
 
 const parser = new xml2js.Parser({
   ignoreAttrs: true,

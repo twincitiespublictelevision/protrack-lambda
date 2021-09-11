@@ -50,7 +50,7 @@ export function receive(scheduleData, singleChannel = false) {
 
     if (channel) {
       let airingIds = scheduleData.result;
-      for (let i=0; i<airingIds.length; i++) {
+      for (let i = 0; i < airingIds.length; i++) {
         addView(channel, airingIds[i]);
       }
     }

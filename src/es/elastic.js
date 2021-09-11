@@ -1,6 +1,8 @@
 import AWS from 'aws-sdk';
-let ES = require('elasticsearch');
-let Connector = require('http-aws-es');
+// let ES = require('elasticsearch');
+import ES from 'elasticsearch';
+// let Connector = require('http-aws-es');
+import Connector from 'http-aws-es';
 
 export default class Elastic {
   client;

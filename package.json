@@ -4,14 +4,17 @@
   "version": "0.0.1",
   "description": "Serverless API on top of ProTrack XML export",
   "scripts": {
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
+  "type": "module",
   "author": "webmaster@tpt.org",
   "license": "Apache-2.0",
   "jest": {
     "testMatch": [
       "**/__tests__/**/*.test.js?(x)"
-    ]
+    ],
+    "testEnvironment": "jest-environment-node",
+    "transform": {}
   },
   "dependencies": {
     "aws-sdk": "^2.900.0",
@@ -27,7 +30,7 @@
     "@babel/preset-env": "^7.14.1",
     "babel-loader": "^8.2.2",
     "flow-bin": "^0.92.1",
-    "jest": "^24.9.0",
+    "jest": "^25.5.4",
     "serverless": "^2.39.2",
     "serverless-offline": "^7.0.0",
     "serverless-plugin-aws-alerts": "^1.7.3",
