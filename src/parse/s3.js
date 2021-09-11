@@ -1,4 +1,5 @@
-const S3 = require('aws-sdk/clients/s3');
+// const S3 = require('aws-sdk/clients/s3');
+import S3 from 'aws-sdk/clients/s3';
 
 function mapNameToBackupBucketName(name) {
   let stage = name.substring(name.lastIndexOf('-') + 1);
