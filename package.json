@@ -20,7 +20,7 @@
     "aws-sdk": "^2.900.0",
     "elasticsearch": "^15.5.0",
     "http-aws-es": "^6.0.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "moment-timezone": "^0.5.33",
     "normalizr": "^3.6.1",
     "xml2js": "^0.4.23"
