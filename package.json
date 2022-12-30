@@ -28,7 +28,7 @@
   "devDependencies": {
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.1",
-    "babel-loader": "^8.2.2",
+    "babel-loader": "^8.3.0",
     "flow-bin": "^0.92.1",
     "jest": "^25.5.4",
     "serverless": "^2.39.2",
