@@ -30,7 +30,7 @@
     "@babel/preset-env": "^7.14.1",
     "babel-loader": "^8.2.2",
     "flow-bin": "^0.92.1",
-    "jest": "^25.5.4",
+    "jest": "^29.7.0",
     "serverless": "^2.39.2",
     "serverless-offline": "^7.0.0",
     "serverless-plugin-aws-alerts": "^1.7.3",
