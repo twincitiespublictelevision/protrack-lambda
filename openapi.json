@@ -1,0 +1,417 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ProTrack Serverless Schedule API",
+    "version": "1.0.0",
+    "description": "API for accessing ProTrack schedule data."
+  },
+  "paths": {
+    "/all": {
+      "get": {
+        "summary": "Fetch all ingested data",
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Filter entries airing after this timestamp",
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "Filter entries airing before this timestamp",
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of airings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Airing" }
+                },
+                "examples": {
+                  "airings": {
+                    "value": [
+                      {
+                        "id": 1,
+                        "channel": "TPT2",
+                        "date": 1680307200,
+                        "end_date": 1680310800,
+                        "duration": 3600,
+                        "episode": {
+                          "id": 101,
+                          "program": { "id": 201 },
+                          "version": { "id": 301, "rating": "TV-G", "caption": true },
+                          "title": "The Science of Storms",
+                          "number": 5,
+                          "desc": "Nova explores the science behind severe weather.",
+                          "url": "https://www.pbs.org/wgbh/nova/",
+                          "language": "en",
+                          "dvi": false,
+                          "stereo": "stereo",
+                          "hdtv": true,
+                          "package_type": "standard",
+                          "orig_broadcast_date": "2023-03-31",
+                          "genres": [
+                            { "genrecd": "SCI", "genretxt": "Science" }
+                          ]
+                        },
+                        "show": {
+                          "id": 201,
+                          "code": "NOVA",
+                          "title": "Nova",
+                          "desc": "PBS's premier science documentary series.",
+                          "url": "https://www.pbs.org/wgbh/nova/",
+                          "pgmtype": "series",
+                          "genres": [
+                            { "genrecd": "SCI", "genretxt": "Science" }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/channel/{channel}": {
+      "get": {
+        "summary": "Fetch all data for a single channel",
+        "parameters": [
+          {
+            "name": "channel",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of airings for the channel",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Airing" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/show/{show}": {
+      "get": {
+        "summary": "Fetch all data for a single show ID",
+        "parameters": [
+          {
+            "name": "show",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of airings for the show",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Airing" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shows": {
+      "get": {
+        "summary": "Fetch all shows",
+        "responses": {
+          "200": {
+            "description": "A list of shows",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Show" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/episode/{episode}": {
+      "get": {
+        "summary": "Fetch all data for a single episode ID",
+        "parameters": [
+          {
+            "name": "episode",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of airings for the episode",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Airing" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/episode/{episode}/version/{version}": {
+      "get": {
+        "summary": "Fetch all data for a specific version of an episode",
+        "parameters": [
+          {
+            "name": "episode",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of airings for the episode version",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Airing" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search/{term}": {
+      "get": {
+        "summary": "Searches title and descriptions for the provided search term and returns all matching airings.",
+        "parameters": [
+          {
+            "name": "term",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": { "type": "integer", "default": 0 }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "schema": { "type": "integer", "default": 9007199254740991 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of airings matching the search term",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Airing" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/schedule/{year}/{month}/{day}/{granularity}": {
+      "get": {
+        "summary": "Fetches schedule for a given day and granularity",
+        "parameters": [
+          { "name": "year", "in": "path", "required": true, "schema": { "type": "integer" } },
+          { "name": "month", "in": "path", "required": true, "schema": { "type": "integer" } },
+          { "name": "day", "in": "path", "required": true, "schema": { "type": "integer" } },
+          { "name": "granularity", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of channels with their airings for the day",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Channel" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/schedule/{year}/{month}/{day}/{granularity}/{channel}": {
+      "get": {
+        "summary": "Fetches schedule for a given day, granularity, and channel",
+        "parameters": [
+          { "name": "year", "in": "path", "required": true, "schema": { "type": "integer" } },
+          { "name": "month", "in": "path", "required": true, "schema": { "type": "integer" } },
+          { "name": "day", "in": "path", "required": true, "schema": { "type": "integer" } },
+          { "name": "granularity", "in": "path", "required": true, "schema": { "type": "integer" } },
+          { "name": "channel", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of channels with their airings for the day and channel",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Channel" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Genre": {
+        "type": "object",
+        "properties": {
+          "genrecd": { "type": "string" },
+          "genretxt": { "type": "string" }
+        }
+      },
+      "Episode": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "program": {
+            "type": "object",
+            "properties": { "id": { "type": "integer" } }
+          },
+          "version": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "rating": { "type": "string" },
+              "caption": { "type": "boolean" }
+            }
+          },
+          "title": { "type": "string" },
+          "number": { "type": "integer" },
+          "desc": { "type": "string" },
+          "url": { "type": "string" },
+          "language": { "type": "string" },
+          "dvi": { "type": "boolean" },
+          "stereo": { "type": "string" },
+          "hdtv": { "type": "boolean" },
+          "package_type": { "type": "string" },
+          "orig_broadcast_date": { "type": "string" },
+          "genres": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Genre" }
+          }
+        }
+      },
+      "Show": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "code": { "type": "string" },
+          "title": { "type": "string" },
+          "desc": { "type": "string" },
+          "url": { "type": "string" },
+          "pgmtype": { "type": "string" },
+          "genres": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Genre" }
+          }
+        }
+      },
+      "Airing": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "channel": { "type": "string" },
+          "date": { "type": "integer" },
+          "end_date": { "type": "integer" },
+          "duration": { "type": "integer" },
+          "episode": { "$ref": "#/components/schemas/Episode" },
+          "show": { "$ref": "#/components/schemas/Show" }
+        }
+      },
+      "Channel": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "airings": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Airing" }
+          }
+        }
+      }
+    }
+  }
+}
