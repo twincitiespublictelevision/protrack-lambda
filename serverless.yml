@@ -73,8 +73,8 @@ functions:
           bucket: protrack-schedule-ingest-backup-${self:provider.stage}
           event: s3:ObjectCreated:*
     alarms:
-      - name: 'BackupAcknowledgement'
-        namespace: 'AWS/Lambda'
+      - name: "BackupAcknowledgement"
+        namespace: "AWS/Lambda"
         metric: Invocations
         threshold: 12
         statistic: Sum
@@ -102,7 +102,7 @@ functions:
           integration: lambda-proxy
           cors:
             origins:
-              - '*'
+              - "*"
 
   channel:
     handler: handler.channel
@@ -114,7 +114,7 @@ functions:
           integration: lambda-proxy
           cors:
             origins:
-              - '*'
+              - "*"
 
   show:
     handler: handler.show
@@ -126,7 +126,7 @@ functions:
           integration: lambda-proxy
           cors:
             origins:
-              - '*'
+              - "*"
 
   shows:
     handler: handler.shows
@@ -138,7 +138,7 @@ functions:
           integration: lambda-proxy
           cors:
             origins:
-              - '*'
+              - "*"
 
   episode:
     handler: handler.episode
@@ -150,7 +150,7 @@ functions:
           integration: lambda-proxy
           cors:
             origins:
-              - '*'
+              - "*"
 
   version:
     handler: handler.version
@@ -162,7 +162,7 @@ functions:
           integration: lambda-proxy
           cors:
             origins:
-              - '*'
+              - "*"
 
   search:
     handler: handler.search
@@ -174,7 +174,7 @@ functions:
           integration: lambda-proxy
           cors:
             origins:
-              - '*'
+              - "*"
 
   schedule:
     handler: handler.schedule
@@ -186,7 +186,7 @@ functions:
           integration: lambda-proxy
           cors:
             origins:
-              - '*'
+              - "*"
 
   schedule_channel:
     handler: handler.schedule_channel
@@ -198,7 +198,19 @@ functions:
           integration: lambda-proxy
           cors:
             origins:
-              - '*'
+              - "*"
+
+  validateSchedule:
+    handler: src/validation/validator.validate
+    memorySize: 512
+    timeout: 60
+    events:
+      - s3:
+          bucket: protrack-schedule-ingest-${self:provider.stage}
+          event: s3:ObjectCreated:*
+    environment:
+      VALIDATION_BUCKET: protrack-schedule-validation-${self:provider.stage}
+      ALERT_TOPIC_ARN: !Ref ValidationAlertTopic
 
 plugins:
   - serverless-webpack
@@ -227,4 +239,32 @@ custom:
           - protocol: email
             endpoint: ${file(./env.json):NOTIFICATION_EMAIL}
   webpackIncludeModules:
-    packagePath: './package.json'
+    packagePath: "./package.json"
+
+resources:
+  Resources:
+    ValidationBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: protrack-schedule-validation-${self:provider.stage}
+
+    ValidationAlertTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: ${self:service}-${self:provider.stage}-validation-alerts
+        DisplayName: "ProTrack Validation"
+
+    ValidationErrorAlarm:
+      Type: AWS::CloudWatch::Alarm
+      Properties:
+        AlarmName: ${self:service}-${self:provider.stage}-validation-errors
+        MetricName: Errors
+        Namespace: AWS/Lambda
+        Dimensions:
+          - Name: FunctionName
+            Value: !Ref ValidateScheduleLambdaFunction
+        Threshold: 1
+        Period: 300
+        EvaluationPeriods: 1
+        ComparisonOperator: GreaterThanThreshold
+        Statistic: Sum
