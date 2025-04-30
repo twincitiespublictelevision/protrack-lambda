@@ -52,6 +52,8 @@ File ingestion works by uploading ProTrack XML files to the s3 bucket created by
 
 ### Endpoints
 
+Swagger: https://twincitiespublictelevision.github.io/protrack-lambda/
+
 The API provides six endpoints for fetching information.
 
 1. `/all` - Fetches as much of the ingested data as allowed by ElasticSearch. It is not recommended to use without filters
